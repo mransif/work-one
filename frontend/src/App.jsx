@@ -1,8 +1,14 @@
 import React from 'react'
+import Banner from './Components/Banner'
+import Navbar from './Components/Navbar'
+
 
 const App = () => {
   return (
-    <div>hello ansif will it work?</div>
+    <div className='bg-[#FBE4E3] h-screen '>
+        <Navbar />
+        <Banner />
+    </div>
   )
 }
 
