@@ -2,8 +2,8 @@ import React from 'react'
 
 const Banner = () => {
   return (
-    <div className=''>
-
+    <div className='min-h-screen'>
+          hello
     </div>
   )
 }
