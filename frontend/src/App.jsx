@@ -2,7 +2,7 @@ import React from 'react'
 import Banner from './Components/Banner'
 import Aninavbar from './Components/Aninavbar'
 import Navbar from './Components/Navbar'
-import Mocktest from './Components/Mocktest'
+// import Mocktest from './Components/Mocktest'
 // import Login from './Components/Login'
 import { ToastContainer } from 'react-toastify'
 import Auth from './Components/Auth'
@@ -20,7 +20,6 @@ const App = () => {
         <Route path='/' element={<Banner />} />
         <Route path='/auth' element={<Auth />} />
       </Routes>
-      <Mocktest />
     </div>
   )
 }
