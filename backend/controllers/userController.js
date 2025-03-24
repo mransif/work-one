@@ -20,9 +20,34 @@ exports.registerStudent = async (req, res) => {
     });
 
     await newUser.save();
+    console.log(newUser);
     res.status(201).json({ message: "Student registered successfully" });
 
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+exports.loginStudent = async (req, res) => {
+
+  const { email, password } = req.body
+
+  try {
+
+    const student = await User.findOne({ email })
+    if (!student) return res.status(400).json({ message: "Invalid credentials" })
+
+    const isMatch = await bcrypt.compare(password, student.password)
+    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" })
+
+    const token = jwt.sign({ id: student._id }, process.env.JWT_SECRET, { expiresIn: "1h" })
+
+    res.status(200).json({ token })
+
+  } catch (error) {
+
+    res.status(500).json({ message: "Server error" });
+  }
+
+}
