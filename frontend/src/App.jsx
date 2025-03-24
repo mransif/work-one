@@ -6,6 +6,7 @@ import Mocktest from './Components/Mocktest'
 // import Login from './Components/Login'
 // import { ToastContainer } from 'react-toastify'
 import Auth from './Components/Auth'
+import { Route, Routes } from 'react-router-dom'
 
 
 
@@ -15,7 +16,7 @@ const App = () => {
     <div className='bg-[#FBE4E3] h-screen '>
       {/* <ToastContainer /> */}
       <Navbar />
-      {/* <Auth /> */}
+      <Auth />
       <Banner />
       <Mocktest />
     </div>
