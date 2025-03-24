@@ -3,13 +3,18 @@ import gsap from "gsap";
 import { useWindowScroll } from "react-use";
 import { useEffect, useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
-
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Menu from "./Menu";
+
+
 
 const navItems = ["Home", "Mock-Test", "About", "Contact"];
 
 const NavBar = () => {
+
+  const navigate = useNavigate()
+
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
 
   const navContainerRef = useRef(null);
@@ -52,7 +57,9 @@ const NavBar = () => {
           <div className="flex items-center gap-7">
             <img src="/images/mcet-logo.png" alt="logo" className="w-30" />
 
+
             <Button
+              onClick={() => navigate('/auth')}
               id="Login-button"
               title="Login"
               rightIcon={<TiLocationArrow />}
@@ -71,8 +78,8 @@ const NavBar = () => {
                 </a>
               ))}
             </div>
-            <div className="md:hidden sm:block"> 
-                <Menu />
+            <div className="md:hidden sm:block">
+              <Menu />
             </div>
           </div>
         </nav>
