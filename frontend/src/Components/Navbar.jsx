@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 import Button from "./Button";
+import Menu from "./Menu";
 
 const navItems = ["Home", "Mock-Test", "About", "Contact"];
 
@@ -69,6 +70,9 @@ const NavBar = () => {
                   {item}
                 </a>
               ))}
+            </div>
+            <div className="md:hidden sm:block"> 
+                <Menu />
             </div>
           </div>
         </nav>
