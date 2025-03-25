@@ -65,7 +65,7 @@ const StyledWrapper = styled.div`
    border-radius: 12px;
    font-size: 1.1rem;
    color: white;
-   background: #7D0A0A;
+   background: #7D0A0Ay;
    will-change: transform;
    transform: translateY(-4px);
    transition: transform

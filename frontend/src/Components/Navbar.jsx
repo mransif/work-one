@@ -51,13 +51,6 @@ const NavBar = () => {
         <nav className="flex size-full items-center justify-between p-4 bg-[#EAD196] rounded-xl ">
           <div className="flex items-center gap-7">
             <img src="/images/mcet-logo.png" alt="logo" className="w-30" />
-
-            <Button
-              id="Login-button"
-              title="Login"
-              rightIcon={<TiLocationArrow />}
-              containerClass="bg-[#7D0A0A] md:flex hidden items-center justify-center gap-1"
-            />
           </div>
           <div className="flex h-full items-center">
             <div className=" hidden md:block">
