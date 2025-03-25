@@ -75,8 +75,8 @@ const StyledWrapper = styled.div`
   }
 
   .menu-container {
-    background-color: #101828;
-    color: White;
+    background-color: #EEEEEE;
+    color: #7D0A0A;
     border-radius: 10px;
     position: absolute;
     width: 9.5rem;
@@ -110,7 +110,7 @@ const StyledWrapper = styled.div`
   }
 
   .menu-list:hover {
-    background-color: rgb(223, 223, 223);
+    background-color: #EAD196;
   }
 
   .inp:checked ~ .menu-container {
