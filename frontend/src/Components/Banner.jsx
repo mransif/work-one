@@ -1,13 +1,24 @@
-import React from "react";
 import SplitText from "./SplitText/SplitText";
 
 const handleAnimationComplete = () => {
   console.log('All letters have animated!');
 };
 
+import React, { useContext } from "react";
+import Button from "./Button";
+import { TiLocationArrow } from "react-icons/ti";
+import { AppContext } from "../context/AppContext";
+import Mocktest from "./Mocktest";
+
+
 const Banner = () => {
+  const { token } = useContext(AppContext);
+
+
   return (
-    <div className="flex flex-col min-h-screen md:flex-row">
+
+    <>
+            <div className="flex flex-col min-h-screen md:flex-row">
       <div className="bg-[url(/images/mcet-bg.jpg)] bg-cover bg-center md:w-screen md: h-screen pt-25 p-5 sm:h-screen sm:w-screen">
         <div className="m-2 ">
           <SplitText 
@@ -50,7 +61,12 @@ const Banner = () => {
           
         </div>
       </div>
-    </div>
+    </div>  
+      {token &&
+
+        <Mocktest />
+      }
+    </>
   );
 };
 

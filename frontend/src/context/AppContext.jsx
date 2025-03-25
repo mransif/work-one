@@ -38,6 +38,7 @@ const AppContextProvider = ({ children }) => {
 
             if (data.success) {
                 toast.success("Signup successful, please login");
+                console.log(data)
             } else {
                 toast.error(data.message);
             }

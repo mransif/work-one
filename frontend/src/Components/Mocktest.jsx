@@ -2,7 +2,7 @@ import React from 'react'
 
 const Mocktest = () => {
   return (
-    <div>Mocktest</div>
+    <div className='h-screen'>Mocktest</div>
   )
 }
 
