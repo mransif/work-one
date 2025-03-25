@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Enable CORS for all origins or specify allowed origins
 app.use(cors({
-  origin: 'http://localhost:5174',
+  origin: '*',
   methods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
   allowedHeaders: 'Content-Type,Authorization',
 }));

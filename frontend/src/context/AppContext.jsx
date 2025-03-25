@@ -7,7 +7,7 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [loading, setLoading] = useState(false);
-    const [questions, setQuestions] = useState([]);  // ✅ Store questions
+    const [questions, setQuestions] = useState([]); 
     const backendurl = import.meta.env.VITE_BACKEND_URL;
 
     // ✅ Function to get mock questions
