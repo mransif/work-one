@@ -11,7 +11,7 @@ import Menu from "./Menu";
 
 const navItems = ["Home", "Mock-Test", "About", "Contact"];
 
-const NavBar = () => {
+const  NavBar = () => {
 
   const navigate = useNavigate()
 
@@ -55,11 +55,11 @@ const NavBar = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4 bg-[#BDB395] rounded-xl ">
           <div className="flex items-center gap-7">
-            <img src="/images/mcet-logo.png" alt="logo" className="w-30" />
+            <img onClick={() => navigate('/auth')} src="/images/mcet-logo.png" alt="logo" className="w-30" />
 
 
             <Button
-              onClick={() => navigate('/auth')}
+              
               id="Login-button"
               title="Login"
               rightIcon={<TiLocationArrow />}

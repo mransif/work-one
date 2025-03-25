@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { TiLocationArrow } from "react-icons/ti";
 import { AppContext } from "../context/AppContext";
@@ -6,7 +7,13 @@ import Mocktest from "./Mocktest";
 
 const Banner = () => {
   const { token } = useContext(AppContext);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!token) {
+      navigate("/auth");
+    }
+  }, [token, navigate]);
 
   return (
     <>
@@ -31,17 +38,8 @@ const Banner = () => {
             />
           </div>
         </div>
-
-        {/* <div className="md:w-[50vw] md:h-screen sm:h-[50vh] sm:w-screen">
-        <div>
-        <img src="/images/bg-img.jpg" className="w-full h-full object-cover" />
-        </div>
-      </div> */}
       </div>
-      {token &&
-
-        <Mocktest />
-      }
+      {token && <Mocktest />}
     </>
   );
 };

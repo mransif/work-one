@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const MockTest = require("../models/mockTestModel");  // Import mock test model
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -27,8 +28,50 @@ exports.loginAdmin = async (req, res) => {
 exports.getAllStudents = async (req, res) => {
   try {
     const students = await User.find().select("-password");
-    console.log(students)
+    console.log(students);
     res.status(200).json(students);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// ✅ Add Question
+exports.addQuestion = async (req, res) => {
+  const { setName, question, options, correctAnswer } = req.body;
+
+  try {
+    let mockTest = await MockTest.findOne({ setName });
+
+    if (!mockTest) {
+      mockTest = new MockTest({ setName, questions: [] });
+    }
+
+    mockTest.questions.push({ question, options, correctAnswer });
+    await mockTest.save();
+
+    res.status(201).json({ message: "Question added successfully" });
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// ❌ Delete Question
+exports.deleteQuestion = async (req, res) => {
+  const { setName, questionId } = req.params;
+
+  try {
+    const mockTest = await MockTest.findOne({ setName });
+
+    if (!mockTest) {
+      return res.status(404).json({ message: "Mock test not found" });
+    }
+
+    mockTest.questions = mockTest.questions.filter(q => q._id.toString() !== questionId);
+    await mockTest.save();
+
+    res.status(200).json({ message: "Question deleted successfully" });
+
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
