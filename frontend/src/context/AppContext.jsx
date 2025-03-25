@@ -7,9 +7,35 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [loading, setLoading] = useState(false);
+    const [questions, setQuestions] = useState([]);  // ✅ Store questions
     const backendurl = import.meta.env.VITE_BACKEND_URL;
 
-    // Login Function
+    // ✅ Function to get mock questions
+    const getMockQuestions = async (setName) => {
+        try {
+            setLoading(true);
+            const { data } = await axios.get(`${backendurl}/api/user/mocktest/${setName}`, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Pass token if required
+                }
+            });
+
+            if (data) {
+                setQuestions(data.questions);
+                toast.success(`Questions for ${setName} loaded successfully`);
+                console.log(data.questions); 
+            } else {
+                toast.error("No questions found");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to load questions");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ✅ Login Function
     const loginUser = async (email, password) => {
         try {
             setLoading(true);
@@ -18,7 +44,6 @@ const AppContextProvider = ({ children }) => {
             if (data.success) {
                 localStorage.setItem("token", data.token);
                 setToken(data.token);
-                console.log(data)
                 toast.success("Logged in successfully");
             } else {
                 toast.error(data.message);
@@ -31,14 +56,13 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-    // Signup Function
+    // ✅ Signup Function
     const signupUser = async (name, email, phone, address, password) => {
         try {
             const { data } = await axios.post(`${backendurl}/api/user/register`, { name, email, phone, address, password });
 
             if (data.success) {
                 toast.success("Signup successful, please login");
-                console.log(data)
             } else {
                 toast.error(data.message);
             }
@@ -48,7 +72,7 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-    // Logout Function
+    // ✅ Logout Function
     const logoutUser = () => {
         localStorage.removeItem("token");
         setToken(null);
@@ -64,6 +88,8 @@ const AppContextProvider = ({ children }) => {
     const value = {
         token,
         loading,
+        questions,           // ✅ Add questions to context
+        getMockQuestions,    // ✅ Expose function in context
         loginUser,
         signupUser,
         logoutUser

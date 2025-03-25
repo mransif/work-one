@@ -37,7 +37,7 @@ exports.getAllStudents = async (req, res) => {
 
 // ✅ Add Question
 exports.addQuestion = async (req, res) => {
-  const { setName, question, options, correctAnswer } = req.body;
+  const { setName, questions } = req.body;  // Destructure questions array
 
   try {
     let mockTest = await MockTest.findOne({ setName });
@@ -46,12 +46,15 @@ exports.addQuestion = async (req, res) => {
       mockTest = new MockTest({ setName, questions: [] });
     }
 
-    mockTest.questions.push({ question, options, correctAnswer });
+    // Add multiple questions
+    mockTest.questions.push(...questions);
+    
     await mockTest.save();
 
-    res.status(201).json({ message: "Question added successfully" });
+    res.status(201).json({ message: "Questions added successfully" });
 
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 };

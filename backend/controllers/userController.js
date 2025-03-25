@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const mockTestModel = require("../models/mockTestModel");
+
 
 exports.registerStudent = async (req, res) => {
   const { name, email, phone, address, password } = req.body;
@@ -46,3 +48,21 @@ exports.loginStudent = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 }
+
+// api to get questions
+exports.getMockTest = async (req, res) => {
+  const { setName } = req.params;
+
+  try {
+    const mockTest = await mockTestModel.findOne({ setName });
+
+    if (!mockTest) {
+      return res.status(404).json({ message: "Mock test not found" });
+    }
+
+    res.status(200).json(mockTest);
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
