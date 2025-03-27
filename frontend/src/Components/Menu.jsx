@@ -75,8 +75,8 @@ const StyledWrapper = styled.div`
   }
 
   .menu-container {
-    background-color: #EEEEEE;
-    color: #7D0A0A;
+    background-color: #F4F8D3;
+    color: #37474F;
     border-radius: 10px;
     position: absolute;
     width: 9.5rem;
