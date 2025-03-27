@@ -51,7 +51,7 @@ const StudentDetails = () => {
                 className="bg-white rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 <div className="p-6 bg-[#A6F1E0] rounded-t-2xl">
-                  <h2 className="text-xl font-bold text-[#4d8080] break-words">
+                  <h2 className="text-xl font-bold text-[#599393] break-words">
                     {student.name}
                   </h2>
                 </div>
