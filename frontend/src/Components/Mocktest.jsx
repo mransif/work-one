@@ -73,10 +73,12 @@ const Mocktest = () => {
   const startTest = (subject) => {
     setSelectedSubject(subject);
     setQuestions(
-      subjectQuestions[subject.name].sort(() => 0.5 - Math.random()).slice(0, 5)
+      subjectQuestions[subject.name]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 20)
     );
     setSelectedAnswers({});
-    setTimeLeft(5);
+    setTimeLeft(10);
   };
 
   const handleOptionSelect = (questionIndex, option) => {
@@ -101,7 +103,10 @@ const Mocktest = () => {
   };
 
   return (
-    <div className="h-screen bg-[#F4F8D3]  overflow-x-hidden flex flex-col items-center p-4">
+    <div
+      className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-4 "
+      style={{ backgroundImage: "url(/images/mock-bg.png)" }}
+    >
       <h1 className="text-4xl font-bold m-3 text-[#37474F]">MOCK-TEST</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-full max-w-4xl">
         {subjects.map((subject, index) => (
@@ -128,7 +133,7 @@ const Mocktest = () => {
       </div>
 
       {selectedSubject && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40">
           <div className="bg-[#F4F8D3] w-full h-full p-6 overflow-y-auto flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4">{selectedSubject.name}</h2>
             <p className="text-xl font-semibold text-[#37474F]">
@@ -156,12 +161,17 @@ const Mocktest = () => {
                 </div>
               ))}
             </div>
-            <button
-              onClick={() => setSelectedSubject(null)}
-              className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
-            >
-              Close
-            </button>
+            <div className="mt-4 flex space-x-4">
+              <button
+                onClick={() => setSelectedSubject(null)}
+                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
+              >
+                Close
+              </button>
+              <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       )}

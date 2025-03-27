@@ -14,7 +14,6 @@ const Menu = () => {
         <section className="menu-container">
           <div className="menu-list">Home</div>
           <div className="menu-list">Mock-Test</div>
-          <div className="menu-list">About</div>
           <div className="menu-list">Contacts</div>
         </section>
       </label>
@@ -75,13 +74,13 @@ const StyledWrapper = styled.div`
   }
 
   .menu-container {
-    background-color: #F4F8D3;
+    background-color: #FFEDD5;
     color: #37474F;
     border-radius: 10px;
     position: absolute;
     width: 9.5rem;
     right: 0;
-    top: 130%;
+    top: 100%;
     overflow: hidden;
     clip-path: inset(0% 0% 0% 0% round 10px);
     transition: all 0.4s;

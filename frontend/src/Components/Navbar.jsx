@@ -7,7 +7,7 @@ import Menu from "./Menu";
 
 
 
-const navItems = ["Home", "Mock-Test", "About", "Contact"];
+const navItems = ["Home", "Mock-Test","Contact"];
 
 const  NavBar = () => {
 
@@ -51,7 +51,7 @@ const  NavBar = () => {
       className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
     >
       <header className="absolute top-1/2 w-full -translate-y-1/2">
-        <nav className="flex size-full items-center justify-between p-4 bg-[#A6F1E0] rounded-xl ">
+        <nav className="flex size-full items-center justify-between p-4 bg-orange-100 rounded-xl">
           <div className="flex items-center gap-7">
             <img onClick={() => navigate('/auth')} src="/images/mcet-logo.png" alt="logo" className="w-30" />
                 
