@@ -3,6 +3,7 @@ import { AppContext } from "../context/AppContext";
 import Menu from "./Menu";
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
+import { BiLogOut } from "react-icons/bi";
 
 const navItems = ["Home", "Mock-Test", "Contact"];
 
@@ -17,7 +18,7 @@ const NavBar = () => {
   // const logout = () => {
   //       setToken(false)
   //       localStorage.removeItem('token')
-    
+
   //   // Redirect to login page
   //   window.location.href = '/auth';
   // };
@@ -55,7 +56,7 @@ const NavBar = () => {
   }, [isNavVisible]);
 
   return (
-    <div 
+    <div
       ref={navContainerRef}
       className={`
         fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 
@@ -66,14 +67,14 @@ const NavBar = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4 bg-[#FFEDD5] rounded-xl">
           <div className="flex items-center gap-7">
-            <img 
+            <img
               onClick={() => window.location.href = '/'}
-              src="/images/mcet-logo.png" 
-              alt="logo" 
+              src="/images/mcet-logo.png"
+              alt="logo"
               className="w-30 cursor-pointer"
             />
           </div>
-          <div className="flex h-full items-center space-x-4">
+          <div className="flex h-full items-center space-x-4 ">
             <div className="hidden md:block space-x-4">
               {navItems.map((item, index) => (
                 <a
@@ -85,18 +86,20 @@ const NavBar = () => {
                 </a>
               ))}
             </div>
-            
+
             {token && (
+              <div className=" items-center gap-1 cursor-pointer text-[#37474F] hover:text-red-950 ml-10 hidden md:flex">
               <button
                 onClick={logoutUser}
-                className="bg-[#F7CFD8] text-gray-700 px-3 py-1 rounded-lg hidden md:block
-                  hover:bg-[#F7CFD8]/80 transition-colors duration-300 
-                  focus:outline-none focus:ring-2 focus:ring-[#73C7C7]/50"
+                className="font-medium"
               >
                 Logout
               </button>
+              <BiLogOut className="text-lg" />
+            </div>
+
             )}
-            
+
             <div className="md:hidden sm:block">
               {/* Placeholder for mobile menu */}
               <Menu

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Particles from "./Particles/Particles";
 
 const Auth = () => {
   const { loginUser, signupUser, token } = useContext(AppContext);
@@ -46,7 +47,7 @@ const Auth = () => {
     } else {
       // Signup validation
       if (!formData.name || !formData.email || !formData.phone ||
-          !formData.address || !formData.password) {
+        !formData.address || !formData.password) {
         toast.error("Please fill all fields");
         return;
       }
@@ -81,17 +82,31 @@ const Auth = () => {
   }, [token, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 ">
-      <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#181313]">
+
+      <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
+        <Particles
+          particleColors={['#ffffff', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+
+      <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg border  border-gray-700 bg-white/10 text-gray-200 ">
         <h2 className="text-2xl font-bold text-center mb-6">
           {isLogin ? "Login" : "Sign Up"}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 ">
           {!isLogin && (
             <>
               {/* Name Input */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="name" className="block text-sm font-medium ">
                   Full Name
                 </label>
                 <input
@@ -100,7 +115,7 @@ const Auth = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
                   placeholder="Enter your full name"
                   required
                 />
@@ -108,7 +123,7 @@ const Auth = () => {
 
               {/* Phone Input */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="phone" className="block text-sm font-medium ">
                   Phone Number
                 </label>
                 <input
@@ -117,7 +132,7 @@ const Auth = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
                   placeholder="Enter your phone number"
                   required
                 />
@@ -125,7 +140,7 @@ const Auth = () => {
 
               {/* Address Input */}
               <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="address" className="block text-sm font-medium ">
                   Address
                 </label>
                 <input
@@ -134,7 +149,7 @@ const Auth = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
                   placeholder="Enter your address"
                   required
                 />
@@ -144,7 +159,7 @@ const Auth = () => {
 
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="block text-sm font-medium ">
               Email
             </label>
             <input
@@ -153,7 +168,7 @@ const Auth = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
               placeholder="Enter your email"
               required
             />
@@ -161,7 +176,7 @@ const Auth = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium ">
               Password
             </label>
             <input
@@ -170,7 +185,7 @@ const Auth = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
               placeholder="Enter your password"
               required
             />
@@ -178,7 +193,7 @@ const Auth = () => {
 
           {!isLogin && (
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium ">
                 Confirm Password
               </label>
               <input
@@ -187,7 +202,7 @@ const Auth = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
                 placeholder="Confirm your password"
                 required
               />
@@ -204,14 +219,14 @@ const Auth = () => {
         </form>
 
         {/* Toggle Link */}
-        <p className="text-sm text-gray-600 mt-4 text-center">
+        <p className="text-sm text-gray-300 mt-4 text-center">
           {isLogin ? (
             <>
               Don't have an account?{" "}
               <button
                 type="button"
                 onClick={() => setIsLogin(false)}
-                className="text-indigo-500 hover:underline"
+                className="text-indigo-400 hover:underline"
               >
                 Sign Up
               </button>
@@ -231,6 +246,7 @@ const Auth = () => {
         </p>
       </div>
     </div>
+
   );
 };
 

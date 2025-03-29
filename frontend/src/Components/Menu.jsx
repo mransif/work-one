@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BiLogOut } from "react-icons/bi";
 
-const Menu = ({token, logoutUser}) => {
+
+const Menu = ({ token, logoutUser }) => {
   return (
     <StyledWrapper>
       <label className="main">
@@ -15,7 +17,7 @@ const Menu = ({token, logoutUser}) => {
           <div className="menu-list">Home</div>
           <div className="menu-list">Mock-Test</div>
           <div className="menu-list">Contacts</div>
-          <div onClick={logoutUser} className="menu-list">Logout</div>
+          <div onClick={logoutUser} className="menu-list flex items-center gap-1">Logout<BiLogOut className="text-lg " /></div>
         </section>
       </label>
     </StyledWrapper>
