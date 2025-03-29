@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SplitText from "./SplitText/SplitText";
 import { AppContext } from "../context/AppContext";
 import Mocktest from "./Mocktest";
+import Contact from "./Contact";
 
 const handleAnimationComplete = () => {
   console.log('All letters have animated!');
@@ -57,9 +58,10 @@ const Banner = () => {
         </div>
       </div>
       {
-      token && 
-      
-      <Mocktest />}
+        token &&
+        <Mocktest />
+      }
+      <Contact/>
     </>
   );
 };
