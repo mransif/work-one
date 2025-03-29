@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Menu = () => {
+const Menu = ({token, logoutUser}) => {
   return (
     <StyledWrapper>
       <label className="main">
@@ -15,6 +15,7 @@ const Menu = () => {
           <div className="menu-list">Home</div>
           <div className="menu-list">Mock-Test</div>
           <div className="menu-list">Contacts</div>
+          <div onClick={logoutUser} className="menu-list">Logout</div>
         </section>
       </label>
     </StyledWrapper>
@@ -157,6 +158,7 @@ const StyledWrapper = styled.div`
     width: 20px;
     flex-direction: column;
     gap: 3px;
+    
   }
 
   .bar-list {
@@ -165,7 +167,7 @@ const StyledWrapper = styled.div`
     width: 100%;
     height: 3px;
     border-radius: 50px;
-    background-color: white;
+    background-color: #37474F;
     transition: all 0.4s;
     position: relative;
   }

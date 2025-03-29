@@ -82,7 +82,7 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 ">
-      <div className="bg-[#EEEEEE] shadow-lg rounded-lg p-8 max-w-md w-full">
+      <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg">
         <h2 className="text-2xl font-bold text-center mb-6">
           {isLogin ? "Login" : "Sign Up"}
         </h2>
@@ -197,7 +197,7 @@ const Auth = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#7D0A0A] text-white py-2 px-4 rounded-md hover:bg-[#EAD196] transition"
+            className="w-full bg-[#7D0A0A] text-white py-2 px-4 rounded-md hover:bg-[#9d3737] transition"
           >
             {isLogin ? "Login" : "Sign Up"}
           </button>
