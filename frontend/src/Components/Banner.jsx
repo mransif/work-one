@@ -12,11 +12,11 @@ const Banner = () => {
   const { token } = useContext(AppContext);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!token) {
-  //     navigate("/auth");
-  //   }
-  // }, [token, navigate]);
+  useEffect(() => {
+    if (!token) {
+      navigate("/auth");
+    }
+  }, [token, navigate]);
 
   const textContent = [
     {
@@ -57,7 +57,7 @@ const Banner = () => {
         </div>
       </div>
       {
-      // token && 
+      token && 
       
       <Mocktest />}
     </>

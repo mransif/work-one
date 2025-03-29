@@ -87,6 +87,7 @@ const AppContextProvider = ({ children }) => {
 
     const value = {
         token,
+        setToken,
         loading,
         questions,           // ✅ Add questions to context
         getMockQuestions,    // ✅ Expose function in context
