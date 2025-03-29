@@ -1,36 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { AppContext } from "../context/AppContext";
 
 const navItems = ["Home", "Mock-Test", "Contact"];
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const { token, setToken, logoutUser } = useContext(AppContext);
 
-  // Add a storage event listener to update token across components
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setToken(localStorage.getItem('token'));
-    };
-
-    // Listen for storage changes
-    window.addEventListener('storage', handleStorageChange);
-
-    // Cleanup listener
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
-
-  const handleLogout = () => {
-    // Clear token from localStorage
-    localStorage.removeItem('token');
+  // const logout = () => {
+  //       setToken(false)
+  //       localStorage.removeItem('token')
     
-    // Dispatch storage event to update token state
-    window.dispatchEvent(new Event('storage'));
-    
-    // Redirect to login page
-    window.location.href = '/auth';
-  };
+  //   // Redirect to login page
+  //   window.location.href = '/auth';
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +56,7 @@ const NavBar = () => {
             
             {token && (
               <button
-                onClick={handleLogout}
+                onClick={logoutUser}
                 className="bg-[#F7CFD8] text-[#73C7C7] px-4 py-2 rounded-lg 
                   hover:bg-[#F7CFD8]/80 transition-colors duration-300 
                   focus:outline-none focus:ring-2 focus:ring-[#73C7C7]/50"
