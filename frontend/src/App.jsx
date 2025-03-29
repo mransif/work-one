@@ -6,7 +6,6 @@ import Navbar from './Components/Navbar'
 import { ToastContainer } from 'react-toastify'
 import Auth from './Components/Auth'
 import { Route, Routes } from 'react-router-dom'
-import Contact from './Components/Contact'
 
 
 
@@ -21,7 +20,6 @@ const App = () => {
         <Route path='/' element={<Banner />} />
         <Route path='/auth' element={<Auth />} />
       </Routes>
-      <Contact />
     </div>
   )
 }
