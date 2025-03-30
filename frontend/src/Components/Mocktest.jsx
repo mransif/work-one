@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import StyledSplitButton from "./StyledSplitButton";
 
 const Mocktest = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
@@ -112,7 +113,7 @@ const Mocktest = () => {
         {subjects.map((subject, index) => (
           <div
             key={index}
-            className="bg-[#F7CFD8] p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
+            className="backdrop-blur-lg p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
           >
             <img
               src={subject.image}
@@ -122,12 +123,14 @@ const Mocktest = () => {
             <h3 className="mt-2 text-xl font-semibold text-[#37474F]">
               {subject.name}
             </h3>
-            <button
+            <StyledSplitButton
               onClick={() => startTest(subject)}
+              startTest={startTest}
+              subject={subject}
               className="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
             >
               Start Test
-            </button>
+            </StyledSplitButton>
           </div>
         ))}
       </div>
