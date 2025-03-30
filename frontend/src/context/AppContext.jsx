@@ -6,9 +6,10 @@ export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
-    const [userId, setUserId] = useState(localStorage.getItem('userId') || null);  // ✅ Added userId
+    const [userId, setUserId] = useState(localStorage.getItem('userId') || null);
     const [loading, setLoading] = useState(false);
     const [questions, setQuestions] = useState([]);
+    const [scores, setScores] = useState([]);   // ✅ Added scores state
     const backendurl = import.meta.env.VITE_BACKEND_URL;
 
     // ✅ Function to get mock questions
@@ -16,9 +17,7 @@ const AppContextProvider = ({ children }) => {
         try {
             setLoading(true);
             const { data } = await axios.get(`${backendurl}/api/user/mocktest/${setName}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                headers: { Authorization: `Bearer ${token}` }
             });
 
             if (data) {
@@ -35,6 +34,33 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
+
+    // ✅ Function to retrieve mock test scores
+    const getMockTestScores = async () => {
+        if (!userId) return;
+    
+        try {
+            setLoading(true);
+            const { data } = await axios.get(`${backendurl}/api/user/mocktest-scores/${userId}`);
+    
+            if (data.success) {
+                setScores(data.scores);   // ✅ Store only the scores array
+                toast.success("Scores retrieved successfully");
+                console.log("Scores:", data.scores);
+            } else {
+                setScores([]);
+                toast.info("No scores found");
+            }
+        } catch (error) {
+            console.error("Error fetching scores:", error);
+            toast.error("Failed to retrieve scores");
+            setScores([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     // ✅ Updated login function to store userId
     const loginUser = async (email, password) => {
         try {
@@ -43,10 +69,10 @@ const AppContextProvider = ({ children }) => {
 
             if (data.success) {
                 localStorage.setItem("token", data.token);
-                localStorage.setItem("userId", data.userId);   // ✅ Store userId
+                localStorage.setItem("userId", data.userId);
 
                 setToken(data.token);
-                setUserId(data.userId);   // ✅ Set userId
+                setUserId(data.userId);
 
                 toast.success("Logged in successfully");
             } else {
@@ -79,9 +105,10 @@ const AppContextProvider = ({ children }) => {
     // ✅ Logout function
     const logoutUser = () => {
         localStorage.removeItem("token");
-        localStorage.removeItem("userId");   // ✅ Remove userId on logout
+        localStorage.removeItem("userId");
         setToken(null);
-        setUserId(null);  // ✅ Clear userId
+        setUserId(null);
+        setScores([]);   // ✅ Clear scores on logout
         toast.success("Logged out successfully");
     };
 
@@ -91,16 +118,17 @@ const AppContextProvider = ({ children }) => {
 
         if (storedToken && storedUserId) {
             setToken(storedToken);
-            setUserId(storedUserId);   // ✅ Retrieve userId from localStorage
+            setUserId(storedUserId);
+            getMockTestScores();   // ✅ Fetch scores on component mount
         }
     }, []);
 
-    // ✅ Updated submitMockTestResult to include studentId
+    // ✅ Submit mock test results
     const submitMockTestResult = async (setName, score, questions) => {
         try {
             setLoading(true);
             const result = {
-                studentId: userId, 
+                studentId: userId,
                 setName,
                 score,
                 questions,
@@ -110,6 +138,7 @@ const AppContextProvider = ({ children }) => {
 
             if (data.success) {
                 toast.success(`Mock test score: ${score}`);
+                getMockTestScores();   // ✅ Fetch updated scores after submission
             } else {
                 toast.error(data.message || "Failed to submit mock test");
             }
@@ -121,15 +150,15 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-
-
     const value = {
         token,
-        userId,             
+        userId,
+        scores,           // ✅ Include scores in context
         setToken,
         loading,
         questions,
         getMockQuestions,
+        getMockTestScores,   // ✅ Include function in context
         loginUser,
         signupUser,
         logoutUser,
