@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../context/AppContext"; // Import AppContext
 import Button from "./Button";
 import StyledSplitButton from "./StyledSplitButton";
 
@@ -7,6 +8,9 @@ const Mocktest = () => {
   const [questions, setQuestions] = useState([]);
   const [timeLeft, setTimeLeft] = useState(1200);
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [testResults, setTestResults] = useState(null);
+
+  const { submitMockTestResult } = useContext(AppContext); // ✅ Use context function
 
   const subjects = [
     { name: "MATHEMATICS", image: "/images/maths.jpg" },
@@ -16,58 +20,16 @@ const Mocktest = () => {
 
   const subjectQuestions = {
     MATHEMATICS: [
-      { question: "What is 2 + 2?", options: ["3", "4", "5", "6"] },
-      { question: "Solve: 5 x 6", options: ["30", "25", "20", "35"] },
-      { question: "Solve: 10 / 2", options: ["5", "2", "10", "8"] },
-      {
-        question: "What is the square root of 144?",
-        options: ["12", "14", "16", "10"],
-      },
-      { question: "What is 15% of 200?", options: ["30", "25", "35", "40"] },
+      { question: "If f(x) = x² + 3x + 2, find f(-1).", options: ["0", "2", "6", "-2"], correctAnswer: "0" },
+      { question: "What is the derivative of sin(x)?", options: ["cos(x)", "-sin(x)", "-cos(x)", "sec²(x)"], correctAnswer: "cos(x)" },
     ],
     PHYSICS: [
-      {
-        question: "Speed of light in vacuum?",
-        options: ["299,792 km/s", "150,000 km/s", "3,000 km/s", "30,000 km/s"],
-      },
-      {
-        question: "Who discovered gravity?",
-        options: ["Newton", "Einstein", "Tesla", "Edison"],
-      },
-      {
-        question: "What is the SI unit of force?",
-        options: ["Newton", "Joule", "Pascal", "Watt"],
-      },
-      {
-        question: "Who developed the Theory of Relativity?",
-        options: ["Einstein", "Newton", "Galileo", "Bohr"],
-      },
-      {
-        question: "What is the acceleration due to gravity on Earth?",
-        options: ["9.8 m/s²", "10 m/s²", "8.5 m/s²", "12 m/s²"],
-      },
+      { question: "What is the SI unit of electric current?", options: ["Ampere", "Watt", "Volt", "Ohm"], correctAnswer: "Ampere" },
+      { question: "What is the escape velocity on Earth?", options: ["11.2 km/s", "9.8 km/s", "12.5 km/s", "7.9 km/s"], correctAnswer: "11.2 km/s" },
     ],
     CHEMISTRY: [
-      {
-        question: "Chemical symbol for Gold?",
-        options: ["Au", "Ag", "Pb", "Fe"],
-      },
-      {
-        question: "What is H2O?",
-        options: ["Water", "Oxygen", "Hydrogen", "Helium"],
-      },
-      {
-        question: "Which gas do plants absorb?",
-        options: ["CO2", "O2", "N2", "H2"],
-      },
-      {
-        question: "What is the chemical formula of methane?",
-        options: ["CH4", "CO2", "H2O", "O2"],
-      },
-      {
-        question: "What is the hardest natural substance?",
-        options: ["Diamond", "Gold", "Iron", "Quartz"],
-      },
+      { question: "What is the pH of pure water at 25°C?", options: ["7", "6", "8", "5"], correctAnswer: "7" },
+      { question: "The chemical formula of baking soda is:", options: ["NaHCO₃", "NaCl", "KOH", "CaCO₃"], correctAnswer: "NaHCO₃" },
     ],
   };
 
@@ -76,26 +38,50 @@ const Mocktest = () => {
     setQuestions(
       subjectQuestions[subject.name]
         .sort(() => 0.5 - Math.random())
-        .slice(0, 20)
+        .slice(0, 5) // Using 5 questions for brevity
     );
     setSelectedAnswers({});
-    setTimeLeft(10);
+    setTimeLeft(1200); 
+    setTestResults(null);
   };
 
   const handleOptionSelect = (questionIndex, option) => {
     setSelectedAnswers((prev) => ({ ...prev, [questionIndex]: option }));
   };
 
+  const evaluateAnswers = () => {
+    let correctCount = 0;
+    questions.forEach((question, index) => {
+      if (selectedAnswers[index] === question.correctAnswer) {
+        correctCount++;
+      }
+    });
+
+    const totalQuestions = questions.length;
+    const percentScore = (correctCount / totalQuestions) * 100;
+
+    setTestResults({
+      subject: selectedSubject.name,
+      totalQuestions,
+      correctAnswers: correctCount,
+      percentScore: percentScore.toFixed(2),
+    });
+
+    // ✅ Submit the result to the backend
+    submitMockTestResult(selectedSubject.name, correctCount, totalQuestions);
+    (console.log(selectedSubject.name, correctCount, totalQuestions))
+  };
+
   useEffect(() => {
-    if (selectedSubject && timeLeft > 0) {
+    if (selectedSubject && timeLeft > 0 && !testResults) {
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
       return () => clearInterval(timer);
-    } else if (timeLeft === 0) {
-      setSelectedSubject(null);
+    } else if (timeLeft === 0 && !testResults) {
+      evaluateAnswers(); // Auto-submit when time runs out
     }
-  }, [selectedSubject, timeLeft]);
+  }, [selectedSubject, timeLeft, testResults]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -103,78 +89,86 @@ const Mocktest = () => {
     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
+  const closeTest = () => {
+    setSelectedSubject(null);
+    setTestResults(null);
+  };
+
   return (
-    <div
-      className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-4 "
+    <div className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-4"
       style={{ backgroundImage: "url(/images/mock-bg.png)" }}
     >
       <h1 className="text-4xl font-bold m-3 text-[#37474F]">MOCK-TEST</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-full max-w-4xl">
-        {subjects.map((subject, index) => (
-          <div
-            key={index}
-            className="backdrop-blur-lg p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
-          >
-            <img
-              src={subject.image}
-              className="w-full h-48 md:h-56 object-cover rounded-lg shadow-md"
-              alt={subject.name}
-            />
-            <h3 className="mt-2 text-xl font-semibold text-[#37474F]">
-              {subject.name}
-            </h3>
-            <StyledSplitButton
-              onClick={() => startTest(subject)}
-              startTest={startTest}
-              subject={subject}
-              className="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+
+      {!selectedSubject && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-full max-w-4xl">
+          {subjects.map((subject, index) => (
+            <div
+              key={index}
+              className="backdrop-blur-lg p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
             >
-              Start Test
-            </StyledSplitButton>
-          </div>
-        ))}
-      </div>
+              <img
+                src={subject.image}
+                className="w-full h-48 md:h-56 object-cover rounded-lg shadow-md"
+                alt={subject.name}
+              />
+              <h3 className="mt-2 text-xl font-semibold text-[#37474F]">
+                {subject.name}
+              </h3>
+              <StyledSplitButton
+                onClick={() => startTest(subject)}
+                startTest={startTest}
+                subject={subject}
+                className="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+              />
+            </div>
+          ))}
+        </div>
+      )}
 
       {selectedSubject && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40">
           <div className="bg-[#F4F8D3] w-full h-full p-6 overflow-y-auto flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4">{selectedSubject.name}</h2>
-            <p className="text-xl font-semibold text-[#37474F]">
-              Time Left: {formatTime(timeLeft)}
-            </p>
-            <div className="w-full max-w-2xl">
-              {questions.map((q, index) => (
-                <div key={index} className="mb-4 p-4 border rounded-lg shadow">
-                  <p className="font-semibold">{q.question}</p>
-                  <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {q.options.map((option, idx) => (
-                      <button
-                        key={idx}
-                        className={`p-2 border rounded-lg ${
-                          selectedAnswers[index] === option
-                            ? "bg-gray-300"
-                            : "hover:bg-gray-200"
-                        }`}
-                        onClick={() => handleOptionSelect(index, option)}
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
+
+            {!testResults ? (
+              <>
+                <p className="text-xl font-semibold text-[#37474F] mb-4">
+                  Time Left: {formatTime(timeLeft)}
+                </p>
+                <div className="w-full max-w-2xl">
+                  {questions.map((q, index) => (
+                    <div key={index} className="mb-4 p-4 border rounded-lg shadow bg-white">
+                      <p className="font-semibold">{q.question}</p>
+                      <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {q.options.map((option, idx) => (
+                          <button
+                            key={idx}
+                            className={`p-2 border rounded-lg ${
+                              selectedAnswers[index] === option
+                                ? "bg-blue-200 border-blue-500"
+                                : "hover:bg-gray-100"
+                            }`}
+                            onClick={() => handleOptionSelect(index, option)}
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="mt-4 flex space-x-4">
-              <button
-                onClick={() => setSelectedSubject(null)}
-                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
-              >
-                Close
-              </button>
-              <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
-                Submit
-              </button>
-            </div>
+                <Button click={evaluateAnswers} text="Submit" className="mt-4"/>
+              </>
+            ) : (
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-2">Results</h3>
+                <p>Subject: {testResults.subject}</p>
+                <p>Score: {testResults.correctAnswers} / {testResults.totalQuestions}</p>
+                <p>Percentage: {testResults.percentScore}%</p>
+                <Button click={closeTest} text="Close" className="mt-4"/>
+              </div>
+            )}
           </div>
         </div>
       )}
