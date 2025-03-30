@@ -97,4 +97,22 @@ exports.submitMockTest = async (req, res) => {
   }
 };
 
+exports.getMockTestScores = async (req, res) => {
+  const { studentId } = req.params;  // Get student ID from URL parameters
+
+  try {
+    // Find all mock test results for the given student ID
+    const scores = await mockTestResultModel.find({ studentId });
+
+    if (!scores || scores.length === 0) {
+      return res.status(404).json({ success: false, message: "No mock test scores found" });
+    }
+
+    res.status(200).json({ success: true, scores });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
 
