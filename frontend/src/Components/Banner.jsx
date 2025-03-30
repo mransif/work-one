@@ -15,7 +15,7 @@ const handleAnimationComplete = () => {
 const Banner = () => {
   const { token } = useContext(AppContext);
   const navigate = useNavigate();
-  const mockTestRef = useRef(null);  
+  const mockTestRef = useRef(null);
 
   useEffect(() => {
     if (!token) {
@@ -39,45 +39,46 @@ const Banner = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-5 sm:p-10 md:p-16" style={{ backgroundImage: "url(/images/mcet-bg.jpg)" }}>
-      {/* Left side - your existing content */}
-      <div className=" w-full h-[75vh] text-center bg-[#ffffff3b] p-6 rounded-lg md:mr-8 mb-8 md:mb-0 backdrop-blur-md flex flex-col items-center justify-center">
-        {textContent.map((item, index) => (
-          <div key={index} className={item.className + " my-3"}>
-            <SplitText
-              text={item.text}
-              delay={item.delay}
-              animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-              animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-              easing="easeOutCubic"
-              threshold={0.2}
-              rootMargin="-50px"
-              onLetterAnimationComplete={handleAnimationComplete}
-            />
-          </div> 
-        ))}
-        <p className="text-zinc-200 mb-3">Musaliar College of Engineering and Technology is a NAAC (National Assessment and Accreditation Council). Accredited Engineering & Management Institution under the renowned Musaliar Education Trust.</p>
-        <StyledButton
-          text="Attend Mock Test"
-          onClick={scrollToMocktest}  
-        />
+      <div name="home" className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-5 sm:p-10 md:p-16" style={{ backgroundImage: "url(/images/mcet-bg.jpg)" }}>
+        {/* Left side - your existing content */}
+        <div className=" w-full h-[75vh] text-center bg-[#ffffff3b] p-6 rounded-lg md:mr-8 mb-8 md:mb-0 backdrop-blur-md flex flex-col items-center justify-center">
+          {textContent.map((item, index) => (
+            <div key={index} className={item.className + " my-3"}>
+              <SplitText
+                text={item.text}
+                delay={item.delay}
+                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                easing="easeOutCubic"
+                threshold={0.2}
+                rootMargin="-50px"
+                onLetterAnimationComplete={handleAnimationComplete}
+              />
+            </div>
+          ))}
+          <p className="text-zinc-200 mb-3">Musaliar College of Engineering and Technology is a NAAC (National Assessment and Accreditation Council). Accredited Engineering & Management Institution under the renowned Musaliar Education Trust.</p>
+          <StyledButton
+            text="Attend Mock Test"
+            onClick={scrollToMocktest}
+          />
+        </div>
+
+        {/* Right side - new animated component */}
+        <div className="max-w-md w-full flex justify-center items-center">
+
+        </div>
       </div>
-      
-      {/* Right side - new animated component */}
-      <div className="max-w-md w-full flex justify-center items-center">
-        
-      </div>
-    </div>
 
       {
         token && (
-          <div ref={mockTestRef}> 
+          <div ref={mockTestRef} name="mocktest">
             <Mocktest />
           </div>
         )
       }
-
-      <Contact />
+      <div name="contact" >
+        <Contact />
+      </div>
     </>
   );
 };

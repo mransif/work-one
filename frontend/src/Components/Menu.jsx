@@ -1,79 +1,79 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { BiLogOut } from "react-icons/bi";
-
+import { Link } from "react-scroll";
 
 const Menu = ({ token, logoutUser }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <StyledWrapper>
-      <label className="main">
-        <input className="inp" defaultChecked type="checkbox" />
+    <StyledWrapper ref={menuRef}>
+      <div className="main" onClick={toggleDropdown}>
         <div className="bar">
-          <span className="top bar-list" />
-          <span className="middle bar-list" />
-          <span className="bottom bar-list" />
+          <span className={`bar-list ${isOpen ? "open" : ""}`} />
+          <span className={`bar-list ${isOpen ? "open" : ""}`} />
+          <span className={`bar-list ${isOpen ? "open" : ""}`} />
         </div>
+      </div>
+
+      {isOpen && (
         <section className="menu-container">
-          <div className="menu-list">Home</div>
-          <div className="menu-list">Mock-Test</div>
-          <div className="menu-list">Contacts</div>
-          <div onClick={logoutUser} className="menu-list flex items-center gap-1">Logout<BiLogOut className="text-lg " /></div>
+          <Link to="home" smooth={true} duration={500} onClick={closeDropdown}>
+            <div className="menu-list">Home</div>
+          </Link>
+
+          <Link to="mocktest" smooth={true} duration={500} onClick={closeDropdown}>
+            <div className="menu-list">Mock-Test</div>
+          </Link>
+
+          <Link to="contact" smooth={true} duration={500} onClick={closeDropdown}>
+            <div className="menu-list">Contacts</div>
+          </Link>
+
+          <div onClick={() => { logoutUser(); closeDropdown(); }} className="menu-list flex items-center gap-1">
+            Logout <BiLogOut className="text-lg" />
+          </div>
         </section>
-      </label>
+      )}
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
-  .main > .inp {
-    display: none;
-  }
+  position: relative;
   .main {
     font-weight: 500;
     color: white;
-   
     padding: 3px 15px;
     border-radius: 10px;
-
     display: flex;
     align-items: center;
     height: 2.5rem;
-    
-    position: relative;
     cursor: pointer;
     justify-content: space-between;
-  }
-
-  .arrow {
-    height: 34%;
-    aspect-ratio: 1;
-    margin-block: auto;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    transition: all 0.3s;
-  }
-
-  .arrow::after,
-  .arrow::before {
-    content: "";
-    position: absolute;
-    background-color: white;
-    height: 100%;
-    width: 2.5px;
-    border-radius: 500px;
-    transform-origin: bottom;
-  }
-
-  .arrow::after {
-    transform: rotate(35deg) translateX(-0.5px);
-  }
-  .arrow::before {
-    transform: rotate(-35deg) translateX(0.5px);
-  }
-
-  .main > .inp:checked + .arrow {
-    transform: rotateX(180deg);
   }
 
   .menu-container {
@@ -84,109 +84,44 @@ const StyledWrapper = styled.div`
     width: 9.5rem;
     right: 0;
     top: 100%;
-    overflow: hidden;
-    clip-path: inset(0% 0% 0% 0% round 10px);
-    transition: all 0.4s;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
   }
 
   .menu-list {
-    --delay: 0.4s;
-    --trdelay: 0.15s;
-    padding: 8px 10px;
-    border-radius: inherit;
-    transition: background-color 0.2s 0s;
-    position: relative;
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  .menu-list::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.3);
-    width: 95%;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+    cursor: pointer;
   }
 
   .menu-list:hover {
     background-color: #EAD196;
   }
 
-  .inp:checked ~ .menu-container {
-    clip-path: inset(10% 50% 90% 50% round 10px);
-  }
-
-  .inp:not(:checked) ~ .menu-container .menu-list {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .inp:not(:checked) ~ .menu-container .menu-list:nth-child(1) {
-    transition:
-      transform 0.4s var(--delay),
-      opacity 0.4s var(--delay);
-  }
-
-  .inp:not(:checked) ~ .menu-container .menu-list:nth-child(2) {
-    transition:
-      transform 0.4s calc(var(--delay) + (var(--trdelay) * 1)),
-      opacity 0.4s calc(var(--delay) + (var(--trdelay) * 1));
-  }
-
-  .inp:not(:checked) ~ .menu-container .menu-list:nth-child(3) {
-    transition:
-      transform 0.4s calc(var(--delay) + (var(--trdelay) * 2)),
-      opacity 0.4s calc(var(--delay) + (var(--trdelay) * 2));
-  }
-
-  .inp:not(:checked) ~ .menu-container .menu-list:nth-child(4) {
-    transition:
-      transform 0.4s calc(var(--delay) + (var(--trdelay) * 3)),
-      opacity 0.4s calc(var(--delay) + (var(--trdelay) * 3));
-  }
-
-  .bar-inp {
-    -webkit-appearance: none;
-    display: none;
-    visibility: hidden;
-  }
-
   .bar {
     display: flex;
-    height: 50%;
-    width: 20px;
     flex-direction: column;
-    gap: 3px;
-    
+    gap: 4px;
   }
 
   .bar-list {
-    --transform: -25%;
-    display: block;
-    width: 100%;
+    width: 25px;
     height: 3px;
-    border-radius: 50px;
-    background-color: #37474F;
-    transition: all 0.4s;
-    position: relative;
+    background: #37474F;
+    transition: all 0.3s;
   }
 
-  .inp:not(:checked) ~ .bar > .top {
-    transform-origin: top right;
-    transform: translateY(var(--transform)) rotate(-45deg);
+  .bar-list.open:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
   }
 
-  .inp:not(:checked) ~ .bar > .middle {
-    transform: translateX(-50%);
+  .bar-list.open:nth-child(2) {
     opacity: 0;
   }
 
-  .inp:not(:checked) ~ .bar > .bottom {
-    transform-origin: bottom right;
-    transform: translateY(calc(var(--transform) * -1)) rotate(45deg);
-  }`;
+  .bar-list.open:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+`;
 
 export default Menu;

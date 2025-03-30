@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
 import { BiLogOut } from "react-icons/bi";
+import { Link } from "react-scroll";
 
 const navItems = ["Home", "Mock-Test", "Contact"];
 
@@ -22,6 +23,8 @@ const NavBar = () => {
   //   // Redirect to login page
   //   window.location.href = '/auth';
   // };
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +79,7 @@ const NavBar = () => {
           </div>
           <div className="flex h-full items-center space-x-4 ">
             <div className="hidden md:block space-x-4">
-              {navItems.map((item, index) => (
+              {/* {navItems.map((item, index) => (
                 <a
                   key={index}
                   href={`#${item.toLowerCase()}`}
@@ -84,19 +87,32 @@ const NavBar = () => {
                 >
                   {item}
                 </a>
-              ))}
+              ))} */}
+
+              <div className="hidden md:block space-x-4">
+                <Link to="home" smooth={true} duration={500}>
+                  <button className="nav-hover-btn text-[#73C7C7] hover:text-[#73C7C7]/80">Home</button>
+                </Link>
+                <Link to="mocktest" smooth={true} duration={500}>
+                  <button className="nav-hover-btn text-[#73C7C7] hover:text-[#73C7C7]/80">Mock-Test</button>
+                </Link>
+                <Link to="contact" smooth={true} duration={500}>
+                  <button className="nav-hover-btn text-[#73C7C7] hover:text-[#73C7C7]/80">Contact</button>
+                </Link>
+              </div>
+
             </div>
 
             {token && (
               <div className=" items-center gap-1 cursor-pointer text-[#37474F] hover:text-red-950 ml-10 hidden md:flex">
-              <button
-                onClick={logoutUser}
-                className="font-medium"
-              >
-                Logout
-              </button>
-              <BiLogOut className="text-lg" />
-            </div>
+                <button
+                  onClick={logoutUser}
+                  className="font-medium"
+                >
+                  Logout
+                </button>
+                <BiLogOut className="text-lg" />
+              </div>
 
             )}
 
