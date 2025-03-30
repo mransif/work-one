@@ -24,15 +24,70 @@ const Mocktest = () => {
     MATHEMATICS: [
       { question: "If f(x) = x² + 3x + 2, find f(-1).", options: ["0", "2", "6", "-2"], correctAnswer: "0" },
       { question: "What is the derivative of sin(x)?", options: ["cos(x)", "-sin(x)", "-cos(x)", "sec²(x)"], correctAnswer: "cos(x)" },
+      { question: "Solve for x: 2x + 5 = 13.", options: ["4", "3", "9", "6"], correctAnswer: "4" },
+      { question: "What is the integral of 2x with respect to x?", options: ["x² + C", "2x² + C", "x + C", "2x + C"], correctAnswer: "x² + C" },
+      { question: "Find the value of cos(π/2).", options: ["0", "1", "-1", "undefined"], correctAnswer: "0" },
+      { question: "What is the sum of the first 10 natural numbers?", options: ["55", "45", "65", "50"], correctAnswer: "55" },
+      { question: "If a matrix A is singular, then its determinant is:", options: ["0", "1", "-1", "undefined"], correctAnswer: "0" },
+      { question: "What is the slope of the line y = 3x + 2?", options: ["3", "2", "1", "0"], correctAnswer: "3" },
+      { question: "Find the area of a circle with radius 3 units.", options: ["9π", "6π", "3π", "12π"], correctAnswer: "9π" },
+      { question: "What is the value of log₁₀(100)?", options: ["2", "1", "0", "10"], correctAnswer: "2" },
+      { question: "Solve for y: 3y - 7 = 14.", options: ["7", "21/3", "3", "1"], correctAnswer: "7" },
+      { question: "What is the product of the roots of the quadratic equation x² - 5x + 6 = 0?", options: ["6", "5", "-6", "1"], correctAnswer: "6" },
+      { question: "Find the value of tan(π/4).", options: ["1", "0", "-1", "undefined"], correctAnswer: "1" },
+      { question: "What is the formula for the volume of a sphere?", options: ["4/3πr³", "4πr²", "πr²", "2πr"], correctAnswer: "4/3πr³" },
+      { question: "Solve for z: z/3 = 4.", options: ["12", "4", "3", "1"], correctAnswer: "12" },
+      { question: "What is the derivative of e^x?", options: ["e^x", "x*e^x", "1", "0"], correctAnswer: "e^x" },
+      { question: "Find the value of sin(π/6).", options: ["1/2", "√3/2", "1", "0"], correctAnswer: "1/2" },
+      { question: "What is the sum of the interior angles of a triangle?", options: ["180°", "90°", "360°", "270°"], correctAnswer: "180°" },
+      { question: "Solve for a: a² - 9 = 0.", options: ["3", "-3", "±3", "0"], correctAnswer: "±3" },
+      { question: "What is the integral of cos(x) with respect to x?", options: ["sin(x) + C", "-sin(x) + C", "cos(x) + C", "-cos(x) + C"], correctAnswer: "sin(x) + C" },
     ],
     PHYSICS: [
       { question: "What is the SI unit of electric current?", options: ["Ampere", "Watt", "Volt", "Ohm"], correctAnswer: "Ampere" },
       { question: "What is the escape velocity on Earth?", options: ["11.2 km/s", "9.8 km/s", "12.5 km/s", "7.9 km/s"], correctAnswer: "11.2 km/s" },
+      { question: "What is the formula for work done?", options: ["Force × Distance", "Force / Distance", "Force + Distance", "Force - Distance"], correctAnswer: "Force × Distance" },
+      { question: "What is the SI unit of power?", options: ["Watt", "Joule", "Newton", "Pascal"], correctAnswer: "Watt" },
+      { question: "What is the speed of light in vacuum?", options: ["3 × 10⁸ m/s", "3 × 10⁶ m/s", "3 × 10⁷ m/s", "3 × 10⁵ m/s"], correctAnswer: "3 × 10⁸ m/s" },
+      { question: "What is the formula for kinetic energy?", options: ["1/2 mv²", "mv²", "1/2 mv", "mv"], correctAnswer: "1/2 mv²" },
+      { question: "What is the SI unit of force?", options: ["Newton", "Joule", "Watt", "Pascal"], correctAnswer: "Newton" },
+      { question: "What is the formula for potential energy?", options: ["mgh", "mg/h", "mh/g", "m/gh"], correctAnswer: "mgh" },
+      { question: "What is the SI unit of pressure?", options: ["Pascal", "Newton", "Joule", "Watt"], correctAnswer: "Pascal" },
+      { question: "What is the formula for acceleration?", options: ["Δv/Δt", "Δv × Δt", "Δv + Δt", "Δv - Δt"], correctAnswer: "Δv/Δt" },
+      { question: "What is the SI unit of frequency?", options: ["Hertz", "Watt", "Joule", "Newton"], correctAnswer: "Hertz" },
+      { question: "What is the formula for momentum?", options: ["mv", "m/v", "m + v", "m - v"], correctAnswer: "mv" },
+      { question: "What is the SI unit of temperature?", options: ["Kelvin", "Celsius", "Fahrenheit", "Joule"], correctAnswer: "Kelvin" },
+      { question: "What is the formula for density?", options: ["m/V", "m × V", "m + V", "m - V"], correctAnswer: "m/V" },
+      { question: "What is the SI unit of charge?", options: ["Coulomb", "Ampere", "Volt", "Ohm"], correctAnswer: "Coulomb" },
+      { question: "What is the formula for power?", options: ["Work/Time", "Work × Time", "Work + Time", "Work - Time"], correctAnswer: "Work/Time" },
+      { question: "What is the SI unit of resistance?", options: ["Ohm", "Ampere", "Volt", "Watt"], correctAnswer: "Ohm" },
+      { question: "What is the formula for voltage?", options: ["IR", "I/R", "I + R", "I - R"], correctAnswer: "IR" },
+      { question: "What is the SI unit of capacitance?", options: ["Farad", "Henry", "Tesla", "Coulomb"], correctAnswer: "Farad" },
+      { question: "What is the formula for magnetic flux?", options: ["BA", "B/A", "B + A", "B - A"], correctAnswer: "BA" },
     ],
     CHEMISTRY: [
       { question: "What is the pH of pure water at 25°C?", options: ["7", "6", "8", "5"], correctAnswer: "7" },
       { question: "The chemical formula of baking soda is:", options: ["NaHCO₃", "NaCl", "KOH", "CaCO₃"], correctAnswer: "NaHCO₃" },
-    ],
+      { question: "What is the atomic number of carbon?", options: ["6", "12", "8", "14"], correctAnswer: "6" },
+      { question: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Fe", "Cu"], correctAnswer: "Au" },
+      { question: "What is the formula for water?", options: ["H₂O", "H₂O₂", "CO₂", "O₂"], correctAnswer: "H₂O" },
+      { question: "What is the valency of oxygen?", options: ["2", "1", "3", "4"], correctAnswer: "2" },
+      { question: "What is the chemical formula for glucose?", options: ["C₆H₁₂O₆", "C₁₂H₂₂O₁₁", "C₂H₅OH", "CH₄"], correctAnswer: "C₆H₁₂O₆" },
+      { question: "What is the pH of a neutral solution?", options: ["7", "0", "14", "1"], correctAnswer: "7" },
+      { question: "What is the chemical symbol for silver?", options: ["Ag", "Au", "Fe", "Cu"], correctAnswer: "Ag" },
+      { question: "What is the formula for sodium chloride?", options: ["NaCl", "Na₂O", "NaOH", "NaHCO₃"], correctAnswer: "NaCl" },
+      { question: "What is the atomic number of oxygen?", options: ["8", "6", "16", "1"], correctAnswer: "8" },
+      { question: "What is the chemical formula for methane?", options: ["CH₄", "C₂H₆", "C₂H₄", "C₂H₂"], correctAnswer: "CH₄" },
+      { question: "What is the valency of hydrogen?", options: ["1", "2", "3", "4"], correctAnswer: "1" },
+      { question: "What is the chemical symbol for iron?", options: ["Fe", "Cu", "Ag", "Au"], correctAnswer: "Fe" },
+      { question: "What is the formula for carbon dioxide?", options: ["CO₂", "CO", "H₂O", "O₂"], correctAnswer: "CO₂" },
+      { question: "What is the pH of an acidic solution?", options: ["<7", ">7", "=7", "0"], correctAnswer: "<7" },
+      { question: "What is the chemical formula for sulfuric acid?", options: ["H₂SO₄", "HCl", "HNO₃", "H₂O"], correctAnswer: "H₂SO₄" },
+      { question: "What is the atomic number of nitrogen?", options: ["7", "8", "14", "6"], correctAnswer: "7" },
+      { question: "What is the chemical symbol for copper?", options: ["Cu", "Fe", "Ag", "Au"], correctAnswer: "Cu" },
+      { question: "What is the formula for ammonia?", options: ["NH₃", "N₂", "H₂O", "CO₂"], correctAnswer: "NH₃" },
+    ]
+    
   };
 
   const startTest = (subject) => {
@@ -40,7 +95,7 @@ const Mocktest = () => {
     setQuestions(
       subjectQuestions[subject.name]
         .sort(() => 0.5 - Math.random())
-        .slice(0, 5) // Using 5 questions for brevity
+        .slice(0, 20) // Using 5 questions for brevity
     );
     setSelectedAnswers({});
     setTimeLeft(1200);
@@ -157,7 +212,7 @@ const Mocktest = () => {
             {subjects.map((subject, index) => (
               <div
                 key={index}
-                className="backdrop-blur-lg p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
+                className="backdrop-blur-lg border border-gray-100 p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
               >
                 <img
                   src={subject.image}
