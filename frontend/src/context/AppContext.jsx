@@ -6,8 +6,9 @@ export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
+    const [userId, setUserId] = useState(localStorage.getItem('userId') || null);  // ✅ Added userId
     const [loading, setLoading] = useState(false);
-    const [questions, setQuestions] = useState([]); 
+    const [questions, setQuestions] = useState([]);
     const backendurl = import.meta.env.VITE_BACKEND_URL;
 
     // ✅ Function to get mock questions
@@ -16,14 +17,13 @@ const AppContextProvider = ({ children }) => {
             setLoading(true);
             const { data } = await axios.get(`${backendurl}/api/user/mocktest/${setName}`, {
                 headers: {
-                    Authorization: `Bearer ${token}` // Pass token if required
+                    Authorization: `Bearer ${token}`
                 }
             });
 
             if (data) {
                 setQuestions(data.questions);
                 toast.success(`Questions for ${setName} loaded successfully`);
-                console.log(data.questions); 
             } else {
                 toast.error("No questions found");
             }
@@ -35,7 +35,7 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-    // ✅ Login Function
+    // ✅ Updated login function to store userId
     const loginUser = async (email, password) => {
         try {
             setLoading(true);
@@ -43,7 +43,11 @@ const AppContextProvider = ({ children }) => {
 
             if (data.success) {
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("userId", data.userId);   // ✅ Store userId
+
                 setToken(data.token);
+                setUserId(data.userId);   // ✅ Set userId
+
                 toast.success("Logged in successfully");
             } else {
                 toast.error(data.message);
@@ -56,7 +60,7 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-    // ✅ Signup Function
+    // ✅ Signup function (unchanged)
     const signupUser = async (name, email, phone, address, password) => {
         try {
             const { data } = await axios.post(`${backendurl}/api/user/register`, { name, email, phone, address, password });
@@ -72,28 +76,64 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-    // ✅ Logout Function
+    // ✅ Logout function
     const logoutUser = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");   // ✅ Remove userId on logout
         setToken(null);
+        setUserId(null);  // ✅ Clear userId
         toast.success("Logged out successfully");
     };
 
     useEffect(() => {
-        if (!token) {
-            localStorage.removeItem("token");
+        const storedToken = localStorage.getItem("token");
+        const storedUserId = localStorage.getItem("userId");
+
+        if (storedToken && storedUserId) {
+            setToken(storedToken);
+            setUserId(storedUserId);   // ✅ Retrieve userId from localStorage
         }
-    }, [token]);
+    }, []);
+
+    // ✅ Updated submitMockTestResult to include studentId
+    const submitMockTestResult = async (setName, score, questions) => {
+        try {
+            setLoading(true);
+            const result = {
+                studentId: userId, 
+                setName,
+                score,
+                questions,
+            };
+
+            const { data } = await axios.post(`${backendurl}/api/user/submit-mocktest`, result);
+
+            if (data.success) {
+                toast.success(`Mock test score: ${score}`);
+            } else {
+                toast.error(data.message || "Failed to submit mock test");
+            }
+        } catch (error) {
+            console.error("Error submitting mock test:", error);
+            toast.error("Failed to submit mock test");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
 
     const value = {
         token,
+        userId,             
         setToken,
         loading,
-        questions,           // ✅ Add questions to context
-        getMockQuestions,    // ✅ Expose function in context
+        questions,
+        getMockQuestions,
         loginUser,
         signupUser,
-        logoutUser
+        logoutUser,
+        submitMockTestResult,
     };
 
     return (

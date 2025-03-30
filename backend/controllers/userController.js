@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const mockTestModel = require("../models/mockTestModel");
+const mockTestResultModel = require("../models/mockTestResultModel ");
 
 
 exports.registerStudent = async (req, res) => {
@@ -31,23 +32,29 @@ exports.registerStudent = async (req, res) => {
 };
 
 exports.loginStudent = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
 
   try {
-    const student = await User.findOne({ email })
-    if (!student) return res.status(400).json({ success: false, message: "Invalid credentials" })
+    const student = await User.findOne({ email });
+    if (!student) return res.status(400).json({ success: false, message: "Invalid credentials" });
 
-    const isMatch = await bcrypt.compare(password, student.password)
-    if (!isMatch) return res.status(400).json({ success: false, message: "Invalid credentials" })
+    const isMatch = await bcrypt.compare(password, student.password);
+    if (!isMatch) return res.status(400).json({ success: false, message: "Invalid credentials" });
 
-    const token = jwt.sign({ id: student._id }, process.env.JWT_SECRET, { expiresIn: "1h" })
+    const token = jwt.sign({ id: student._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.status(200).json({ success: true, token })
+    // Send the token and userId
+    res.status(200).json({
+      success: true,
+      token,
+      userId: student._id // Include userId
+    });
 
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error" });
   }
-}
+};
+
 
 // api to get questions
 exports.getMockTest = async (req, res) => {
@@ -66,3 +73,28 @@ exports.getMockTest = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+exports.submitMockTest = async (req, res) => {
+  const { studentId, setName, score, questions } = req.body;
+
+  try {
+    // Check if the student exists
+    const student = await User.findById(studentId);
+    if (!student) return res.status(404).json({ success: false, message: "Student not found" });
+
+    const result = new mockTestResultModel({
+      studentId,
+      setName,
+      score,
+      questions,
+    });
+
+    await result.save();
+    res.status(201).json({ success: true, message: "Test result saved successfully" });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+

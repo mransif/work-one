@@ -32,7 +32,7 @@ const Banner = () => {
   const textContent = [
     {
       text: "MUSALIAR COLLEGE OF ENGINEERING AND TECHNOLOGY",
-      className: "text-3xl md:text-5xl font-bold !text-[#F4F8D3] text-center font-serif",
+      className: "text-3xl md:text-5xl font-bold text-orange-50 text-center font-serif",
       delay: 20,
     },
   ];
@@ -41,7 +41,7 @@ const Banner = () => {
     <>
       <div name="home" className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-5 sm:p-10 md:p-16" style={{ backgroundImage: "url(/images/mcet-bg.jpg)" }}>
         {/* Left side - your existing content */}
-        <div className=" w-full h-[75vh] text-center bg-[#ffffff3b] p-6 rounded-lg md:mr-8 mb-8 md:mb-0 backdrop-blur-md flex flex-col items-center justify-center">
+        <div className=" w-full h-[75vh] text-center bg-[#8d8d8d3b] p-6 rounded-lg md:mr-8 mb-8 md:mb-0 backdrop-blur-md flex flex-col items-center justify-center">
           {textContent.map((item, index) => (
             <div key={index} className={item.className + " my-3"}>
               <SplitText

@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({onClick}) => {
+const Button = ({onClick, click, text}) => {
   return (
     <StyledWrapper>
-      <button onClick={onclick}>
+      <button onClick={click}>
         <span className="circle1" />
         <span className="circle2" />
         <span className="circle3" />
         <span className="circle4" />
         <span className="circle5" />
-        <span className="text">Submit</span>
+        <span className="text">{text}</span>
       </button>
     </StyledWrapper>
   );
@@ -21,7 +21,7 @@ const StyledWrapper = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: white;
-    background-color: #171717;
+    background-color: #d8c12e;
     padding: 1em 2em;
     border: none;
     border-radius: .6rem;
