@@ -15,7 +15,7 @@ const Menu = ({ token, logoutUser }) => {
     setIsOpen(false);
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside or on scroll
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -23,9 +23,16 @@ const Menu = ({ token, logoutUser }) => {
       }
     };
 
+    const handleScroll = () => {
+      closeDropdown();
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -64,6 +71,7 @@ const Menu = ({ token, logoutUser }) => {
 
 const StyledWrapper = styled.div`
   position: relative;
+
   .main {
     font-weight: 500;
     color: white;
