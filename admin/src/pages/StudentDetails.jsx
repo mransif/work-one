@@ -107,7 +107,7 @@ const StudentDetails = () => {
 
           {/* Confirmation Popup */}
           {showConfirmation && (
-            <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+            <div className="fixed inset-0 backdrop-blur-md bg-[#11111136] bg-opacity-50 flex justify-center items-center">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <p className="text-lg font-medium mb-4">Are you sure you want to log out?</p>
                 <div className="flex justify-end">

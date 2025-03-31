@@ -82,11 +82,11 @@ const Auth = () => {
   }, [token, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[#ffe6c0]">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#ececec]">
 
       <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
         <Particles
-          particleColors={['#000000', '#000000']}
+          particleColors={['#ffe6c0', '#ffe6c0']}
           particleCount={200}
           particleSpread={10}
           speed={0.1}
