@@ -22,7 +22,6 @@ const AppContextProvider = ({ children }) => {
 
             if (data) {
                 setQuestions(data.questions);
-                toast.success(`Questions for ${setName} loaded successfully`);
             } else {
                 toast.error("No questions found");
             }
@@ -45,11 +44,8 @@ const AppContextProvider = ({ children }) => {
     
             if (data.success) {
                 setScores(data.scores);   // ✅ Store only the scores array
-                toast.success("Scores retrieved successfully");
-                console.log("Scores:", data.scores);
             } else {
                 setScores([]);
-                toast.info("No scores found");
             }
         } catch (error) {
             console.error("Error fetching scores:", error);
@@ -74,7 +70,6 @@ const AppContextProvider = ({ children }) => {
                 setToken(data.token);
                 setUserId(data.userId);
 
-                toast.success("Logged in successfully");
             } else {
                 toast.error(data.message);
             }
@@ -137,7 +132,6 @@ const AppContextProvider = ({ children }) => {
             const { data } = await axios.post(`${backendurl}/api/user/submit-mocktest`, result);
 
             if (data.success) {
-                toast.success(`Mock test score: ${score}`);
                 getMockTestScores();   // ✅ Fetch updated scores after submission
             } else {
                 toast.error(data.message || "Failed to submit mock test");
