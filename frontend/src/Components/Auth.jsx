@@ -82,11 +82,11 @@ const Auth = () => {
   }, [token, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[#181313]">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#ffe6c0]">
 
       <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
         <Particles
-          particleColors={['#ffffff', '#ffffff']}
+          particleColors={['#000000', '#000000']}
           particleCount={200}
           particleSpread={10}
           speed={0.1}
@@ -97,7 +97,7 @@ const Auth = () => {
         />
       </div>
 
-      <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg border  border-gray-700 bg-white/10 text-gray-200 ">
+      <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg border  border-gray-700 bg-white/10 text-gray-800 ">
         <h2 className="text-2xl font-bold text-center mb-6">
           {isLogin ? "Login" : "Sign Up"}
         </h2>
@@ -212,14 +212,14 @@ const Auth = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#7D0A0A] text-white py-2 px-4 rounded-md hover:bg-[#9d3737] transition"
+            className="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 transition"
           >
             {isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
 
         {/* Toggle Link */}
-        <p className="text-sm text-gray-300 mt-4 text-center">
+        <p className="text-sm text-gray-700 mt-4 text-center">
           {isLogin ? (
             <>
               Don't have an account?{" "}
