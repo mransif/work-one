@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Button from "./Button";
 
 const Mocktest = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [timeLeft, setTimeLeft] = useState(1200);
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [hoveredSubject, setHoveredSubject] = useState(null);
 
   const subjects = [
     { name: "MATHEMATICS", image: "/images/maths.jpg" },
@@ -78,7 +78,7 @@ const Mocktest = () => {
         .slice(0, 20)
     );
     setSelectedAnswers({});
-    setTimeLeft(10);
+    setTimeLeft(1200);
   };
 
   const handleOptionSelect = (questionIndex, option) => {
@@ -104,54 +104,117 @@ const Mocktest = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-4 "
-      style={{ backgroundImage: "url(/images/mock-bg.png)" }}
+      className="min-h-screen bg-gradient-to-br from-[#F4F8D3] to-[#E6F2E6] 
+        bg-cover overflow-x-hidden flex flex-col items-center p-4 
+        relative"
     >
-      <h1 className="text-4xl font-bold m-3 text-[#37474F]">MOCK-TEST</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-full max-w-4xl">
+      {/* Background Blur Effect */}
+      {hoveredSubject && (
+        <div
+          className="fixed inset-0 bg-white/30 backdrop-blur-sm z-10 
+            animate-fade-in pointer-events-none"
+        />
+      )}
+
+      <h1 className="text-4xl font-bold m-6 text-[#37474F] drop-shadow-lg tracking-wider z-30 relative">
+        MOCK TEST
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl z-20">
         {subjects.map((subject, index) => (
           <div
             key={index}
-            className="bg-[#F7CFD8] p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
+            className={`
+              relative overflow-hidden rounded-2xl shadow-2xl 
+              transition-all duration-500 ease-in-out
+              transform hover:scale-105 hover:shadow-3xl
+              ${
+                hoveredSubject === subject.name
+                  ? "scale-105 shadow-3xl"
+                  : "scale-100"
+              }
+            `}
+            onMouseEnter={() => setHoveredSubject(subject.name)}
+            onMouseLeave={() => setHoveredSubject(null)}
           >
-            <img
-              src={subject.image}
-              className="w-full h-48 md:h-56 object-cover rounded-lg shadow-md"
-              alt={subject.name}
-            />
-            <h3 className="mt-2 text-xl font-semibold text-[#37474F]">
-              {subject.name}
-            </h3>
-            <button
-              onClick={() => startTest(subject)}
-              className="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
-            >
-              Start Test
-            </button>
+            {/* Subject Card */}
+            <div className="relative">
+              {/* Glowing Overlay */}
+              <div
+                className={`
+                  absolute inset-0 bg-gradient-to-br 
+                  ${
+                    hoveredSubject === subject.name
+                      ? "from-purple-500/30 to-blue-500/30"
+                      : "opacity-0"
+                  }
+                  transition-all duration-500 ease-in-out
+                `}
+              />
+
+              <img
+                src={subject.image}
+                className="w-full h-48 md:h-56 object-cover"
+                alt={subject.name}
+              />
+
+              <div className="p-4 bg-white/80 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-[#37474F] text-center mb-2">
+                  {subject.name}
+                </h3>
+                <button
+                  onClick={() => startTest(subject)}
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 
+                    text-white py-2 px-4 rounded-lg 
+                    hover:from-blue-600 hover:to-purple-700 
+                    transition-all duration-300 
+                    transform hover:scale-105 active:scale-95"
+                >
+                  Start Test
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
+      {/* Full Screen Modal for Test Questions */}
       {selectedSubject && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40">
-          <div className="bg-[#F4F8D3] w-full h-full p-6 overflow-y-auto flex flex-col items-center">
-            <h2 className="text-3xl font-bold mb-4">{selectedSubject.name}</h2>
-            <p className="text-xl font-semibold text-[#37474F]">
-              Time Left: {formatTime(timeLeft)}
-            </p>
-            <div className="w-full max-w-2xl">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <div className="w-full h-full bg-white flex flex-col">
+            {/* Header */}
+            <div
+              className="bg-gradient-to-r from-blue-500 to-purple-600 
+              text-white p-4 flex justify-between items-center"
+            >
+              <h2 className="text-2xl font-bold">{selectedSubject.name}</h2>
+              <p className="text-xl font-semibold">
+                Time Left: {formatTime(timeLeft)}
+              </p>
+            </div>
+
+            {/* Questions Container */}
+            <div className="flex-grow overflow-y-auto p-6">
               {questions.map((q, index) => (
-                <div key={index} className="mb-4 p-4 border rounded-lg shadow">
-                  <p className="font-semibold">{q.question}</p>
-                  <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div
+                  key={index}
+                  className="mb-4 p-4 bg-gray-100 rounded-lg 
+                    hover:bg-gray-200 transition-colors"
+                >
+                  <p className="font-semibold mb-3">{q.question}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {q.options.map((option, idx) => (
                       <button
                         key={idx}
-                        className={`p-2 border rounded-lg ${
-                          selectedAnswers[index] === option
-                            ? "bg-gray-300"
-                            : "hover:bg-gray-200"
-                        }`}
+                        className={`
+                          p-3 rounded-lg text-left 
+                          transition-all duration-300
+                          ${
+                            selectedAnswers[index] === option
+                              ? "bg-blue-500 text-white"
+                              : "bg-white hover:bg-blue-100 text-gray-700"
+                          }
+                        `}
                         onClick={() => handleOptionSelect(index, option)}
                       >
                         {option}
@@ -161,14 +224,20 @@ const Mocktest = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-4 flex space-x-4">
+
+            {/* Footer Buttons */}
+            <div className="bg-gray-100 p-4 flex justify-end space-x-4">
               <button
                 onClick={() => setSelectedSubject(null)}
-                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
+                className="bg-red-500 text-white py-2 px-6 rounded-lg 
+                  hover:bg-red-600 transition-colors"
               >
                 Close
               </button>
-              <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
+              <button
+                className="bg-green-500 text-white py-2 px-6 rounded-lg 
+                  hover:bg-green-600 transition-colors"
+              >
                 Submit
               </button>
             </div>

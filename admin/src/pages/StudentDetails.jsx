@@ -37,7 +37,7 @@ const StudentDetails = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#F4F8D3] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-orange-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-extrabold text-center mb-12 text-[#73C7C7]">
           Student Directory
