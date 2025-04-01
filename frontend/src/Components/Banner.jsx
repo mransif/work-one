@@ -4,6 +4,7 @@ import { AppContext } from "../context/AppContext";
 import Mocktest from "./Mocktest";
 import Contact from "./Contact";
 import StyledButton from "./StyledButton";
+import MainTest from "./MainTest";
 
 const Banner = () => {
   const { token } = useContext(AppContext);
@@ -341,6 +342,7 @@ const Banner = () => {
       {token && (
         <div ref={mockTestRef} name="mocktest">
           <Mocktest />
+          <MainTest />
         </div>
       )}
 

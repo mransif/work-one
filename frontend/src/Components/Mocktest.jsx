@@ -20,6 +20,8 @@ const Mocktest = () => {
   const [isReviewMode, setIsReviewMode] = useState(false);
   // Confirmation dialog state
   const [showConfirmation, setShowConfirmation] = useState(false);
+  // Mobile navigation panel state
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const { submitMockTestResult, scores } = useContext(AppContext);
 
@@ -103,6 +105,7 @@ const Mocktest = () => {
     setTestResults(null);
     setIsTimeLow(false);
     setIsReviewMode(false);
+    setShowMobileNav(false);
   };
 
   const handleOptionSelect = (questionIndex, option) => {
@@ -213,23 +216,31 @@ const Mocktest = () => {
   const goToNextQuestion = () => {
     if (currentQuestionIdx < questions.length - 1) {
       setCurrentQuestionIdx(currentQuestionIdx + 1);
+      // Close mobile nav when navigating on small screens
+      setShowMobileNav(false);
     }
   };
 
   const goToPrevQuestion = () => {
     if (currentQuestionIdx > 0) {
       setCurrentQuestionIdx(currentQuestionIdx - 1);
+      // Close mobile nav when navigating on small screens
+      setShowMobileNav(false);
     }
   };
 
   const goToQuestion = (index) => {
     setCurrentQuestionIdx(index);
     setIsReviewMode(false);
+    // Close mobile nav when selecting a specific question on small screens
+    setShowMobileNav(false);
   };
 
   // Open confirmation dialog
   const handleSubmitClick = () => {
     setShowConfirmation(true);
+    // Close mobile nav
+    setShowMobileNav(false);
   };
 
   // Cancel submission
@@ -241,6 +252,11 @@ const Mocktest = () => {
   const confirmSubmit = () => {
     setShowConfirmation(false);
     evaluateAnswers();
+  };
+
+  // Toggle mobile navigation panel
+  const toggleMobileNav = () => {
+    setShowMobileNav(!showMobileNav);
   };
 
   // Filter scores based on selected subject
@@ -380,32 +396,32 @@ const Mocktest = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-4"
+      className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-2 sm:p-4"
       style={{ backgroundImage: "url(/images/mock-bg.png)" }}
     >
-      <h1 className="text-4xl font-bold m-3 text-[#37474F]">MOCK-TEST</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold m-2 sm:m-3 text-[#37474F]">MOCK-TEST</h1>
 
       {!selectedSubject && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 w-full max-w-4xl mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-8 w-full max-w-4xl mb-6 sm:mb-8 px-2 sm:px-0">
             {subjects.map((subject, index) => (
               <div
                 key={index}
-                className="backdrop-blur-lg border border-gray-100 p-4 rounded-lg shadow-lg flex flex-col items-center md:p-6 md:w-[90%]"
+                className="backdrop-blur-lg border border-gray-100 p-3 sm:p-4 md:p-6 rounded-lg shadow-lg flex flex-col items-center w-full md:w-[90%]"
               >
                 <img
                   src={subject.image}
-                  className="w-full h-48 md:h-56 object-cover rounded-lg shadow-md"
+                  className="w-full h-32 sm:h-40 md:h-48 lg:h-56 object-cover rounded-lg shadow-md"
                   alt={subject.name}
                 />
-                <h3 className="mt-2 text-xl font-semibold text-[#37474F]">
+                <h3 className="mt-2 text-lg sm:text-xl font-semibold text-[#37474F]">
                   {subject.name}
                 </h3>
                 <StyledSplitButton
                   onClick={() => startTest(subject)}
                   startTest={startTest}
                   subject={subject}
-                  className="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+                  className="mt-3 bg-blue-500 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-600 transition text-sm sm:text-base"
                 />
               </div>
             ))}
@@ -413,19 +429,19 @@ const Mocktest = () => {
 
           {/* Score History Section */}
           {scores.length > 0 && (
-            <div className="w-full max-w-4xl rounded-xl shadow-xl p-8 backdrop-blur-lg border border-gray-100">
-              <div className="flex items-center mb-6">
-                <div className="w-1 h-8 bg-blue-500 rounded-full mr-3"></div>
-                <h2 className="text-2xl font-bold bg-clip-text text-[#37474F]">
+            <div className="w-full max-w-4xl rounded-xl shadow-xl p-4 sm:p-6 md:p-8 backdrop-blur-lg border border-gray-100 mx-2 sm:mx-0">
+              <div className="flex items-center mb-4 sm:mb-6">
+                <div className="w-1 h-6 sm:h-8 bg-blue-500 rounded-full mr-2 sm:mr-3"></div>
+                <h2 className="text-xl sm:text-2xl font-bold bg-clip-text text-[#37474F]">
                   Your Score History
                 </h2>
               </div>
 
               {/* Subject Filter Dropdown */}
-              <div className="mb-6">
+              <div className="mb-4 sm:mb-6">
                 <label
                   htmlFor="subject-filter"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
                   Filter by Subject:
                 </label>
@@ -434,7 +450,7 @@ const Mocktest = () => {
                     id="subject-filter"
                     value={scoreHistorySubject}
                     onChange={(e) => setScoreHistorySubject(e.target.value)}
-                    className="w-54 md:w-64 px-4 py-3 bg-white border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent appearance-none"
+                    className="w-full sm:w-54 md:w-64 px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent appearance-none"
                   >
                     <option value="ALL">All Subjects</option>
                     <option value="MATHEMATICS">Mathematics</option>
@@ -445,7 +461,7 @@ const Mocktest = () => {
               </div>
 
               {/* Score Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
                 {filteredScores.map((score, index) => {
                   const percentage = (
                     (score.score / score.questions) *
@@ -474,22 +490,22 @@ const Mocktest = () => {
                   return (
                     <div
                       key={index}
-                      className={`p-5 rounded-lg shadow-md border-l-4 ${getSubjectColor(
+                      className={`p-3 sm:p-4 md:p-5 rounded-lg shadow-md border-l-4 ${getSubjectColor(
                         score.setName
                       ).replace(
                         "bg-",
                         "border-"
                       )} bg-gradient-to-br ${bgGradient} hover:shadow-lg transition-shadow duration-300`}
                     >
-                      <h3 className={`font-bold text-lg mb-2 ${textColor}`}>
+                      <h3 className={`font-bold text-base sm:text-lg mb-1 sm:mb-2 ${textColor}`}>
                         {score.setName}
                       </h3>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-gray-600 font-medium">
+                      <div className="flex justify-between items-center mb-2 sm:mb-3">
+                        <span className="text-gray-600 font-medium text-sm sm:text-base">
                           Score:
                         </span>
                         <div className="flex items-center">
-                          <span className="font-bold text-lg">
+                          <span className="font-bold text-base sm:text-lg">
                             {score.score}
                           </span>
                           <span className="text-gray-500 mx-1">/</span>
@@ -498,7 +514,7 @@ const Mocktest = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
+                      <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3 mb-1 sm:mb-2 overflow-hidden">
                         <div
                           className={`h-full rounded-full ${getSubjectColor(
                             score.setName
@@ -514,7 +530,7 @@ const Mocktest = () => {
                           Performance
                         </span>
                         <span
-                          className={`text-right text-sm font-bold ${
+                          className={`text-right text-xs sm:text-sm font-bold ${
                             percentage >= 70
                               ? "text-green-600"
                               : percentage >= 40
@@ -531,10 +547,10 @@ const Mocktest = () => {
               </div>
 
               {/* Bar Chart with Placeholders */}
-              <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                <div className="flex items-center mb-4">
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-xl shadow-md border border-gray-100">
+                <div className="flex items-center mb-3 sm:mb-4">
                   <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 mr-2"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -542,14 +558,14 @@ const Mocktest = () => {
                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                   </svg>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800">
                     Performance Chart
                   </h3>
                 </div>
-                <div className="relative h-64 w-full">
-                  <BarChart height={230} items={createChartItems()} />
+                <div className="relative h-48 sm:h-56 md:h-64 w-full">
+                  <BarChart height={window.innerWidth < 640 ? 180 : 230} items={createChartItems()} />
                 </div>
-                <div className="mt-4 text-xs text-gray-500 text-center">
+                <div className="mt-2 sm:mt-4 text-xs text-gray-500 text-center">
                   Chart shows your test scores as percentage
                 </div>
               </div>
@@ -560,393 +576,353 @@ const Mocktest = () => {
 
       {selectedSubject && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40">
-          <div className="bg-white w-full h-full flex overflow-hidden">
+          <div className="bg-white w-full h-full flex flex-col sm:flex-row overflow-hidden">
             {!testResults ? (
-              // New layout with question on left and status panel on right
-              <div className="flex flex-row w-full h-full">
-                {/* Main question area (left side) */}
-                <div className="flex-1 p-4 overflow-y-auto flex flex-col">
-                  {/* Header with timer */}
-                  <div className="w-full flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-bold">
-                      {selectedSubject.name}
-                    </h2>
-                    <div className="flex items-center gap-4">
+              // Responsive test interface
+              <>
+                {/* Mobile header with timer and question status toggle button */}
+                <div className="sm:hidden flex justify-between items-center p-3 border-b bg-gray-50">
+                  <div className="flex items-center">
+                    <h2 className="text-lg font-bold">{selectedSubject.name}</h2>
+                    <div className="ml-2">
                       <div 
-                        className={`bg-blue-50 border border-blue-100 px-4 py-2 rounded-lg ${
-                          isTimeLow ? "animate-pulse border-red-300 bg-red-50" : ""
+                        className={`px-2 py-1 rounded-md text-sm font-semibold ${
+                          isTimeLow ? "bg-red-100 text-red-600 animate-pulse" : "bg-blue-100 text-blue-600"
                         }`}
                       >
-                        <p className={`font-semibold ${isTimeLow ? "text-red-600" : ""}`}>
-                          Time: {formatTime(timeLeft)}
-                        </p>
+                        {formatTime(timeLeft)}
                       </div>
                     </div>
-                  </div>
-
-                  {/* Current question */}
-                  <div className="flex-1 mb-6 p-6 border rounded-lg shadow-md bg-white">
-                    <h3 className="font-semibold text-xl mb-6">
-                      {selectedSubject.name} Question {currentQuestionIdx + 1}
-                      : {questions[currentQuestionIdx]?.question}
-                    </h3>
-
-                    <div className="space-y-3">
-                      {questions[currentQuestionIdx]?.options.map(
-                        (option, idx) => (
-                          <button
-                            key={idx}
-                            className={`w-full p-4 border rounded-lg text-left flex items-center ${
-                              selectedAnswers[currentQuestionIdx] === option
-                                ? "bg-blue-50 border-blue-500"
-                                : "hover:bg-gray-50"
-                            }`}
-                            onClick={() =>
-                              handleOptionSelect(currentQuestionIdx, option)
-                            }
-                          >
-                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-700 mr-3">
-                              {String.fromCharCode(65 + idx)}
-                            </span>
-                            {option}
-                          </button>
-                        )
-                      )}
-                    </div>
-
-                    {/* Navigation buttons */}
-                    <div className="flex justify-between mt-8">
-                      <button
-                        onClick={goToPrevQuestion}
-                        className={`px-4 py-2 rounded-lg ${
-                          currentQuestionIdx > 0
-                            ? "bg-gray-200 hover:bg-gray-300"
-                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        }`}
-                        disabled={currentQuestionIdx === 0}
-                      >
-                        Previous
-                      </button>
-
-                      <button
-                        onClick={() =>
-                          toggleMarkForReview(currentQuestionIdx)
-                        }
-                        className="px-4 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg text-yellow-800"
-                      >
-                        Mark for Review
-                      </button>
-
-                      <button
-                        onClick={goToNextQuestion}
-                        className={`px-4 py-2 rounded-lg ${
-                          currentQuestionIdx < questions.length - 1
-                            ? "bg-blue-500 text-white hover:bg-blue-600"
-                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        }`}
-                        disabled={currentQuestionIdx === questions.length - 1}
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Question status panel (right side) */}
-                <div className="w-64 bg-gray-50 border-l border-gray-200 p-4 overflow-y-auto">
-                  {/* Subject headers and question grid */}
-                  <div className="mb-6">
-                    <h3 className="text-lg font-semibold mb-2 text-center">
-                      Question Status
-                    </h3>
-                    
-                    {/* Progress stats */}
-                    <div className="mb-4 text-sm text-center">
-                      <p className="mb-1">
-                        Answered: {Object.keys(selectedAnswers).length}/{questions.length}
-                      </p>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
-                        <div 
-                          className="bg-green-500 h-2 rounded-full"
-                          style={{width: `${calculateProgress()}%`}}
-                        ></div>
-                      </div>
-                    </div>
-
-                    {/* Color legend */}
-                    <div className="mb-4 bg-white p-3 rounded-md shadow-sm">
-                      <p className="text-xs font-semibold mb-2">Legend:</p>
-                      <div className="flex flex-col gap-2 text-xs">
-                        <div className="flex items-center">
-                          <span className="inline-block w-3 h-3 bg-green-500 rounded-sm mr-2"></span>
-                          <span>Answered</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="inline-block w-3 h-3 bg-red-100 rounded-sm mr-2"></span>
-                          <span>Visited but not answered</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="inline-block w-3 h-3 bg-yellow-100 border border-yellow-400 rounded-sm mr-2"></span>
-                          <span>Marked for review</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="inline-block w-3 h-3 bg-gray-200 rounded-sm mr-2"></span>
-                          <span>Not visited</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Question grid */}
-                    {getQuestionSections().map((section, sectionIndex) => (
-                      <div key={sectionIndex} className="mb-4">
-                        <h4 className="text-sm font-medium px-2 py-1 bg-blue-50 rounded-md text-blue-700 mb-2">
-                          {section.name} ({section.questions.length}/30)
-                        </h4>
-                        
-                        <div className="grid grid-cols-5 gap-2">
-                          {Array.from({length: section.questions.length}).map((_, i) => {
-                            const questionIndex = section.startIndex + i;
-                            return (
-                              <button
-                                key={questionIndex}
-                                onClick={() => goToQuestion(questionIndex)}
-                                className={`w-full h-8 flex items-center justify-center rounded-md text-sm ${
-                                  getStatusColorClass(questionStatus[questionIndex])
-                                } ${
-                                  questionIndex === currentQuestionIdx
-                                    ? "ring-2 ring-blue-500"
-                                    : ""
-                                }`}
-                              >
-                                {questionIndex + 1}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ))}
                   </div>
                   
-                  {/* Submit Test button */}
-                  <div className="mt-auto">
-                    <button 
-                      onClick={handleSubmitClick}
-                      className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-md transition-colors"
-                    >
-                      Submit Test
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              // Test Results - Redesigned to match Image 3
-              <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full mx-auto my-auto overflow-y-auto">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-2xl font-bold">Test Results</h3>
-                  <Button
-                    click={closeTest}
-                    text="Close"
-                    className="bg-gray-600 hover:bg-gray-700 text-white py-1 px-4 rounded-lg"
-                  />
+                  <button 
+                    onClick={toggleMobileNav}
+                    className="bg-blue-500 text-white p-2 rounded-md flex items-center text-sm"
+                  >
+                    <span className="mr-1">Q {currentQuestionIdx + 1}/{questions.length}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                  </button>
                 </div>
 
-                {/* Performance overview cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <div className="bg-gray-50 p-6 rounded-lg shadow">
-                    <h4 className="text-lg font-semibold mb-4">
-                      Overall Performance
-                    </h4>
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600">Score:</span>
-                        <span className="font-bold text-xl">
-                          {testResults.correctAnswers} /{" "}
-                          {testResults.totalQuestions}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600">Percentage:</span>
-                        <span
-                          className={`font-bold text-xl ${
-                            parseFloat(testResults.percentScore) >= 70
-                              ? "text-green-600"
-                              : parseFloat(testResults.percentScore) >= 40
-                              ? "text-yellow-600"
-                              : "text-red-600"
+                {/* Main test area - Responsive layout */}
+                <div className="flex-1 flex flex-col sm:flex-row w-full h-full overflow-hidden">
+                  {/* Question area */}
+                  <div className="flex-1 p-3 sm:p-4 overflow-y-auto flex flex-col h-full">
+                    {/* Desktop header with timer - hidden on mobile */}
+                    <div className="hidden sm:flex w-full justify-between items-center mb-4">
+                      <h2 className="text-xl sm:text-2xl font-bold">
+                        {selectedSubject.name}
+                      </h2>
+                      <div className="flex items-center gap-4">
+                        <div 
+                          className={`bg-blue-50 border border-blue-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg ${
+                            isTimeLow ? "animate-pulse border-red-300 bg-red-50" : ""
                           }`}
                         >
-                          {testResults.percentScore}%
-                        </span>
-                      </div>
-                      <div className="mt-4">
-                        <div className="w-full bg-gray-200 rounded-full h-3">
-                          <div
-                            className={`h-3 rounded-full ${
-                              parseFloat(testResults.percentScore) >= 70
-                                ? "bg-green-500"
-                                : parseFloat(testResults.percentScore) >= 40
-                                ? "bg-yellow-500"
-                                : "bg-red-500"
-                            }`}
-                            style={{ width: `${testResults.percentScore}%` }}
-                          ></div>
+                          <p className={`font-semibold ${isTimeLow ? "text-red-600" : ""}`}>
+                            Time: {formatTime(timeLeft)}
+                          </p>
                         </div>
                       </div>
                     </div>
+
+                    {/* Current question */}
+                    <div className="flex-1 mb-4 sm:mb-6 p-3 sm:p-6 border rounded-lg shadow-md bg-white">
+                      <div className="flex justify-between items-center mb-3 sm:mb-6">
+                        <h3 className="font-semibold text-base sm:text-xl">
+                          Question {currentQuestionIdx + 1}: 
+                        </h3>
+                        
+                        {/* Progress indicator for mobile */}
+                        <div className="sm:hidden text-sm text-gray-500">
+                          {Object.keys(selectedAnswers).length}/{questions.length} answered
+                        </div>
+                      </div>
+                      
+                      <p className="mb-4 text-sm sm:text-base">
+                        {questions[currentQuestionIdx]?.question}
+                      </p>
+
+                      <div className="space-y-2 sm:space-y-3">
+                        {questions[currentQuestionIdx]?.options.map(
+                          (option, idx) => (
+                            <button
+                              key={idx}
+                              className={`w-full p-2 sm:p-4 border rounded-lg text-left flex items-center text-sm sm:text-base ${
+                                selectedAnswers[currentQuestionIdx] === option
+                                  ? "bg-blue-50 border-blue-500"
+                                  : "hover:bg-gray-50"
+                              }`}
+                              onClick={() =>
+                                handleOptionSelect(currentQuestionIdx, option)
+                              }
+                            >
+                              <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 text-gray-700 mr-2 sm:mr-3 text-sm">
+                                {String.fromCharCode(65 + idx)}
+                              </span>
+                              {option}
+                            </button>
+                          )
+                        )}
+                      </div>
+
+                      {/* Navigation buttons */}
+                      <div className="flex justify-between mt-6 sm:mt-8">
+                        <button
+                          onClick={goToPrevQuestion}
+                          className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base ${
+                            currentQuestionIdx > 0
+                              ? "bg-gray-200 hover:bg-gray-300"
+                              : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          }`}
+                          disabled={currentQuestionIdx === 0}
+                        >
+                          Previous
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            toggleMarkForReview(currentQuestionIdx)
+                          }
+                          className="px-2 sm:px-4 py-1.5 sm:py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg text-yellow-800 text-sm sm:text-base"
+                        >
+                          Mark
+                        </button>
+
+                        <button
+                          onClick={goToNextQuestion}
+                          className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base ${
+                            currentQuestionIdx < questions.length - 1
+                              ? "bg-blue-500 text-white hover:bg-blue-600"
+                              : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          }`}
+                          disabled={currentQuestionIdx === questions.length - 1}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Mobile Submit button - fixed at bottom on mobile */}
+                    <div className="sm:hidden sticky bottom-0 left-0 right-0 p-3 bg-white border-t">
+                      <button 
+                        onClick={handleSubmitClick}
+                        className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 rounded-md transition-colors"
+                      >
+                        Submit Test
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="bg-gray-50 p-6 rounded-lg shadow">
-                    <h4 className="text-lg font-semibold mb-4">
-                      Subject Performance
-                    </h4>
-                    <div className="flex flex-col justify-center h-full">
-                      <p className="text-center font-bold text-xl mb-2">
-                        {testResults.subject}
-                      </p>
-                      <p className="text-center text-gray-600">
-                        You scored {testResults.percentScore}% in this test
-                      </p>
-                      <div className="mt-4 text-center">
-                        <span
-                          className={`inline-block px-4 py-2 rounded-full font-medium ${
-                            parseFloat(testResults.percentScore) >= 70
-                              ? "bg-green-100 text-green-800"
-                              : parseFloat(testResults.percentScore) >= 40
-                              ? "bg-yellow-100 text-yellow-800"
-                              : "bg-red-100 text-red-800"
-                          }`}
-                        >
-                          {parseFloat(testResults.percentScore) >= 70
-                            ? "Excellent"
-                            : parseFloat(testResults.percentScore) >= 40
-                            ? "Good Effort"
-                            : "Needs Improvement"}
-                        </span>
+                  {/* Question status panel - Slide in on mobile */}
+                  <div className={`
+                    ${showMobileNav ? "translate-x-0" : "translate-x-full sm:translate-x-0"} 
+                    fixed sm:relative top-0 right-0 h-full 
+                    w-5/6 sm:w-64 bg-gray-50 border-l border-gray-200 p-3 sm:p-4 
+                    overflow-y-auto z-20 transition-transform duration-300 ease-in-out
+                    sm:block
+                  `}>
+                    {/* Mobile close button */}
+                    <div className="sm:hidden flex justify-between items-center mb-4">
+                      <h3 className="text-lg font-semibold">Question Status</h3>
+                      <button 
+                        onClick={toggleMobileNav}
+                        className="p-2 text-gray-600 hover:bg-gray-200 rounded-full"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Progress summary */}
+                    <div className="mb-4 bg-white rounded-lg border p-3">
+                      <h3 className="text-sm font-semibold mb-1.5">Progress</h3>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                        <div 
+                          className="bg-blue-500 h-2 rounded-full"
+                          style={{ width: `${calculateProgress()}%` }}
+                        ></div>
                       </div>
+
+                      <div className="text-xs sm:text-sm grid grid-cols-2 gap-2">
+                        {/* Question counters */}
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                          <span>Answered: {getQuestionCounts().answered + getQuestionCounts().answeredMarked}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-3 h-3 rounded-full bg-red-100"></div>
+                          <span>Not Answered: {getQuestionCounts().notAnswered}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-3 h-3 rounded-full bg-gray-200"></div>
+                          <span>Not Visited: {getQuestionCounts().notVisited}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-3 h-3 rounded-full bg-yellow-100 border border-yellow-400"></div>
+                          <span>Marked: {getQuestionCounts().marked + getQuestionCounts().answeredMarked}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Question navigation grid */}
+                    <div className="mb-4 bg-white rounded-lg border p-3">
+                      <h3 className="text-sm font-semibold mb-2 flex items-center">
+                        <span>Question Navigation</span>
+                      </h3>
+                      <div className="grid grid-cols-5 gap-1.5">
+                        {questionStatus.map((status, index) => (
+                          <button
+                            key={index}
+                            onClick={() => goToQuestion(index)}
+                            className={`
+                              w-full aspect-square flex items-center justify-center 
+                              text-xs rounded-md ${getStatusColorClass(status)}
+                              ${currentQuestionIdx === index ? 'ring-2 ring-blue-500' : ''}
+                            `}
+                          >
+                            {index + 1}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Desktop Submit button */}
+                    <div className="hidden sm:block mt-auto">
+                      <button 
+                        onClick={handleSubmitClick}
+                        className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 rounded-md"
+                      >
+                        Submit Test
+                      </button>
                     </div>
                   </div>
                 </div>
 
-                {/* Detailed answers table */}
-                <div className="bg-white border border-gray-200 rounded-lg shadow overflow-hidden mb-6">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                {/* Confirmation Dialog */}
+                {showConfirmation && (
+                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg p-5 max-w-sm w-full mx-4">
+                      <h3 className="text-lg font-bold mb-4">Confirm Submission</h3>
+                      <p className="mb-4">
+                        {getUnansweredCount() > 0 
+                          ? `You have ${getUnansweredCount()} unanswered questions. Are you sure you want to submit?` 
+                          : "Are you sure you want to submit your test?"}
+                      </p>
+                      <div className="flex justify-end gap-3">
+                        <button 
+                          onClick={cancelSubmit}
+                          className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                         >
-                          Question
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          Cancel
+                        </button>
+                        <button 
+                          onClick={confirmSubmit}
+                          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
                         >
-                          Your Answer
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Correct Answer
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Result
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {testResults.answers.map((answer, index) => (
-                        <tr key={index} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-normal">
-                            <div className="text-sm text-gray-900">
-                              {index + 1}. {answer.question}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div
-                              className={`text-sm ${
-                                answer.isCorrect
-                                  ? "text-green-600 font-medium"
-                                  : "text-red-600"
-                              }`}
-                            >
-                              {answer.userAnswer}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900 font-medium">
-                              {answer.correctAnswer}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {answer.isCorrect ? (
-                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Correct
-                              </span>
-                            ) : (
-                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                Incorrect
-                              </span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              // Test Results
+              <div className="flex-1 p-4 sm:p-6 md:p-10 overflow-y-auto">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-white shadow-md rounded-xl p-5 sm:p-8 mb-8">
+                    <div className="flex justify-between items-start mb-6">
+                      <div>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                          Test Results
+                        </h2>
+                        <p className="text-gray-500">
+                          {selectedSubject.name} - {new Date().toLocaleDateString()}
+                        </p>
+                      </div>
+                      <button
+                        onClick={closeTest}
+                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 text-sm sm:text-base"
+                      >
+                        Close
+                      </button>
+                    </div>
 
-                {/* Suggestions for improvement */}
-                <div className="bg-blue-50 border border-blue-100 p-4 rounded-lg">
-                  <h4 className="text-lg font-semibold text-blue-700 mb-2">
-                    Suggestions for Improvement
-                  </h4>
-                  <p className="text-blue-600 mb-2">
-                    {parseFloat(testResults.percentScore) >= 70
-                      ? "Great job! Continue practicing to maintain your excellent performance."
-                      : parseFloat(testResults.percentScore) >= 40
-                      ? "Good effort! Focus on the topics where you made mistakes to improve your score."
-                      : "Keep practicing! Consider revisiting the fundamental concepts in this subject."}
-                  </p>
-                  <ul className="list-disc list-inside text-blue-600 text-sm">
-                    <li>Review the questions you answered incorrectly</li>
-                    <li>Practice more tests in the same subject</li>
-                    <li>Consider creating flashcards for difficult concepts</li>
-                  </ul>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <p className="text-sm text-blue-600 font-medium mb-1">Total Questions</p>
+                        <p className="text-2xl sm:text-3xl font-bold">{testResults.totalQuestions}</p>
+                      </div>
+                      <div className="bg-green-50 border border-green-100 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <p className="text-sm text-green-600 font-medium mb-1">Correct Answers</p>
+                        <p className="text-2xl sm:text-3xl font-bold">{testResults.correctAnswers}</p>
+                      </div>
+                      <div className="bg-purple-50 border border-purple-100 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <p className="text-sm text-purple-600 font-medium mb-1">Score Percentage</p>
+                        <p className="text-2xl sm:text-3xl font-bold">{testResults.percentScore}%</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4">Question Analysis</h3>
+                      <div className="space-y-4">
+                        {testResults.answers.map((answer, index) => (
+                          <div
+                            key={index}
+                            className={`border rounded-lg p-4 ${
+                              answer.isCorrect
+                                ? "bg-green-50 border-green-100"
+                                : "bg-red-50 border-red-100"
+                            }`}
+                          >
+                            <div className="flex justify-between items-start mb-2">
+                              <h4 className="font-medium text-base sm:text-lg">
+                                Question {index + 1}
+                              </h4>
+                              <span
+                                className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  answer.isCorrect
+                                    ? "bg-green-100 text-green-800"
+                                    : "bg-red-100 text-red-800"
+                                }`}
+                              >
+                                {answer.isCorrect ? "Correct" : "Incorrect"}
+                              </span>
+                            </div>
+                            <p className="text-sm sm:text-base mb-2">{answer.question}</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                              <div className="flex items-center">
+                                <span className="font-medium mr-2">Your Answer:</span>
+                                <span
+                                  className={
+                                    answer.isCorrect
+                                      ? "text-green-600"
+                                      : "text-red-600"
+                                  }
+                                >
+                                  {answer.userAnswer}
+                                </span>
+                              </div>
+                              <div className="flex items-center">
+                                <span className="font-medium mr-2">Correct Answer:</span>
+                                <span className="text-green-600">
+                                  {answer.correctAnswer}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
-
-          {/* Confirmation Dialog */}
-          {showConfirmation && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="absolute inset-0 bg-black opacity-50"></div>
-              <div className="bg-white p-6 rounded-lg shadow-xl z-10 max-w-md w-full">
-                <h3 className="text-xl font-bold mb-4">Submit Test?</h3>
-                <p className="mb-4">
-                  You have {getUnansweredCount()} unanswered questions. Are you sure you want to submit?
-                </p>
-                <div className="flex justify-end space-x-4">
-                  <button
-                    onClick={cancelSubmit}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={confirmSubmit}
-                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-lg"
-                  >
-                    Yes, Submit
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       )}
     </div>
@@ -954,4 +930,3 @@ const Mocktest = () => {
 };
 
 export default Mocktest;
-                              
