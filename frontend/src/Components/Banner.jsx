@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import StyledButton from "./StyledButton";
 import { lazy, Suspense } from 'react'
 import Banner3D from "./Banner3D";
+import MainTest from "./MainTest";
 
 const handleAnimationComplete = () => {
   console.log('All letters have animated!');
@@ -46,11 +47,11 @@ const Banner = () => {
 
 
       <div name="home" className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-5 sm:p-10 md:p-16 " style={{ backgroundImage: "url(/images/mcet-bg.jpg)" }}>
-        <Suspense fallback={<div>Loading...</div>} >
+        {/* <Suspense fallback={<div>Loading...</div>} >
             <Banner3D />
-        </Suspense>
+        </Suspense> */}
         {/* Left side - your existing content */}
-        <div className=" w-full md:w-1/2 h-[75vh] text-center bg-[#8d8d8d3b] p-6 rounded-lg md:mr-8 mb-8 md:mb-0 backdrop-blur-sm flex flex-col items-center justify-center md:backdrop-blur-none md:bg-[#fff0]">
+        <div className=" w-full md:w-1/2 h-[75vh] text-center p-6 rounded-lg md:mr-8 mb-8 md:mb-0  flex flex-col items-center justify-center md:backdrop-blur-none md:bg-[#fff0]">
           {textContent.map((item, index) => (
             <div key={index} className={item.className + " my-3"}>
               <SplitText
@@ -82,6 +83,7 @@ const Banner = () => {
         token && (
           <div ref={mockTestRef} name="mocktest">
             <Mocktest />
+            <MainTest/>
           </div>
         )
       }
