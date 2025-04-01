@@ -56,7 +56,7 @@ const Banner = () => {
         style={{ backgroundImage: "url(/images/mcet-bg.jpg)" }}
       >
         {/* Main content container - improved padding for small devices */}
-        <div className="w-full md:w-1/2 min-h-[50vh] md:h-[75vh] text-center p-4 sm:p-6 rounded-lg md:mr-4 mb-6 md:mb-0 flex flex-col items-center justify-center md:backdrop-blur-none md:bg-[#fff0]">
+        <div className="w-full md:w-1/2 min-h-[50vh] md:h-[75vh] pointer-events-none text-center p-4 sm:p-6 rounded-lg md:mr-4 mb-6 md:mb-0 flex flex-col items-center justify-center md:backdrop-blur-none md:bg-[#fff0]">
           <div className="relative my-4 sm:my-6 px-2">
             {/* Institution Code - with only MCK highlighted */}
             <h3 className="text-lg sm:text-xl md:text-2xl font-serif mb-3 sm:mb-4">
@@ -162,7 +162,7 @@ const Banner = () => {
 
           {/* Button and Anchors container */}
           <div
-            className="transition-all duration-500 flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
+            className="transition-all duration-500 flex pointer-events-auto flex-col sm:flex-row items-center gap-4 sm:gap-6"
             style={{
               opacity: animationStage >= 3 ? 1 : 0,
               transform:

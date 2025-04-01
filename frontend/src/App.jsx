@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import Auth from './Components/Auth'
 import { Route, Routes } from 'react-router-dom'
 import { AppContext } from './context/AppContext'
+import BlobCursor from './Components/BlobCursor/BlobCursor'
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
 
     <div className='bg-[#FBE4E3] h-screen '>
       <ToastContainer />
+      <BlobCursor />
       {
         token &&
         <Navbar />
