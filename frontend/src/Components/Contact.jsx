@@ -33,8 +33,8 @@ const Contact = () => {
                 <p className="text-sm sm:text-lg">&copy; {new Date().getFullYear()} Musaliar College of Engineering and Technology. All Rights Reserved.</p>
                 <div className="mt-2 text-xs sm:text-md">
                     <p>Website Created by:</p>
-                    <p className="font-semibold">[Creator 1 Name] & [Creator 2 Name]</p>
-                    <p className="text-xs sm:text-sm">For inquiries: creator1@example.com | creator2@example.com</p>
+                    <p className="font-semibold">Ansif Muhammed N N & Sreehari S</p>
+                    <p className="text-xs sm:text-sm">For inquiries: ansifpta2003@gmail.com | sreehari200411@gmail.com</p>
                 </div>
             </footer>
         </div>
