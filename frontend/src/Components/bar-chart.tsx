@@ -49,7 +49,7 @@ export default function BarChart({ items, className, height: providedHeight }: B
     <div
       ref={containerRef}
       className={cn(
-        "relative box-border flex min-h-4 w-44 flex-wrap items-end gap-[2px] overflow-hidden",
+        "relative box-border flex min-h-4 w-96 flex-wrap items-end gap-[2px] overflow-hidden",
         className,
       )}
       style={{ height }}

@@ -53,7 +53,7 @@ const AppContextProvider = ({ children }) => {
             }
         } catch (error) {
             console.error("Error fetching scores:", error);
-            toast.error("Failed to retrieve scores");
+            // toast.error("Failed to retrieve scores");    
             setScores([]);
         } finally {
             setLoading(false);
@@ -165,7 +165,7 @@ const AppContextProvider = ({ children }) => {
             );
 
             if (data.success) {
-                toast.success("Mock test results submitted successfully");
+                // toast.success("Mock test results submitted successfully");
                 getMockTestScores();
             } else {
                 toast.error(data.message || "Failed to submit mock test");
@@ -198,7 +198,7 @@ const AppContextProvider = ({ children }) => {
             );
 
             if (data.success) {
-                toast.success("Main test results submitted successfully");
+                // toast.success("Main test results submitted successfully");
                 // We'll fetch the scores after submission is successful
                 await getMainTestScores();
             } else {
