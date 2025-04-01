@@ -34,7 +34,7 @@ const StyledWrapper = styled.div`
     width: 95.02px;
     height: 42.66px;
     border: none;
-    background-color: #d8c12e;
+    background-color: #01B707;
     display: flex;
     justify-content: center;
     align-items: center;

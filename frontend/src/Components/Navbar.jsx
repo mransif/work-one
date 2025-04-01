@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useWindowScroll } from "react-use";
 import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-scroll";
+import StyledDropdown from "./StyledDropdown";
 
 const navItems = ["Home", "Mock-Test", "Contact"];
 
@@ -88,19 +89,17 @@ const NavBar = () => {
                 <Link to="home" smooth={true} duration={500}>
                   <button className="nav-hover-btn text-[#37474F] hover:text-gray-900">Home</button>
                 </Link>
-                <Link to="mocktest" smooth={true} duration={500}>
-                  <button className="nav-hover-btn text-[#37474F] hover:text-gray-900">Mock-Test</button>
-                </Link>
+                <button className="nav-hover-btn text-[#37474F] hover:text-gray-900"><StyledDropdown /></button>
                 <Link to="contact" smooth={true} duration={500}>
-                  <button className="nav-hover-btn text-[#37474F] hover:text-gray-900">Contact</button>
+                  <button className="nav-hover-btn text-[#37474F] mr-8 hover:text-gray-900">Contact</button>
                 </Link>
               </div>
 
               {token && (
-                <div className="items-center gap-1 cursor-pointer text-[#37474F] hover:text-gray-800 ml-10 hidden md:flex">
+                <div className="items-center gap-1 cursor-pointer text-[#37474F] hover:text-gray-800 nav-hover-btn hidden md:flex">
                   <button
                     onClick={handleLogout}
-                    className="font-medium"
+                    className="font-medium "
                   >
                     Logout
                   </button>

@@ -286,8 +286,8 @@ const MainTest = () => {
   const answeredCount = getAnsweredCount();
 
   return (
-    <div className="min-h-screen bg-[#B7FAB3] bg-cover overflow-x-hidden flex flex-col items-center p-4"
-      style={{ backgroundImage: "url(/images/test-bg.png)" }}
+    <div  className="min-h-screen  bg-cover overflow-x-hidden flex flex-col items-center p-4"
+    style={{ backgroundImage: "url(/images/main-bg.png)" }}
     >
       <h1 className="text-4xl font-bold m-3 text-[#37474F]">KEAM MAIN TEST</h1>
       
@@ -409,7 +409,7 @@ const MainTest = () => {
       {isStarted && !testResults && (
         <div className="fixed inset-0 bg-white overflow-hidden flex flex-col z-40">
           {/* Top Bar with Timer and Subjects */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-3 flex justify-between items-center shadow-md">
+          <div className="bg-orange-100 text-gray-700 p-3 flex justify-between items-center shadow-md">
             <div className="flex items-center">
               <h2 className="text-xl font-bold">KEAM Main Test</h2>
             </div>
@@ -418,7 +418,7 @@ const MainTest = () => {
               <div className="hidden md:flex md:space-x-6">
                 {sections.map((section, idx) => (
                   <div key={idx} className="text-center">
-                    <span className={`text-sm font-semibold ${getCurrentQuestionSection() === section.name ? 'text-yellow-300' : ''}`}>
+                    <span className={`text-sm font-semibold ${getCurrentQuestionSection() === section.name ? 'text-yellow-600' : ''}`}>
                       {section.name}
                     </span>
                     <div className="text-xs">
@@ -429,13 +429,13 @@ const MainTest = () => {
               </div>
               
               {/* Show on all screens */}
-              <div className="bg-white text-blue-800 rounded-lg px-3 py-2 md:px-4 md:py-2 font-mono text-base md:text-xl font-bold">
+              <div className="bg-white text-gray-600 rounded-lg px-3 py-2 md:px-4 md:py-2 font-mono text-base md:text-xl font-bold">
                 {formatTime(timeLeft)}
               </div>
               
               {/* Mobile question navigator button */}
               <button 
-                className="mobile-nav-toggle md:hidden flex items-center justify-center p-2 rounded-md bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="mobile-nav-toggle md:hidden flex items-center justify-center p-2 rounded-md   "
                 onClick={() => setMobileNavOpen(true)}
                 aria-label="Open question navigator"
               >
@@ -511,7 +511,7 @@ const MainTest = () => {
                         onClick={() => navigateQuestion(questionIndex - 1)}
                         disabled={questionIndex === 0}
                         className={`py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base ${
-                          questionIndex === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
+                          questionIndex === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-green-500 text-white hover:bg-green-600'
                         }`}
                       >
                         Previous
@@ -529,7 +529,7 @@ const MainTest = () => {
                       {questionIndex < questions.length - 1 ? (
                         <button
                           onClick={() => navigateQuestion(questionIndex + 1)}
-                          className="bg-blue-500 text-white py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base hover:bg-blue-600"
+                          className="bg-green-500 text-white py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base hover:bg-green-600"
                         >
                           Next
                         </button>
@@ -554,7 +554,7 @@ const MainTest = () => {
                 mobileNavOpen ? 'translate-x-0' : 'translate-x-full'
               } md:hidden overflow-y-auto`}
             >
-              <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-blue-600 text-white">
+              <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-orange-100 text-gray-700">
                 <h3 className="font-bold text-lg">Question Navigator</h3>
                 <button 
                   onClick={() => setMobileNavOpen(false)}

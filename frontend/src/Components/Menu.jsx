@@ -53,7 +53,11 @@ const Menu = ({ token, logoutUser }) => {
           </Link>
 
           <Link to="mocktest" smooth={true} duration={500} onClick={closeDropdown}>
-            <div className="menu-list">Mock-Test</div>
+            <div className="menu-list">KEAM Mock Test</div>
+          </Link>
+
+          <Link to="maintest" smooth={true} duration={500} onClick={closeDropdown}>
+            <div className="menu-list">KEAM Main Test</div>
           </Link>
 
           <Link to="contact" smooth={true} duration={500} onClick={closeDropdown}>
