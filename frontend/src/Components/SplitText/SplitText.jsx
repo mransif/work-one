@@ -71,7 +71,7 @@ const SplitText = ({
               <animated.span
                 key={index}
                 style={springs[index]}
-                className="inline-block transform transition-opacity will-change-transform"
+                className="inline-block transform transition-opacity will-change-transform text-[#003631]"
               >
                 {letter}
               </animated.span>
