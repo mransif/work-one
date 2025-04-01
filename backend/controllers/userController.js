@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const mockTestModel = require("../models/mockTestModel");
 const mockTestResultModel = require("../models/mockTestResultModel ");
+const keamTestResultModel = require("../models/keamTestResultModel");
 
 
 exports.registerStudent = async (req, res) => {
@@ -116,3 +117,47 @@ exports.getMockTestScores = async (req, res) => {
   }
 };
 
+
+exports.getMainTestScores = async (req, res) => {
+  const { studentId } = req.params;  // Get student ID from URL parameters
+
+  try {
+    // Find all main test results for the given student ID
+    const scores = await keamTestResultModel.find({ studentId });
+
+    if (!scores || scores.length === 0) {
+      return res.status(404).json({ success: false, message: "No main test scores found" });
+    }
+
+    res.status(200).json({ success: true, scores });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+
+exports.submitMainTest = async (req, res) => {
+  const { studentId, setName, score, questions } = req.body;
+
+  try {
+    // Check if the student exists
+    const student = await User.findById(studentId);
+    if (!student) return res.status(404).json({ success: false, message: "Student not found" });
+
+    const result = new keamTestResultModel({
+      studentId,
+      setName,
+      score,
+      questions,
+    });
+
+    await result.save();
+    res.status(201).json({ success: true, message: "Main test result saved successfully" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
