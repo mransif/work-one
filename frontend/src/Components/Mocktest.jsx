@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import Button from "./Button";
 import StyledSplitButton from "./StyledSplitButton";
 import BarChart from "./bar-chart";
 
@@ -688,7 +687,7 @@ const Mocktest = () => {
                           }
                           className="px-2 sm:px-4 py-1.5 sm:py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg text-yellow-800 text-sm sm:text-base"
                         >
-                          Mark
+                          Mark for review
                         </button>
 
                         <button
@@ -763,7 +762,7 @@ const Mocktest = () => {
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-3 h-3 rounded-full bg-yellow-100 border border-yellow-400"></div>
-                          <span>Marked: {getQuestionCounts().marked + getQuestionCounts().answeredMarked}</span>
+                          <span>Marked for review: {getQuestionCounts().marked + getQuestionCounts().answeredMarked}</span>
                         </div>
                       </div>
                     </div>
@@ -804,7 +803,7 @@ const Mocktest = () => {
 
                 {/* Confirmation Dialog */}
                 {showConfirmation && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                  <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-5 max-w-sm w-full mx-4">
                       <h3 className="text-lg font-bold mb-4">Confirm Submission</h3>
                       <p className="mb-4">
