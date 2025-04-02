@@ -398,7 +398,7 @@ const Mocktest = () => {
       className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-2 sm:p-4"
       style={{ backgroundImage: "url(/images/mock-bg.png)" }}
     >
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold m-2 sm:m-3 text-[#37474F]">MOCK-TEST</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold m-2 sm:m-3 text-[#37474F]">KEAM MOCK TEST</h1>
 
       {!selectedSubject && (
         <>

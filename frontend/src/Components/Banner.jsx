@@ -5,6 +5,7 @@ import Mocktest from "./Mocktest";
 import Contact from "./Contact";
 import StyledButton from "./StyledButton";
 import MainTest from "./MainTest";
+import { IoClose } from "react-icons/io5";
 
 const Banner = () => {
   const { token } = useContext(AppContext);
@@ -152,7 +153,7 @@ const Banner = () => {
             }}
           >
             The KEAM Examination is your golden ticket to a world of
-            possibilities in Kerala's top engineering, medical, and architecture
+            possibilities in Kerala's top engineering and architecture
             colleges! Think of it as the ultimate challenge for ambitious
             students ready to take on the future with a bang. Conducted by the
             Commissioner for Entrance Examinations (CEE), this highly
@@ -170,10 +171,10 @@ const Banner = () => {
             }}
           >
             <StyledButton text="Attend Mock Test" onClick={scrollToMocktest} />
-            
+
             {/* Animated anchor for Rules & Regulations */}
-            <a 
-              href="#" 
+            <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setShowRulesModal(true);
@@ -188,10 +189,10 @@ const Banner = () => {
               Rules & Regulations
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#003631] transition-all duration-300 group-hover:w-full"></span>
             </a>
-            
+
             {/* Animated anchor for Tips & Tricks */}
-            <a 
-              href="#" 
+            <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setShowTipsModal(true);
@@ -199,7 +200,7 @@ const Banner = () => {
               className="text-[#003631] hover:text-[#00665f] font-semibold text-sm sm:text-base transition-all duration-300 relative group"
               style={{
                 opacity: animationStage >= 4 ? 1 : 0,
-                transform: animationStage >= 4 ? "translateY(0)" : "translateY(20px)", 
+                transform: animationStage >= 4 ? "translateY(0)" : "translateY(20px)",
                 animationDelay: "400ms"
               }}
             >
@@ -215,21 +216,21 @@ const Banner = () => {
 
       {/* Rules & Regulations Modal */}
       {showRulesModal && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+        <div
+          className="fixed inset-0 bg-[#08080844] backdrop-blur-lg bg-opacity-50 z-50 flex items-center justify-center p-4"
           onClick={(e) => handleCloseModal(e, setShowRulesModal)}
         >
-          <div 
+          <div
             className="bg-white rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto animate-modalFadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-[#003631]">KEAM Examination: Rules & Regulations</h2>
-              <button 
+              <button
                 onClick={() => setShowRulesModal(false)}
                 className="text-gray-500 hover:text-gray-700 text-xl"
               >
-                ×
+                <IoClose />
               </button>
             </div>
             <div className="space-y-4">
@@ -238,7 +239,7 @@ const Banner = () => {
                 <li>Engineering Courses (B.Tech): The exam consists of 150 questions: 75 in Mathematics, 45 in Physics, and 30 in Chemistry, to be completed in 180 minutes. ​</li>
                 <li>Each correct answer awards +4 marks; each incorrect answer results in a -1 mark. </li>
               </ul>
-              
+
               <h3 className="text-lg font-semibold text-[#003631]">Examination Day Guidelines</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Carry your valid Admit Card and a government-issued photo ID</li>
@@ -246,14 +247,14 @@ const Banner = () => {
                 <li>Electronic devices including calculators, mobile phones, and smartwatches are strictly prohibited</li>
                 <li>Only black/blue ballpoint pen is allowed for marking answers</li>
               </ul>
-              
+
               <h3 className="text-lg font-semibold text-[#003631]">Eligibility Criteria</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Candidates must have passed or be appearing for the 12th standard examination</li>
                 <li>Minimum of 50% marks in Physics, Chemistry, and Mathematics combined</li>
                 <li>Age: Candidates must be at least 17 years old as of December 31st of the admission year</li>
               </ul>
-              
+
               <h3 className="text-lg font-semibold text-[#003631]">Important Notes</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Any form of malpractice will lead to disqualification</li>
@@ -262,7 +263,7 @@ const Banner = () => {
               </ul>
             </div>
             <div className="mt-6 flex justify-end">
-              <button 
+              <button
                 onClick={() => setShowRulesModal(false)}
                 className="px-4 py-2 bg-[#003631] text-white rounded hover:bg-[#00665f] transition-colors"
               >
@@ -275,21 +276,21 @@ const Banner = () => {
 
       {/* Tips & Tricks Modal */}
       {showTipsModal && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+        <div
+          className="fixed inset-0  bg-[#08080844] backdrop-blur-lg z-50 flex items-center justify-center p-4"
           onClick={(e) => handleCloseModal(e, setShowTipsModal)}
         >
-          <div 
+          <div
             className="bg-white rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto animate-modalFadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-[#003631]">KEAM Success: Tips & Tricks</h2>
-              <button 
+              <button
                 onClick={() => setShowTipsModal(false)}
                 className="text-gray-500 hover:text-gray-700 text-xl"
               >
-                ×
+                <IoClose />
               </button>
             </div>
             <div className="space-y-4">
@@ -301,7 +302,7 @@ const Banner = () => {
                 <li>Practice with previous years' question papers to understand the exam pattern</li>
                 <li>Join study groups for collaborative learning and problem-solving</li>
               </ul>
-              
+
               <h3 className="text-lg font-semibold text-[#003631]">Exam Day Tactics</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Attempt questions you're confident about first to build momentum</li>
@@ -310,14 +311,14 @@ const Banner = () => {
                 <li>Skip questions you're unsure about and return to them later if time permits</li>
                 <li>Don't spend too much time on a single question - move on if stuck</li>
               </ul>
-              
+
               <h3 className="text-lg font-semibold text-[#003631]">Subject-Specific Tips</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong>Mathematics:</strong> Practice is key. Focus on Calculus, Coordinate Geometry, and Algebra</li>
                 <li><strong>Physics:</strong> Understand concepts thoroughly and memorize important formulas</li>
                 <li><strong>Chemistry:</strong> Focus on Organic Chemistry reactions and Inorganic Chemistry facts</li>
               </ul>
-              
+
               <h3 className="text-lg font-semibold text-[#003631]">Health & Wellbeing</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Get adequate sleep, especially in the week leading up to the exam</li>
@@ -328,7 +329,7 @@ const Banner = () => {
               </ul>
             </div>
             <div className="mt-6 flex justify-end">
-              <button 
+              <button
                 onClick={() => setShowTipsModal(false)}
                 className="px-4 py-2 bg-[#003631] text-white rounded hover:bg-[#00665f] transition-colors"
               >
@@ -340,10 +341,14 @@ const Banner = () => {
       )}
 
       {token && (
-        <div ref={mockTestRef} name="mocktest">
-          <Mocktest />
-          <MainTest />
-        </div>
+        <>
+          <div ref={mockTestRef} name="mocktest">
+            <Mocktest />
+          </div>
+          <div name="maintest">
+            <MainTest />
+          </div>
+        </>
       )}
 
       <div name="contact">
