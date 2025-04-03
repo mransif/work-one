@@ -20,9 +20,9 @@ const Mocktest = () => {
   const { submitMockTestResult, scores } = useContext(AppContext);
 
   const subjects = [
-    { name: "MATHEMATICS", image: "/images/maths.jpg" },
-    { name: "PHYSICS", image: "/images/physics.png" },
-    { name: "CHEMISTRY", image: "/images/chemistry.jpg" },
+    { name: "MATHEMATICS", image: "/images/maths.webp" },
+    { name: "PHYSICS", image: "/images/physics.webp" },
+    { name: "CHEMISTRY", image: "/images/chemistry.webp" },
   ];
 
   const subjectQuestions = {
@@ -391,7 +391,7 @@ const Mocktest = () => {
   return (
     <div
       className="min-h-screen bg-[#F4F8D3] bg-cover bg-fixed overflow-x-hidden flex flex-col items-center p-2 sm:p-4"
-      style={{ backgroundImage: "url(/images/mock-bg.png)" }}
+      style={{ backgroundImage: "url(/images/mock-bg.webp)" }}
     >
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold m-2 sm:m-3 text-[#37474F]">
         KEAM MOCK TEST
