@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { AppContext } from "../context/AppContext";
 import Button from "./Button";
 import BarChart from "./bar-chart";
+import StyledSplitButton from "./StyledSplitButton";
 
 const MainTest = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -347,11 +348,19 @@ const MainTest = () => {
               </table>
             </div>
             
-            <Button 
+            {/* <Button 
               click={startTest} 
               text="Begin Test" 
-              className="mt-6 w-full md:w-auto py-3 px-8 text-lg font-bold bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300" 
+              className=""
+            /> */}
+
+            <StyledSplitButton 
+              onClick ={()=> startTest(subject)}
+              startTest={startTest}
+              subject={startTest}
+              className=""
             />
+
           </div>
           
           {/* Past Score Section */}

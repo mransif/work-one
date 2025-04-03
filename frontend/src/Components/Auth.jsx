@@ -3,6 +3,7 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Particles from "./Particles/Particles";
+import Button from "./Button";
 
 const Auth = () => {
   const { loginUser, signupUser, token } = useContext(AppContext);
@@ -84,18 +85,6 @@ const Auth = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-[#ececec]">
 
-      <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
-        <Particles
-          particleColors={['#ffe6c0', '#ffe6c0']}
-          particleCount={200}
-          particleSpread={10}
-          speed={0.1}
-          particleBaseSize={100}
-          moveParticlesOnHover={true}
-          alphaParticles={false}
-          disableRotation={false}
-        />
-      </div>
 
       <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg border  border-gray-700 bg-white/10 text-gray-800 ">
         <h2 className="text-2xl font-bold text-center mb-6">
@@ -210,12 +199,21 @@ const Auth = () => {
           )}
 
           {/* Submit Button */}
-          <button
+          {/* <button
             type="submit"
-            className="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 transition"
+            className="w-full bg-[#01B707] text-white py-2 px-4 rounded-md hover:bg-orange-800 transition"
           >
             {isLogin ? "Login" : "Sign Up"}
-          </button>
+          </button> */}
+
+
+            <Button 
+              text={isLogin ? "Login" : "Sign Up"}
+              className= "w-full bg-[#01B707] text-white py-2 px-4 rounded-md transition "
+              type= "submit"
+            
+            />
+
         </form>
 
         {/* Toggle Link */}
