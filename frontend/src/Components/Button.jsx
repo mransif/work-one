@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({click, text}) => {
+const Button = ({click, text,type,style}) => {
   return (
     <StyledWrapper>
-      <button onClick={click} className="custom-btn btn-1">{text}</button>
+      <button onClick={click} type={type} className="custom-btn btn-1 btn-mrgin">{text}</button>
     </StyledWrapper>
   );
 }
 
 const StyledWrapper = styled.div`
   .custom-btn {
-   width: ;
+   width: 100%;
    height: 40px;
    color: #fff;
    border-radius: 5px;
