@@ -363,16 +363,16 @@ const Mocktest = () => {
     // This is just an example - you can adjust for your actual subject structure
     const questionCount = questions.length;
     const sectionSize = 30; // Assuming 30 questions per section
-    
+
     const sections = [];
     for (let i = 0; i < questionCount; i += sectionSize) {
       sections.push({
         name: selectedSubject.name,
         questions: questions.slice(i, Math.min(i + sectionSize, questionCount)),
-        startIndex: i
+        startIndex: i,
       });
     }
-    
+
     return sections;
   };
 
@@ -395,10 +395,12 @@ const Mocktest = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#F4F8D3] bg-cover overflow-x-hidden flex flex-col items-center p-2 sm:p-4"
+      className="min-h-screen bg-[#F4F8D3] bg-cover bg-fixed overflow-x-hidden flex flex-col items-center p-2 sm:p-4"
       style={{ backgroundImage: "url(/images/mock-bg.png)" }}
     >
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold m-2 sm:m-3 text-[#37474F]">KEAM MOCK TEST</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold m-2 sm:m-3 text-[#37474F]">
+        KEAM MOCK TEST
+      </h1>
 
       {!selectedSubject && (
         <>
@@ -496,7 +498,9 @@ const Mocktest = () => {
                         "border-"
                       )} bg-gradient-to-br ${bgGradient} hover:shadow-lg transition-shadow duration-300`}
                     >
-                      <h3 className={`font-bold text-base sm:text-lg mb-1 sm:mb-2 ${textColor}`}>
+                      <h3
+                        className={`font-bold text-base sm:text-lg mb-1 sm:mb-2 ${textColor}`}
+                      >
                         {score.setName}
                       </h3>
                       <div className="flex justify-between items-center mb-2 sm:mb-3">
@@ -562,7 +566,10 @@ const Mocktest = () => {
                   </h3>
                 </div>
                 <div className="relative h-48 sm:h-56 md:h-64 w-full">
-                  <BarChart height={window.innerWidth < 640 ? 180 : 230} items={createChartItems()} />
+                  <BarChart
+                    height={window.innerWidth < 640 ? 180 : 230}
+                    items={createChartItems()}
+                  />
                 </div>
                 <div className="mt-2 sm:mt-4 text-xs text-gray-500 text-center">
                   Chart shows your test scores as percentage
@@ -582,25 +589,42 @@ const Mocktest = () => {
                 {/* Mobile header with timer and question status toggle button */}
                 <div className="sm:hidden flex justify-between items-center p-3 border-b bg-gray-50">
                   <div className="flex items-center">
-                    <h2 className="text-lg font-bold">{selectedSubject.name}</h2>
+                    <h2 className="text-lg font-bold">
+                      {selectedSubject.name}
+                    </h2>
                     <div className="ml-2">
-                      <div 
+                      <div
                         className={`px-2 py-1 rounded-md text-sm font-semibold ${
-                          isTimeLow ? "bg-red-100 text-red-600 animate-pulse" : "bg-blue-100 text-blue-600"
+                          isTimeLow
+                            ? "bg-red-100 text-red-600 animate-pulse"
+                            : "bg-blue-100 text-blue-600"
                         }`}
                       >
                         {formatTime(timeLeft)}
                       </div>
                     </div>
                   </div>
-                  
-                  <button 
+
+                  <button
                     onClick={toggleMobileNav}
                     className="bg-blue-500 text-white p-2 rounded-md flex items-center text-sm"
                   >
-                    <span className="mr-1">Q {currentQuestionIdx + 1}/{questions.length}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                    <span className="mr-1">
+                      Q {currentQuestionIdx + 1}/{questions.length}
+                    </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16m-7 6h7"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -615,12 +639,18 @@ const Mocktest = () => {
                         {selectedSubject.name}
                       </h2>
                       <div className="flex items-center gap-4">
-                        <div 
+                        <div
                           className={`bg-blue-50 border border-blue-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg ${
-                            isTimeLow ? "animate-pulse border-red-300 bg-red-50" : ""
+                            isTimeLow
+                              ? "animate-pulse border-red-300 bg-red-50"
+                              : ""
                           }`}
                         >
-                          <p className={`font-semibold ${isTimeLow ? "text-red-600" : ""}`}>
+                          <p
+                            className={`font-semibold ${
+                              isTimeLow ? "text-red-600" : ""
+                            }`}
+                          >
                             Time: {formatTime(timeLeft)}
                           </p>
                         </div>
@@ -631,15 +661,16 @@ const Mocktest = () => {
                     <div className="flex-1 mb-4 sm:mb-6 p-3 sm:p-6 border rounded-lg shadow-md bg-white">
                       <div className="flex justify-between items-center mb-3 sm:mb-6">
                         <h3 className="font-semibold text-base sm:text-xl">
-                          Question {currentQuestionIdx + 1}: 
+                          Question {currentQuestionIdx + 1}:
                         </h3>
-                        
+
                         {/* Progress indicator for mobile */}
                         <div className="sm:hidden text-sm text-gray-500">
-                          {Object.keys(selectedAnswers).length}/{questions.length} answered
+                          {Object.keys(selectedAnswers).length}/
+                          {questions.length} answered
                         </div>
                       </div>
-                      
+
                       <p className="mb-4 text-sm sm:text-base">
                         {questions[currentQuestionIdx]?.question}
                       </p>
@@ -703,10 +734,10 @@ const Mocktest = () => {
                         </button>
                       </div>
                     </div>
-                    
+
                     {/* Mobile Submit button - fixed at bottom on mobile */}
                     <div className="sm:hidden sticky bottom-0 left-0 right-0 p-3 bg-white border-t">
-                      <button 
+                      <button
                         onClick={handleSubmitClick}
                         className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 rounded-md transition-colors"
                       >
@@ -716,22 +747,37 @@ const Mocktest = () => {
                   </div>
 
                   {/* Question status panel - Slide in on mobile */}
-                  <div className={`
-                    ${showMobileNav ? "translate-x-0" : "translate-x-full sm:translate-x-0"} 
+                  <div
+                    className={`
+                    ${
+                      showMobileNav
+                        ? "translate-x-0"
+                        : "translate-x-full sm:translate-x-0"
+                    } 
                     fixed sm:relative top-0 right-0 h-full 
                     w-5/6 sm:w-64 bg-gray-50 border-l border-gray-200 p-3 sm:p-4 
                     overflow-y-auto z-20 transition-transform duration-300 ease-in-out
                     sm:block
-                  `}>
+                  `}
+                  >
                     {/* Mobile close button */}
                     <div className="sm:hidden flex justify-between items-center mb-4">
                       <h3 className="text-lg font-semibold">Question Status</h3>
-                      <button 
+                      <button
                         onClick={toggleMobileNav}
                         className="p-2 text-gray-600 hover:bg-gray-200 rounded-full"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -740,7 +786,7 @@ const Mocktest = () => {
                     <div className="mb-4 bg-white rounded-lg border p-3">
                       <h3 className="text-sm font-semibold mb-1.5">Progress</h3>
                       <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
-                        <div 
+                        <div
                           className="bg-blue-500 h-2 rounded-full"
                           style={{ width: `${calculateProgress()}%` }}
                         ></div>
@@ -750,19 +796,31 @@ const Mocktest = () => {
                         {/* Question counters */}
                         <div className="flex items-center gap-1.5">
                           <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                          <span>Answered: {getQuestionCounts().answered + getQuestionCounts().answeredMarked}</span>
+                          <span>
+                            Answered:{" "}
+                            {getQuestionCounts().answered +
+                              getQuestionCounts().answeredMarked}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-3 h-3 rounded-full bg-red-100"></div>
-                          <span>Not Answered: {getQuestionCounts().notAnswered}</span>
+                          <span>
+                            Not Answered: {getQuestionCounts().notAnswered}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-3 h-3 rounded-full bg-gray-200"></div>
-                          <span>Not Visited: {getQuestionCounts().notVisited}</span>
+                          <span>
+                            Not Visited: {getQuestionCounts().notVisited}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-3 h-3 rounded-full bg-yellow-100 border border-yellow-400"></div>
-                          <span>Marked for review: {getQuestionCounts().marked + getQuestionCounts().answeredMarked}</span>
+                          <span>
+                            Marked for review:{" "}
+                            {getQuestionCounts().marked +
+                              getQuestionCounts().answeredMarked}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -780,7 +838,11 @@ const Mocktest = () => {
                             className={`
                               w-full aspect-square flex items-center justify-center 
                               text-xs rounded-md ${getStatusColorClass(status)}
-                              ${currentQuestionIdx === index ? 'ring-2 ring-blue-500' : ''}
+                              ${
+                                currentQuestionIdx === index
+                                  ? "ring-2 ring-blue-500"
+                                  : ""
+                              }
                             `}
                           >
                             {index + 1}
@@ -791,7 +853,7 @@ const Mocktest = () => {
 
                     {/* Desktop Submit button */}
                     <div className="hidden sm:block mt-auto">
-                      <button 
+                      <button
                         onClick={handleSubmitClick}
                         className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 rounded-md"
                       >
@@ -805,20 +867,22 @@ const Mocktest = () => {
                 {showConfirmation && (
                   <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-5 max-w-sm w-full mx-4">
-                      <h3 className="text-lg font-bold mb-4">Confirm Submission</h3>
+                      <h3 className="text-lg font-bold mb-4">
+                        Confirm Submission
+                      </h3>
                       <p className="mb-4">
-                        {getUnansweredCount() > 0 
-                          ? `You have ${getUnansweredCount()} unanswered questions. Are you sure you want to submit?` 
+                        {getUnansweredCount() > 0
+                          ? `You have ${getUnansweredCount()} unanswered questions. Are you sure you want to submit?`
                           : "Are you sure you want to submit your test?"}
                       </p>
                       <div className="flex justify-end gap-3">
-                        <button 
+                        <button
                           onClick={cancelSubmit}
                           className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                         >
                           Cancel
                         </button>
-                        <button 
+                        <button
                           onClick={confirmSubmit}
                           className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
                         >
@@ -840,7 +904,8 @@ const Mocktest = () => {
                           Test Results
                         </h2>
                         <p className="text-gray-500">
-                          {selectedSubject.name} - {new Date().toLocaleDateString()}
+                          {selectedSubject.name} -{" "}
+                          {new Date().toLocaleDateString()}
                         </p>
                       </div>
                       <button
@@ -853,21 +918,35 @@ const Mocktest = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                       <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 flex flex-col items-center justify-center">
-                        <p className="text-sm text-blue-600 font-medium mb-1">Total Questions</p>
-                        <p className="text-2xl sm:text-3xl font-bold">{testResults.totalQuestions}</p>
+                        <p className="text-sm text-blue-600 font-medium mb-1">
+                          Total Questions
+                        </p>
+                        <p className="text-2xl sm:text-3xl font-bold">
+                          {testResults.totalQuestions}
+                        </p>
                       </div>
                       <div className="bg-green-50 border border-green-100 rounded-lg p-4 flex flex-col items-center justify-center">
-                        <p className="text-sm text-green-600 font-medium mb-1">Correct Answers</p>
-                        <p className="text-2xl sm:text-3xl font-bold">{testResults.correctAnswers}</p>
+                        <p className="text-sm text-green-600 font-medium mb-1">
+                          Correct Answers
+                        </p>
+                        <p className="text-2xl sm:text-3xl font-bold">
+                          {testResults.correctAnswers}
+                        </p>
                       </div>
                       <div className="bg-purple-50 border border-purple-100 rounded-lg p-4 flex flex-col items-center justify-center">
-                        <p className="text-sm text-purple-600 font-medium mb-1">Score Percentage</p>
-                        <p className="text-2xl sm:text-3xl font-bold">{testResults.percentScore}%</p>
+                        <p className="text-sm text-purple-600 font-medium mb-1">
+                          Score Percentage
+                        </p>
+                        <p className="text-2xl sm:text-3xl font-bold">
+                          {testResults.percentScore}%
+                        </p>
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-semibold mb-4">Question Analysis</h3>
+                      <h3 className="text-xl font-semibold mb-4">
+                        Question Analysis
+                      </h3>
                       <div className="space-y-4">
                         {testResults.answers.map((answer, index) => (
                           <div
@@ -892,10 +971,14 @@ const Mocktest = () => {
                                 {answer.isCorrect ? "Correct" : "Incorrect"}
                               </span>
                             </div>
-                            <p className="text-sm sm:text-base mb-2">{answer.question}</p>
+                            <p className="text-sm sm:text-base mb-2">
+                              {answer.question}
+                            </p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                               <div className="flex items-center">
-                                <span className="font-medium mr-2">Your Answer:</span>
+                                <span className="font-medium mr-2">
+                                  Your Answer:
+                                </span>
                                 <span
                                   className={
                                     answer.isCorrect
@@ -907,7 +990,9 @@ const Mocktest = () => {
                                 </span>
                               </div>
                               <div className="flex items-center">
-                                <span className="font-medium mr-2">Correct Answer:</span>
+                                <span className="font-medium mr-2">
+                                  Correct Answer:
+                                </span>
                                 <span className="text-green-600">
                                   {answer.correctAnswer}
                                 </span>
