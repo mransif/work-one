@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { MapPin, Phone, Mail, Clock, ExternalLink, MessageSquare, Linkedin, Facebook, Twitter, Instagram } from "lucide-react";
+import SocialButton from "./SocialButton";
 
 const Contact = () => {
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -121,89 +122,50 @@ const Contact = () => {
                     </motion.div>
                 </div>
 
-                {/* Highlighted Features Section (Replacing Map) */}
-                <motion.div
-                    className="w-full bg-white bg-opacity-90 rounded-lg shadow-xl overflow-hidden mb-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                >
-                    <div className="p-6 bg-gradient-to-r from-[#ffedd6] to-[#fff7ed]">
-                        <h2 className="text-2xl font-bold text-[#37474F] mb-2">Why Connect With Us?</h2>
-                        <p className="text-gray-500">Experience the difference with our dedicated support team</p>
-                    </div>
-                    <div className="p-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {[
-                                {
-                                    title: "Quick Response",
-                                    description: "We respond to all inquiries within 24 hours on business days",
-                                    icon: <Clock size={32} className="text-[#37474F]" />
-                                },
-                                {
-                                    title: "Expert Support",
-                                    description: "Get assistance from our team of experienced educators and staff",
-                                    icon: <MessageSquare size={32} className="text-[#37474F]" />
-                                },
-                                {
-                                    title: "Personalized Guidance",
-                                    description: "Receive tailored advice for your specific educational needs",
-                                    icon: <Mail size={32} className="text-[#37474F]" />
-                                }
-                            ].map((feature, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-orange-50 transition-colors"
-                                    whileHover={{ y: -5 }}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.4 + (index * 0.2) }}
-                                >
-                                    <div className="mb-4 p-3 bg-orange-100 rounded-full">
-                                        {feature.icon}
-                                    </div>
-                                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{feature.title}</h3>
-                                    <p className="text-gray-600">{feature.description}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </motion.div>
+
             </div>
 
             <footer className="relative z-10 w-full bg-gradient-to-r from-[#ffedd6] to-[#fff7ed] text-[#37474F] p-8 mt-auto">
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-                    <div className="text-center md:text-left mb-6 md:mb-0">
-                        <h3 className="text-xl font-bold mb-2">Musaliar College of Engineering and Technology</h3>
-                        <p className="text-sm mt-4">&copy; {new Date().getFullYear()} All Rights Reserved</p>
+                <div className="max-w-6xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-start ">
+                        <div className="text-center md:text-left mb-6 md:mb-0">
+                            <h3 className="text-xl font-bold mb-2">Musaliar College of Engineering and Technology</h3>
+                            <p className="text-sm opacity-75">Empowering Education, Engineering Excellence</p>
+                        </div>
+
+                        <div className="w-full md:w-auto">
+                            <p className="text-sm font-medium mb-2 border-b border-amber-200 pb-1 px-3 ">Developed By</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                                <div className="flex flex-col items-center pb-1">
+                                    <p className="font-semibold text-sm mb-0.5">Ansif Muhammed N N</p>
+                                    <SocialButton
+                                        email={"ansifpta2003@gmail.com"}
+                                        linkedIn={"https://www.linkedin.com/in/ansif1/"}
+                                        gitHub={"https://github.com/mransif"}
+                                    />
+                                </div>
+                                <div className="flex flex-col items-center pb-1">
+                                    <p className="font-semibold text-sm mb-0.5">Sreehari S</p>
+                                    <SocialButton
+                                        email={"sreehari200411@gmail.com"}
+                                        linkedIn={"https://www.linkedin.com/in/mrsreehari/"}
+                                        gitHub={"https://github.com/MrSreehari-S"}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="text-center md:text-right">
-                        <p className="text-sm mb-2 text-gray-600">Website Created by:</p>
-                        <p className="font-semibold text-lg">Ansif Muhammed N N & Sreehari S</p>
-                        <p className="text-sm mt-1">ansifpta2003@gmail.com | sreehari200411@gmail.com</p>
-                        <div className="flex justify-center md:justify-end space-x-4 mt-4">
-                            {[
-                                { icon: <Linkedin size={20} />, label: "LinkedIn" },
-                                { icon: <Facebook size={20} />, label: "Facebook" },
-                                { icon: <Twitter size={20} />, label: "Twitter" },
-                                { icon: <Instagram size={20} />, label: "Instagram" }
-                            ].map((social, i) => (
-                                <a
-                                    key={i}
-                                    href="#"
-                                    aria-label={social.label}
-                                    className="bg-[#ffedd6] hover:bg-[#FFD6A7] transition-colors p-2 rounded-full"
-                                >
-                                    {social.icon}
-                                </a>
-                            ))}
-                        </div>
+                    <div className="border-t border-amber-200 pt-2 text-center">
+                        <p className="text-sm">&copy; {new Date().getFullYear()} Musaliar College of Engineering and Technology. All Rights Reserved</p>
                     </div>
                 </div>
             </footer>
+
+
         </div>
     );
 };
+
 
 export default Contact;
