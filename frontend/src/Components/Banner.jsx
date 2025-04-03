@@ -81,7 +81,7 @@ const Banner = () => {
             {/* First line - optimized for small screens */}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#003631] font-serif relative overflow-hidden leading-tight">
               <span className="inline-block relative">
-                {["M", "U", "S", "A", "L", "I", "A", "R"].map(
+                {["K", "E", "A", "M"].map(
                   (letter, index) => (
                     <span
                       key={index}
@@ -100,27 +100,24 @@ const Banner = () => {
                   )
                 )}
                 <span className="inline-block mx-1 sm:mx-2"></span>
-                {["C", "O", "L", "L", "E", "G", "E"].map((letter, index) => (
+                {["E", "N", "T", "R", "A", "N", "C", "E", " ", "E", "X", "A", "M"].map((letter, index) => (
                   <span
                     key={index}
                     className="inline-block transition-all duration-700"
                     style={{
-                      transform:
-                        animationStage >= 1
-                          ? "translateY(0)"
-                          : "translateY(-100px)",
+                      transform: animationStage >= 1 ? "translateY(0)" : "translateY(-100px)",
                       opacity: animationStage >= 1 ? 1 : 0,
                       transitionDelay: `${(index + 8) * 60}ms`,
                     }}
                   >
-                    {letter}
+                    {letter === " " ? "\u00A0" : letter}
                   </span>
                 ))}
               </span>
             </h1>
 
             {/* Second line - smaller font on mobile */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#003631] font-serif mt-2 sm:mt-3">
+            <h2 className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#003631] font-serif mt-2 sm:mt-3">
               <span
                 className="inline-block transition-all duration-700 leading-tight"
                 style={{
@@ -131,7 +128,7 @@ const Banner = () => {
                   opacity: animationStage >= 2 ? 1 : 0,
                 }}
               >
-                OF ENGINEERING AND TECHNOLOGY
+               MUSALIAR COLLAGE OF ENGINEERING AND TECHNOLOGY
               </span>
             </h2>
 
@@ -146,19 +143,13 @@ const Banner = () => {
 
           {/* Description text - improved readability on small screens */}
           <p
-            className="text-[#003631] z-10 mb-3 sm:mb-6 transition-all duration-700 max-w-lg text-sm text-justify sm:text-base px-1 sm:px-4"
+            className="text-[#003631] z-10 mb-3 sm:mb-6 transition-all duration-700 max-w-lg text-sm sm:text-base px-1 sm:px-4"
             style={{
               opacity: animationStage >= 3 ? 1 : 0,
               transform: animationStage >= 3 ? "scale(1)" : "scale(0.9)",
             }}
           >
-            The KEAM Examination is your golden ticket to a world of
-            possibilities in Kerala's top engineering and architecture
-            colleges! Think of it as the ultimate challenge for ambitious
-            students ready to take on the future with a bang. Conducted by the
-            Commissioner for Entrance Examinations (CEE), this highly
-            competitive exam paves the way for thousands of students each year
-            to secure a spot in the most prestigious institutions in Kerala.
+            Gear up for success with KEAM! <br/> No cap, just crack the exam and secure your future. Study hard now, flex later!
           </p>
 
           {/* Button and Anchors container */}
@@ -221,7 +212,7 @@ const Banner = () => {
           onClick={(e) => handleCloseModal(e, setShowRulesModal)}
         >
           <div
-            className="bg-white rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto animate-modalFadeIn"
+            className="bg-[#FFEDD5] overflow-auto scrollbar-custom rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto animate-modalFadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
@@ -281,7 +272,7 @@ const Banner = () => {
           onClick={(e) => handleCloseModal(e, setShowTipsModal)}
         >
           <div
-            className="bg-white rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto animate-modalFadeIn"
+            className="bg-[#FFEDD5] overflow-auto scrollbar-custom rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto animate-modalFadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">

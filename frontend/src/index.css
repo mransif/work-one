@@ -12,18 +12,28 @@
 
 }
 
-.spline-wrapper {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
 
-}
-
-.spline-container {
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
-  position: absolute;
-
+@layer utilities {
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 6px;               /* Slightly wider for better usability */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: transparent;  /* Transparent background to show tab color */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #9ca3af;      /* Medium gray for better contrast */
+    border-radius: 8px;       /* Consistent rounded corners */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;      /* Darker on hover for feedback */
+    cursor: pointer;          /* Shows pointer on hover */
+  }
+  
+  /* Hide scrollbar when not in use but maintain functionality */
+  .scrollbar-custom::-webkit-scrollbar-thumb:vertical {
+    min-height: 30px;         /* Minimum thumb size */
+  }
 }
