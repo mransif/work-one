@@ -287,7 +287,7 @@ const MainTest = () => {
 
   return (
     <div  className="min-h-screen  bg-fixed bg-cover overflow-x-hidden flex flex-col items-center p-4"
-    style={{ backgroundImage: "url(/images/main-bg.png)" }}
+    style={{ backgroundImage: "url(/images/main-bg.webp)" }}
     >
       <h1 className="text-4xl font-bold m-3 text-[#37474F]">KEAM MAIN TEST</h1>
       

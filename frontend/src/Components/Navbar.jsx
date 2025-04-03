@@ -79,7 +79,7 @@ const NavBar = () => {
             <div className="flex items-center gap-7">
               <img
                 onClick={() => window.location.href = '/'}
-                src="/images/mcet-logo.png"
+                src="/images/mcet-logo.webp"
                 alt="logo"
                 className="w-30 cursor-pointer"
               />
