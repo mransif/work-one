@@ -81,7 +81,7 @@ const NavBar = () => {
                 onClick={() => window.location.href = '/'}
                 src="/images/mcet-logo.png"
                 alt="logo"
-                className="w-30 cursor-pointer"
+                className="md:w-45 cursor-pointer w-25"
               />
             </div>
             <div className="flex h-full items-center space-x-4 ">

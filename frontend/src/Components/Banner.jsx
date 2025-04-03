@@ -60,7 +60,7 @@ const Banner = () => {
         <div className="w-full md:w-1/2 min-h-[50vh] md:h-[75vh] pointer-events-none text-center p-4 sm:p-6 rounded-lg md:mr-4 mb-6 md:mb-0 flex flex-col items-center justify-center md:backdrop-blur-none md:bg-[#fff0]">
           <div className="relative my-4 sm:my-6 px-2">
             {/* Institution Code - with only MCK highlighted */}
-            <h3 className="text-lg sm:text-xl md:text-2xl font-serif mb-3 sm:mb-4">
+            {/* <h3 className="text-lg sm:text-xl md:text-2xl font-serif mb-3 sm:mb-4">
               <span
                 className="inline-block font-sans transition-all text-xl duration-500 text-[#003631]"
                 style={{
@@ -76,36 +76,51 @@ const Banner = () => {
                   MCK
                 </span>
               </span>
-            </h3>
+            </h3> */}
 
             {/* First line - optimized for small screens */}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#003631] font-serif relative overflow-hidden leading-tight">
               <span className="inline-block relative">
-                {["K", "E", "A", "M"].map(
-                  (letter, index) => (
-                    <span
-                      key={index}
-                      className="inline-block transition-all duration-700"
-                      style={{
-                        transform:
-                          animationStage >= 1
-                            ? "translateY(0)"
-                            : "translateY(-100px)",
-                        opacity: animationStage >= 1 ? 1 : 0,
-                        transitionDelay: `${index * 60}ms`,
-                      }}
-                    >
-                      {letter}
-                    </span>
-                  )
-                )}
-                <span className="inline-block mx-1 sm:mx-2"></span>
-                {["E", "N", "T", "R", "A", "N", "C", "E", " ", "E", "X", "A", "M"].map((letter, index) => (
+                {["K", "E", "A", "M"].map((letter, index) => (
                   <span
                     key={index}
                     className="inline-block transition-all duration-700"
                     style={{
-                      transform: animationStage >= 1 ? "translateY(0)" : "translateY(-100px)",
+                      transform:
+                        animationStage >= 1
+                          ? "translateY(0)"
+                          : "translateY(-100px)",
+                      opacity: animationStage >= 1 ? 1 : 0,
+                      transitionDelay: `${index * 60}ms`,
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+                <span className="inline-block mx-1 sm:mx-2"></span>
+                {[
+                  "E",
+                  "N",
+                  "T",
+                  "R",
+                  "A",
+                  "N",
+                  "C",
+                  "E",
+                  " ",
+                  "E",
+                  "X",
+                  "A",
+                  "M",
+                ].map((letter, index) => (
+                  <span
+                    key={index}
+                    className="inline-block transition-all duration-700"
+                    style={{
+                      transform:
+                        animationStage >= 1
+                          ? "translateY(0)"
+                          : "translateY(-100px)",
                       opacity: animationStage >= 1 ? 1 : 0,
                       transitionDelay: `${(index + 8) * 60}ms`,
                     }}
@@ -128,7 +143,9 @@ const Banner = () => {
                   opacity: animationStage >= 2 ? 1 : 0,
                 }}
               >
-               MUSALIAR COLLAGE OF ENGINEERING AND TECHNOLOGY
+                Gear up for success with KEAM! <br /> Master the exam with
+                precision and secure a bright future—invest in your potential
+                today.
               </span>
             </h2>
 
@@ -149,7 +166,10 @@ const Banner = () => {
               transform: animationStage >= 3 ? "scale(1)" : "scale(0.9)",
             }}
           >
-            Gear up for success with KEAM! <br/> No cap, just crack the exam and secure your future. Study hard now, flex later!
+            Big news for KEAM 2025! 🚨 The exam regulations have been updated,
+            bringing some key changes you need to know. Stay ahead of the
+            game—check the <span>Rules and Regulations</span> tab for all the details and make
+            sure you're fully prepared! ✅
           </p>
 
           {/* Button and Anchors container */}
@@ -173,8 +193,9 @@ const Banner = () => {
               className="text-[#003631] hover:text-[#00665f] font-semibold text-sm sm:text-base transition-all duration-300 relative group"
               style={{
                 opacity: animationStage >= 4 ? 1 : 0,
-                transform: animationStage >= 4 ? "translateY(0)" : "translateY(20px)",
-                animationDelay: "200ms"
+                transform:
+                  animationStage >= 4 ? "translateY(0)" : "translateY(20px)",
+                animationDelay: "200ms",
               }}
             >
               Rules & Regulations
@@ -191,8 +212,9 @@ const Banner = () => {
               className="text-[#003631] hover:text-[#00665f] font-semibold text-sm sm:text-base transition-all duration-300 relative group"
               style={{
                 opacity: animationStage >= 4 ? 1 : 0,
-                transform: animationStage >= 4 ? "translateY(0)" : "translateY(20px)",
-                animationDelay: "400ms"
+                transform:
+                  animationStage >= 4 ? "translateY(0)" : "translateY(20px)",
+                animationDelay: "400ms",
               }}
             >
               Tips & Tricks
@@ -216,7 +238,9 @@ const Banner = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-[#003631]">KEAM Examination: Rules & Regulations</h2>
+              <h2 className="text-2xl font-bold text-[#003631]">
+                KEAM Examination: Rules & Regulations
+              </h2>
               <button
                 onClick={() => setShowRulesModal(false)}
                 className="text-gray-500 hover:text-gray-700 text-xl"
@@ -225,32 +249,72 @@ const Banner = () => {
               </button>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-[#003631]">Examination Pattern</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Examination Pattern
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Engineering Courses (B.Tech): The exam consists of 150 questions: 75 in Mathematics, 45 in Physics, and 30 in Chemistry, to be completed in 180 minutes. ​</li>
-                <li>Each correct answer awards +4 marks; each incorrect answer results in a -1 mark. </li>
+                <li>
+                  Engineering Courses (B.Tech): The exam consists of 150
+                  questions: 75 in Mathematics, 45 in Physics, and 30 in
+                  Chemistry, to be completed in 180 minutes. ​
+                </li>
+                <li>
+                  Each correct answer awards +4 marks; each incorrect answer
+                  results in a -1 mark.{" "}
+                </li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-[#003631]">Examination Day Guidelines</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Examination Day Guidelines
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Carry your valid Admit Card and a government-issued photo ID</li>
-                <li>Reach the examination center at least 30 minutes before the exam</li>
-                <li>Electronic devices including calculators, mobile phones, and smartwatches are strictly prohibited</li>
-                <li>Only black/blue ballpoint pen is allowed for marking answers</li>
+                <li>
+                  Carry your valid Admit Card and a government-issued photo ID
+                </li>
+                <li>
+                  Reach the examination center at least 30 minutes before the
+                  exam
+                </li>
+                <li>
+                  Electronic devices including calculators, mobile phones, and
+                  smartwatches are strictly prohibited
+                </li>
+                <li>
+                  Only black/blue ballpoint pen is allowed for marking answers
+                </li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-[#003631]">Eligibility Criteria</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Eligibility Criteria
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Candidates must have passed or be appearing for the 12th standard examination</li>
-                <li>Minimum of 50% marks in Physics, Chemistry, and Mathematics combined</li>
-                <li>Age: Candidates must be at least 17 years old as of December 31st of the admission year</li>
+                <li>
+                  Candidates must have passed or be appearing for the 12th
+                  standard examination
+                </li>
+                <li>
+                  Minimum of 50% marks in Physics, Chemistry, and Mathematics
+                  combined
+                </li>
+                <li>
+                  Age: Candidates must be at least 17 years old as of December
+                  31st of the admission year
+                </li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-[#003631]">Important Notes</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Important Notes
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Any form of malpractice will lead to disqualification</li>
-                <li>The decision of the Commissioner for Entrance Examinations regarding the eligibility of candidates is final</li>
-                <li>Candidates are advised to regularly check the official CEE Kerala website for updates</li>
+                <li>
+                  The decision of the Commissioner for Entrance Examinations
+                  regarding the eligibility of candidates is final
+                </li>
+                <li>
+                  Candidates are advised to regularly check the official CEE
+                  Kerala website for updates
+                </li>
               </ul>
             </div>
             <div className="mt-6 flex justify-end">
@@ -276,7 +340,9 @@ const Banner = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-[#003631]">KEAM Success: Tips & Tricks</h2>
+              <h2 className="text-2xl font-bold text-[#003631]">
+                KEAM Success: Tips & Tricks
+              </h2>
               <button
                 onClick={() => setShowTipsModal(false)}
                 className="text-gray-500 hover:text-gray-700 text-xl"
@@ -285,36 +351,88 @@ const Banner = () => {
               </button>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-[#003631]">Study Strategies</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Study Strategies
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Create a structured study plan with dedicated time for each subject</li>
-                <li>Focus on NCERT textbooks as they cover most of the syllabus</li>
-                <li>Make concise notes of important formulas, reactions, and theorems</li>
-                <li>Practice with previous years' question papers to understand the exam pattern</li>
-                <li>Join study groups for collaborative learning and problem-solving</li>
+                <li>
+                  Create a structured study plan with dedicated time for each
+                  subject
+                </li>
+                <li>
+                  Focus on NCERT textbooks as they cover most of the syllabus
+                </li>
+                <li>
+                  Make concise notes of important formulas, reactions, and
+                  theorems
+                </li>
+                <li>
+                  Practice with previous years' question papers to understand
+                  the exam pattern
+                </li>
+                <li>
+                  Join study groups for collaborative learning and
+                  problem-solving
+                </li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-[#003631]">Exam Day Tactics</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Exam Day Tactics
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Attempt questions you're confident about first to build momentum</li>
-                <li>Allocate your time wisely - aim to answer all questions within the given time</li>
-                <li>For difficult questions, eliminate obviously wrong choices to improve guessing odds</li>
-                <li>Skip questions you're unsure about and return to them later if time permits</li>
-                <li>Don't spend too much time on a single question - move on if stuck</li>
+                <li>
+                  Attempt questions you're confident about first to build
+                  momentum
+                </li>
+                <li>
+                  Allocate your time wisely - aim to answer all questions within
+                  the given time
+                </li>
+                <li>
+                  For difficult questions, eliminate obviously wrong choices to
+                  improve guessing odds
+                </li>
+                <li>
+                  Skip questions you're unsure about and return to them later if
+                  time permits
+                </li>
+                <li>
+                  Don't spend too much time on a single question - move on if
+                  stuck
+                </li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-[#003631]">Subject-Specific Tips</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Subject-Specific Tips
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Mathematics:</strong> Practice is key. Focus on Calculus, Coordinate Geometry, and Algebra</li>
-                <li><strong>Physics:</strong> Understand concepts thoroughly and memorize important formulas</li>
-                <li><strong>Chemistry:</strong> Focus on Organic Chemistry reactions and Inorganic Chemistry facts</li>
+                <li>
+                  <strong>Mathematics:</strong> Practice is key. Focus on
+                  Calculus, Coordinate Geometry, and Algebra
+                </li>
+                <li>
+                  <strong>Physics:</strong> Understand concepts thoroughly and
+                  memorize important formulas
+                </li>
+                <li>
+                  <strong>Chemistry:</strong> Focus on Organic Chemistry
+                  reactions and Inorganic Chemistry facts
+                </li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-[#003631]">Health & Wellbeing</h3>
+              <h3 className="text-lg font-semibold text-[#003631]">
+                Health & Wellbeing
+              </h3>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Get adequate sleep, especially in the week leading up to the exam</li>
+                <li>
+                  Get adequate sleep, especially in the week leading up to the
+                  exam
+                </li>
                 <li>Maintain a balanced diet and stay hydrated</li>
-                <li>Take short breaks during study sessions to maintain mental freshness</li>
+                <li>
+                  Take short breaks during study sessions to maintain mental
+                  freshness
+                </li>
                 <li>Practice relaxation techniques to manage exam anxiety</li>
                 <li>Stay positive and believe in your preparation</li>
               </ul>
