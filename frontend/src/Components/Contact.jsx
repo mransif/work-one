@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Clock, ExternalLink, MessageSquare, Linkedin, Face
 
 const Contact = () => {
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-    
+
     const contactItems = [
         {
             icon: <MapPin size={24} className="text-[#37474F]" />,
@@ -16,28 +16,26 @@ const Contact = () => {
             icon: <Phone size={24} className="text-[#37474F]" />,
             title: "Call Us",
             content: "+91 0468 2 301 703",
-            action: <a href="tel:+914682301703" className="text-[#37474F] hover:text-black font-medium flex items-center mt-1"><Clock size={14} className="mr-1" /> Mon-Fri, 9:00 AM - 5:00 PM</a>
+            action: <a href="tel:+914682301703" className="text-[#37474F] hover:text-black font-medium flex items-center mt-1"></a>
         },
-        {
-            icon: <Mail size={24} className="text-[#37474F]" />,
-            title: "Email Us",
-            content: "info@mcet.edu.in",
-            action: <a href="mailto:info@mcet.edu.in" className="text-[#37474F] hover:text-black font-medium flex items-center mt-1"><ExternalLink size={14} className="mr-1" /> Send Email</a>
-        },
+        // {
+        //     icon: <Mail size={24} className="text-[#37474F]" />,
+        //     title: "Email Us",
+        //     content: "info@mcet.edu.in",
+        //     action: <a href="mailto:info@mcet.edu.in" className="text-[#37474F] hover:text-black font-medium flex items-center mt-1"><ExternalLink size={14} className="mr-1" /> Send Email</a>
+        // },
         {
             icon: <MessageSquare size={24} className="text-[#37474F]" />,
-            title: "Get Support",
+            title: "Get In Touch",
             content: "",
             action: <div className="flex space-x-3 mt-2">
                 {[
-                    { icon: <Linkedin size={16} />, url: "#", label: "LinkedIn" },
-                    { icon: <Facebook size={16} />, url: "#", label: "Facebook" },
-                    { icon: <Twitter size={16} />, url: "#", label: "Twitter" },
-                    { icon: <Instagram size={16} />, url: "#", label: "Instagram" }
+                    { icon: <Facebook size={16} />, url: "https://www.facebook.com/musaliarEngineeringcollege/", label: "Facebook" },
+                    { icon: <Instagram size={16} />, url: "https://www.instagram.com/musaliarcollegeofengineering/", label: "Instagram" }
                 ].map((social, i) => (
-                    <a 
+                    <a
                         key={i}
-                        href={social.url} 
+                        href={social.url}
                         aria-label={social.label}
                         className="bg-orange-100 hover:bg-orange-200 transition-colors p-2 rounded-full text-[#37474F]"
                     >
@@ -66,12 +64,12 @@ const Contact = () => {
     };
 
     return (
-        <div className="flex flex-col justify-between items-center min-h-screen bg-cover bg-fixed bg-center p-4 relative" 
-            style={{ backgroundImage: "url(/images/mcet.jpg)" }}>
-            
+        <div className="flex flex-col justify-between items-center min-h-screen bg-cover bg-fixed bg-center p-4 relative"
+            style={{ backgroundImage: "url(/images/mcet.webp)" }}>
+
             {/* Overlay with gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
-            
+
             {/* Content */}
             <div className="relative z-10 w-full max-w-6xl mx-auto pt-20 pb-8 flex flex-col items-center">
                 <motion.div
@@ -97,7 +95,7 @@ const Contact = () => {
                         <h2 className="text-2xl font-bold text-gray-800 mb-8 border-b border-orange-200 pb-4">
                             Contact Information
                         </h2>
-                        
+
                         <motion.div
                             variants={containerVariants}
                             initial="hidden"
@@ -105,8 +103,8 @@ const Contact = () => {
                             className="space-y-6"
                         >
                             {contactItems.map((item, index) => (
-                                <motion.div 
-                                    key={index} 
+                                <motion.div
+                                    key={index}
                                     variants={itemVariants}
                                     className="flex items-start space-x-4"
                                     whileHover={{ scale: 1.02, x: 5 }}
@@ -122,7 +120,7 @@ const Contact = () => {
                         </motion.div>
                     </motion.div>
                 </div>
-                
+
                 {/* Highlighted Features Section (Replacing Map) */}
                 <motion.div
                     className="w-full bg-white bg-opacity-90 rounded-lg shadow-xl overflow-hidden mb-12"
@@ -176,10 +174,10 @@ const Contact = () => {
             <footer className="relative z-10 w-full bg-gradient-to-r from-[#ffedd6] to-[#fff7ed] text-[#37474F] p-8 mt-auto">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
                     <div className="text-center md:text-left mb-6 md:mb-0">
-                        <h3 className="text-xl font-bold mb-2">Musaliar College of Engineering and Technology</h3>*
+                        <h3 className="text-xl font-bold mb-2">Musaliar College of Engineering and Technology</h3>
                         <p className="text-sm mt-4">&copy; {new Date().getFullYear()} All Rights Reserved</p>
                     </div>
-                    
+
                     <div className="text-center md:text-right">
                         <p className="text-sm mb-2 text-gray-600">Website Created by:</p>
                         <p className="font-semibold text-lg">Ansif Muhammed N N & Sreehari S</p>
@@ -191,11 +189,11 @@ const Contact = () => {
                                 { icon: <Twitter size={20} />, label: "Twitter" },
                                 { icon: <Instagram size={20} />, label: "Instagram" }
                             ].map((social, i) => (
-                                <a 
+                                <a
                                     key={i}
-                                    href="#" 
+                                    href="#"
                                     aria-label={social.label}
-                                    className="bg-[#ffedd6] hover:bg-orange-400 transition-colors p-2 rounded-full"
+                                    className="bg-[#ffedd6] hover:bg-[#FFD6A7] transition-colors p-2 rounded-full"
                                 >
                                     {social.icon}
                                 </a>

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import Mocktest from "./Mocktest";
 import Contact from "./Contact";
 import StyledButton from "./StyledButton";
-import MainTest from "./MainTest";
 import { IoClose } from "react-icons/io5";
+import Mocktest from "./Mocktest";
+import MainTest from "./MainTest";
 
 const Banner = () => {
   const { token } = useContext(AppContext);
@@ -14,12 +14,6 @@ const Banner = () => {
   const [animationStage, setAnimationStage] = useState(0);
   const [showRulesModal, setShowRulesModal] = useState(false);
   const [showTipsModal, setShowTipsModal] = useState(false);
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/auth");
-    }
-  }, [token, navigate]);
 
   useEffect(() => {
     // Start animation sequence
@@ -36,9 +30,15 @@ const Banner = () => {
     };
   }, []);
 
-  const scrollToMocktest = () => {
-    if (mockTestRef.current) {
-      mockTestRef.current.scrollIntoView({ behavior: "smooth" });
+  const handleMockTestClick = () => {
+    if (token) {
+      // If user is logged in, scroll to mock test section
+      if (mockTestRef.current) {
+        mockTestRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If user is not logged in, redirect to auth page
+      navigate("/auth");
     }
   };
 
@@ -54,7 +54,7 @@ const Banner = () => {
       <div
         name="home"
         className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-3 sm:p-6 md:p-10"
-        style={{ backgroundImage: "url(/images/mcet-bg.jpg)" }}
+        style={{ backgroundImage: "url(/images/mcet-bg.webp)" }}
       >
         {/* Main content container - improved padding for small devices */}
         <div className="w-full md:w-1/2 min-h-[50vh] md:h-[75vh] pointer-events-none text-center p-4 sm:p-6 rounded-lg md:mr-4 mb-6 md:mb-0 flex flex-col items-center justify-center md:backdrop-blur-none md:bg-[#fff0]">
@@ -161,7 +161,7 @@ const Banner = () => {
                 animationStage >= 3 ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            <StyledButton text="Attend Mock Test" onClick={scrollToMocktest} />
+            <StyledButton text="Attend Mock Test" onClick={handleMockTestClick} />
 
             {/* Animated anchor for Rules & Regulations */}
             <a
@@ -331,15 +331,19 @@ const Banner = () => {
         </div>
       )}
 
+      {/* Only render the mock test section if user is logged in */}
       {token && (
-        <>
-          <div ref={mockTestRef} name="mocktest">
-            <Mocktest />
-          </div>
-          <div name="maintest">
-            <MainTest />
-          </div>
-        </>
+        <div ref={mockTestRef} name="mocktest">
+          <Mocktest />
+
+        </div>
+      )}
+
+      {/* Only render the main test section if user is logged in */}
+      {token && (
+        <div name="maintest">
+          <MainTest />
+        </div>
       )}
 
       <div name="contact">
