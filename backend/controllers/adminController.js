@@ -16,7 +16,8 @@ exports.loginAdmin = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    // Removed the expiresIn option from jwt.sign
+    const token = jwt.sign({ email }, process.env.JWT_SECRET);
 
     res.status(200).json({ token });
 
