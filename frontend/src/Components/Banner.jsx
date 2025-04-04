@@ -51,6 +51,11 @@ const Banner = () => {
     }
   };
 
+  const openRulesModal = (e) => {
+    e.preventDefault();
+    setShowRulesModal(true);
+  };
+
   return (
     <>
       <div
@@ -156,7 +161,10 @@ const Banner = () => {
             <span className="font-bold">⚠️ Breaking KEAM 2025 Update! ⚠️</span> Critical exam regulation 
             changes have been announced that will impact your preparation strategy. 
             <span className="font-semibold italic hidden sm:inline"> Don't risk falling behind — </span>
-            explore the <span className="underline font-semibold">Rules and Guidelines</span> section 
+            explore the <span 
+                      className="underline font-semibold cursor-pointer pointer-events-auto" 
+                      onClick={openRulesModal}
+                    >Rules and Guidelines</span> section 
             to master these changes and secure your competitive edge!
           </p>
 
@@ -175,10 +183,7 @@ const Banner = () => {
               {/* Animated anchor for Rules & Regulations */}
               <a
                 href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowRulesModal(true);
-                }}
+                onClick={openRulesModal}
                 className="text-[#003631] hover:text-[#00665f] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 relative group whitespace-nowrap"
                 style={{
                   opacity: animationStage >= 4 ? 1 : 0,
