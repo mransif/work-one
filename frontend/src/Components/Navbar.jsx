@@ -3,11 +3,10 @@ import { AppContext } from "../context/AppContext";
 import Menu from "./Menu";
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogOut, BiLogIn } from "react-icons/bi";
 import { Link } from "react-scroll";
 import StyledDropdown from "./StyledDropdown";
-
-const navItems = ["Home", "Mock-Test", "Contact"];
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +16,7 @@ const NavBar = () => {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +64,17 @@ const NavBar = () => {
     setShowConfirmation(false);
   };
 
+  const handleSignIn = () => {
+    navigate("/auth");
+  };
+
+  const handleTestsClick = () => {
+    if (!token) {
+      navigate("/auth");
+    }
+    // If user is logged in, StyledDropdown component will handle its own functionality
+  };
+
   return (
     <div>
       <div
@@ -90,21 +101,36 @@ const NavBar = () => {
                 <Link to="home" smooth={true} duration={500}>
                   <button className="nav-hover-btn text-[#37474F] hover:text-gray-900">Home</button>
                 </Link>
-                <button className="nav-hover-btn text-[#37474F] hover:text-gray-900"><StyledDropdown /></button>
+                <button 
+                  className="nav-hover-btn text-[#37474F] hover:text-gray-900"
+                  onClick={token ? null : handleTestsClick}
+                >
+                  {token ? <StyledDropdown /> : "Tests"}
+                </button>
                 <Link to="contact" smooth={true} duration={500}>
                   <button className="nav-hover-btn text-[#37474F] mr-8 hover:text-gray-900">Contact</button>
                 </Link>
               </div>
 
-              {token && (
+              {token ? (
                 <div className="items-center gap-1 cursor-pointer text-[#37474F] hover:text-gray-800 nav-hover-btn hidden md:flex">
                   <button
                     onClick={handleLogout}
-                    className="font-medium "
+                    className="font-medium"
                   >
                     Logout
                   </button>
                   <BiLogOut className="text-lg" />
+                </div>
+              ) : (
+                <div className="items-center gap-1 cursor-pointer text-[#37474F] hover:text-gray-800 nav-hover-btn hidden md:flex">
+                  <button
+                    onClick={handleSignIn}
+                    className="font-medium"
+                  >
+                    Sign In
+                  </button>
+                  <BiLogIn className="text-lg" />
                 </div>
               )}
 
@@ -112,6 +138,7 @@ const NavBar = () => {
                 <Menu
                   token={token}
                   logoutUser={handleLogout}
+                  handleSignIn={handleSignIn}
                 />
               </div>
             </div>
