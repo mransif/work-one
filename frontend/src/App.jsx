@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
 import Banner from './Components/Banner'
 import Navbar from './Components/Navbar'
-// import Mocktest from './Components/Mocktest'
-// import Login from './Components/Login'
 import { ToastContainer } from 'react-toastify'
 import Auth from './Components/Auth'
 import { Route, Routes } from 'react-router-dom'
