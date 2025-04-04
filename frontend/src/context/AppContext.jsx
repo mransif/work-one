@@ -115,11 +115,18 @@ const AppContextProvider = ({ children }) => {
         }
     };
 
-    // Signup function
-    const signupUser = async (name, email, phone, address, password) => {
+    // Updated Signup function with board parameter
+    const signupUser = async (name, email, phone, address, password, board) => {
         try {
             setLoading(true);
-            const { data } = await axios.post(`${backendurl}/api/user/register`, { name, email, phone, address, password });
+            const { data } = await axios.post(`${backendurl}/api/user/register`, { 
+                name, 
+                email, 
+                phone, 
+                address, 
+                password,
+                board // Added board parameter
+            });
 
             if (data.success) {
                 toast.success("Signup successful, please login");

@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   address: { type: String, required: true },
   password: { type: String, required: true },
+  board: { type: String, required: true }, // Added board field
 });
 
 module.exports = mongoose.model("User", userSchema);
