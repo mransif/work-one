@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
-import { Search, Mail, Phone, MapPin, User } from "lucide-react";
+import { Search, Mail, Phone, MapPin, User, BookOpen } from "lucide-react";
 import { BiLogOut } from "react-icons/bi";
 
 const StudentDetails = () => {
@@ -36,7 +36,8 @@ const StudentDetails = () => {
       const filtered = sortedStudents.filter(
         (student) =>
           student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          student.email.toLowerCase().includes(searchTerm.toLowerCase())
+          student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (student.board && student.board.toLowerCase().includes(searchTerm.toLowerCase()))
       );
       setFilteredStudents(filtered);
     }
@@ -155,6 +156,9 @@ const StudentDetails = () => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                       Address
                     </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                      Board
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -192,6 +196,12 @@ const StudentDetails = () => {
                         <div className="text-sm text-gray-900 flex items-start">
                           <MapPin className="h-4 w-4 mr-2 text-gray-400 mt-0.5" />
                           <span>{student.address}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900 flex items-center">
+                          <BookOpen className="h-4 w-4 mr-2 text-gray-400" />
+                          {student.board || "Not specified"}
                         </div>
                       </td>
                     </tr>

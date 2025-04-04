@@ -6,6 +6,8 @@ import StyledButton from "./StyledButton";
 import { IoClose } from "react-icons/io5";
 import Mocktest from "./Mocktest";
 import MainTest from "./MainTest";
+import BlobCursor from "./BlobCursor/BlobCursor";
+
 
 const Banner = () => {
   const { token } = useContext(AppContext);
@@ -61,6 +63,7 @@ const Banner = () => {
         className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-2 sm:p-4 md:p-8 lg:p-10"
         style={{ backgroundImage: "url(/images/mcet-bg.webp)" }}
       >
+      <BlobCursor />
         {/* Main content container - adjusted for better small screen experience */}
         <div className="w-full lg:w-2/3 xl:w-1/2 min-h-[60vh] md:min-h-[50vh] lg:h-[75vh] pointer-events-none text-center p-3 sm:p-5 md:p-6 rounded-lg mb-4 md:mb-0 flex flex-col items-center justify-center  md:bg-transparent">
           <div className="relative my-2 sm:my-4 md:my-6 px-1 sm:px-2">

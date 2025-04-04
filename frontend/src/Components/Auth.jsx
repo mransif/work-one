@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Particles from "./Particles/Particles";
 import Button from "./Button";
 
 const Auth = () => {
@@ -16,7 +15,8 @@ const Auth = () => {
     phone: "",
     address: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    board: "" // Added board field
   });
 
   // Handle input changes
@@ -48,7 +48,7 @@ const Auth = () => {
     } else {
       // Signup validation
       if (!formData.name || !formData.email || !formData.phone ||
-        !formData.address || !formData.password) {
+        !formData.address || !formData.password || !formData.board) {
         toast.error("Please fill all fields");
         return;
       }
@@ -66,7 +66,8 @@ const Auth = () => {
           userDetails.email,
           userDetails.phone,
           userDetails.address,
-          userDetails.password
+          userDetails.password,
+          userDetails.board // Added board to signup
         );
         setIsLogin(true); // Switch to login form after successful signup
       } catch (error) {
@@ -84,18 +85,16 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-[#ececec]">
-
-
-      <div className=" shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg border  border-gray-700 bg-white/10 text-gray-800 ">
+      <div className="shadow-lg rounded-lg p-8 max-w-md w-full backdrop-blur-lg border border-gray-700 bg-white/10 text-gray-800">
         <h2 className="text-2xl font-bold text-center mb-6">
           {isLogin ? "Login" : "Sign Up"}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4 ">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
             <>
               {/* Name Input */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium ">
+                <label htmlFor="name" className="block text-sm font-medium">
                   Full Name
                 </label>
                 <input
@@ -112,7 +111,7 @@ const Auth = () => {
 
               {/* Phone Input */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium ">
+                <label htmlFor="phone" className="block text-sm font-medium">
                   Phone Number
                 </label>
                 <input
@@ -129,7 +128,7 @@ const Auth = () => {
 
               {/* Address Input */}
               <div>
-                <label htmlFor="address" className="block text-sm font-medium ">
+                <label htmlFor="address" className="block text-sm font-medium">
                   Address
                 </label>
                 <input
@@ -143,12 +142,32 @@ const Auth = () => {
                   required
                 />
               </div>
+
+              {/* Board Selection */}
+              <div>
+                <label htmlFor="board" className="block text-sm font-medium">
+                  Educational Board
+                </label>
+                <select
+                  id="board"
+                  name="board"
+                  value={formData.board}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
+                  required
+                >
+                  <option value="" disabled>Select your board</option>
+                  <option value="CBSE">CBSE</option>
+                  <option value="ICSE">ICSE</option>
+                  <option value="State">State Board</option>
+                </select>
+              </div>
             </>
           )}
 
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium ">
+            <label htmlFor="email" className="block text-sm font-medium">
               Email
             </label>
             <input
@@ -165,7 +184,7 @@ const Auth = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium ">
+            <label htmlFor="password" className="block text-sm font-medium">
               Password
             </label>
             <input
@@ -182,7 +201,7 @@ const Auth = () => {
 
           {!isLogin && (
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium ">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium">
                 Confirm Password
               </label>
               <input
@@ -199,21 +218,11 @@ const Auth = () => {
           )}
 
           {/* Submit Button */}
-          {/* <button
+          <Button 
+            text={isLogin ? "Login" : "Sign Up"}
+            className="w-full bg-[#01B707] text-white py-2 px-4 rounded-md transition"
             type="submit"
-            className="w-full bg-[#01B707] text-white py-2 px-4 rounded-md hover:bg-orange-800 transition"
-          >
-            {isLogin ? "Login" : "Sign Up"}
-          </button> */}
-
-
-            <Button 
-              text={isLogin ? "Login" : "Sign Up"}
-              className= "w-full bg-[#01B707] text-white py-2 px-4 rounded-md transition "
-              type= "submit"
-            
-            />
-
+          />
         </form>
 
         {/* Toggle Link */}
@@ -244,7 +253,6 @@ const Auth = () => {
         </p>
       </div>
     </div>
-
   );
 };
 
