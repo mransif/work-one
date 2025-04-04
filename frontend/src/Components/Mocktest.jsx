@@ -11,15 +11,10 @@ const Mocktest = () => {
   const [testResults, setTestResults] = useState(null);
   const [scoreHistorySubject, setScoreHistorySubject] = useState("ALL");
   const [isTimeLow, setIsTimeLow] = useState(false);
-  // Simplified state for tracking question status - easier to understand at a glance
   const [questionStatus, setQuestionStatus] = useState([]);
-  // Current question index
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
-  // Review mode
   const [isReviewMode, setIsReviewMode] = useState(false);
-  // Confirmation dialog state
   const [showConfirmation, setShowConfirmation] = useState(false);
-  // Mobile navigation panel state
   const [showMobileNav, setShowMobileNav] = useState(false);
 
   const { submitMockTestResult, scores } = useContext(AppContext);

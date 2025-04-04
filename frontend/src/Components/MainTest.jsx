@@ -64,22 +64,247 @@ const MainTest = () => {
   // This would be your question bank - for demonstration purposes adding sample questions
   // In a real implementation, you would likely fetch these from an API or database
   const sectionQuestions = {
-    MATHEMATICS: Array(75).fill(null).map((_, i) => ({
-      question: `Mathematics Question ${i + 1}: Sample question text for mathematics.`,
-      options: ["Option A", "Option B", "Option C", "Option D"],
-      correctAnswer: ["Option A", "Option B", "Option C", "Option D"][Math.floor(Math.random() * 4)]
-    })),
-    PHYSICS: Array(45).fill(null).map((_, i) => ({
-      question: `Physics Question ${i + 1}: Sample question text for physics.`,
-      options: ["Option A", "Option B", "Option C", "Option D"],
-      correctAnswer: ["Option A", "Option B", "Option C", "Option D"][Math.floor(Math.random() * 4)]
-    })),
-    CHEMISTRY: Array(30).fill(null).map((_, i) => ({
-      question: `Chemistry Question ${i + 1}: Sample question text for chemistry.`,
-      options: ["Option A", "Option B", "Option C", "Option D"],
-      correctAnswer: ["Option A", "Option B", "Option C", "Option D"][Math.floor(Math.random() * 4)]
-    }))
-  };
+  MATHEMATICS: [
+    {
+      question: "If f(x) = 2x² + 3x - 5, what is the value of f(2)?",
+      options: ["3", "9", "13", "15"],
+      correctAnswer: "13"
+    },
+    {
+      question: "Solve for x: 3x - 7 = 14",
+      options: ["x = 5", "x = 7", "x = 9", "x = 21"],
+      correctAnswer: "x = 7"
+    },
+    {
+      question: "What is the derivative of f(x) = x³ - 2x² + 5x - 3?",
+      options: ["f'(x) = 3x² - 4x + 5", "f'(x) = 3x² - 2x + 5", "f'(x) = 3x² - 4x - 5", "f'(x) = x² - 4x + 5"],
+      correctAnswer: "f'(x) = 3x² - 4x + 5"
+    },
+    {
+      question: "If sin(θ) = 0.5, what is θ?",
+      options: ["30°", "45°", "60°", "90°"],
+      correctAnswer: "30°"
+    },
+    {
+      question: "What is the area of a circle with radius 4 units?",
+      options: ["4π square units", "8π square units", "16π square units", "64π square units"],
+      correctAnswer: "16π square units"
+    },
+    {
+      question: "Simplify: (2x³y²)/(4xy)",
+      options: ["x²y/2", "x²/2", "xy/2", "x²y"],
+      correctAnswer: "x²y/2"
+    },
+    {
+      question: "What is the value of log₁₀(100)?",
+      options: ["1", "2", "10", "100"],
+      correctAnswer: "2"
+    },
+    {
+      question: "Find the solution set of |2x - 3| < 5",
+      options: ["-1 < x < 4", "-2 < x < 4", "-1 < x < 3", "x < -1 or x > 4"],
+      correctAnswer: "-1 < x < 4"
+    },
+    {
+      question: "If matrices A and B are given by A = [[1, 2], [3, 4]] and B = [[5, 6], [7, 8]], what is A + B?",
+      options: ["[[6, 8], [10, 12]]", "[[5, 12], [21, 32]]", "[[6, 8], [10, 12]]", "[[6, 12], [10, 32]]"],
+      correctAnswer: "[[6, 8], [10, 12]]"
+    },
+    {
+      question: "What is the sum of interior angles in a pentagon?",
+      options: ["360°", "540°", "720°", "1080°"],
+      correctAnswer: "540°"
+    },
+    // Add more mathematics questions here...
+    // I'll include 15 total and you can expand as needed
+    {
+      question: "What is the limit of (sin x)/x as x approaches 0?",
+      options: ["0", "1", "∞", "Undefined"],
+      correctAnswer: "1"
+    },
+    {
+      question: "What is the inverse function of f(x) = 2x + 3?",
+      options: ["f⁻¹(x) = (x-3)/2", "f⁻¹(x) = 2x - 3", "f⁻¹(x) = (x+3)/2", "f⁻¹(x) = x/2 - 3"],
+      correctAnswer: "f⁻¹(x) = (x-3)/2"
+    },
+    {
+      question: "Find the value of ∫₀¹ x² dx",
+      options: ["1/2", "1/3", "2/3", "1"],
+      correctAnswer: "1/3"
+    },
+    {
+      question: "What is the equation of a line that passes through points (2, 3) and (4, 7)?",
+      options: ["y = 2x - 1", "y = 2x", "y = 2x + 1", "y = 2x - 2"],
+      correctAnswer: "y = 2x - 1"
+    },
+    {
+      question: "If P(A) = 0.4 and P(B) = 0.3 and A and B are independent events, what is P(A and B)?",
+      options: ["0.12", "0.7", "0.1", "0.42"],
+      correctAnswer: "0.12"
+    }
+    // You can add more questions to reach 75 as in your original array
+  ],
+  
+  PHYSICS: [
+    {
+      question: "What is the SI unit of force?",
+      options: ["Watt", "Joule", "Newton", "Pascal"],
+      correctAnswer: "Newton"
+    },
+    {
+      question: "Which law states that 'For every action, there is an equal and opposite reaction'?",
+      options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Conservation of Energy"],
+      correctAnswer: "Newton's Third Law"
+    },
+    {
+      question: "What is the formula for kinetic energy?",
+      options: ["KE = mgh", "KE = ½mv²", "KE = Fd", "KE = P/t"],
+      correctAnswer: "KE = ½mv²"
+    },
+    {
+      question: "What is the speed of light in vacuum?",
+      options: ["3 × 10⁸ m/s", "3 × 10⁶ m/s", "3 × 10¹⁰ m/s", "3 × 10⁴ m/s"],
+      correctAnswer: "3 × 10⁸ m/s"
+    },
+    {
+      question: "Which of the following is a vector quantity?",
+      options: ["Mass", "Time", "Temperature", "Velocity"],
+      correctAnswer: "Velocity"
+    },
+    {
+      question: "What is the unit of electric current?",
+      options: ["Volt", "Ampere", "Ohm", "Watt"],
+      correctAnswer: "Ampere"
+    },
+    {
+      question: "According to Ohm's law, what is the relationship between voltage (V), current (I), and resistance (R)?",
+      options: ["V = IR", "V = I/R", "V = R/I", "V = I²R"],
+      correctAnswer: "V = IR"
+    },
+    {
+      question: "What is the phenomenon where light bends when passing from one medium to another?",
+      options: ["Reflection", "Refraction", "Diffraction", "Interference"],
+      correctAnswer: "Refraction"
+    },
+    {
+      question: "What is the formula for calculating work done?",
+      options: ["W = F/d", "W = F×d", "W = m×a", "W = m×g"],
+      correctAnswer: "W = F×d"
+    },
+    {
+      question: "What is the principle behind the buoyant force?",
+      options: ["Newton's Third Law", "Bernoulli's Principle", "Archimedes' Principle", "Pascal's Law"],
+      correctAnswer: "Archimedes' Principle"
+    },
+    // Add more physics questions here...
+    // I'll include a few more and you can expand as needed
+    {
+      question: "Which particle carries a positive charge in an atom?",
+      options: ["Electron", "Proton", "Neutron", "Photon"],
+      correctAnswer: "Proton"
+    },
+    {
+      question: "What is the unit of electric potential?",
+      options: ["Ampere", "Ohm", "Volt", "Watt"],
+      correctAnswer: "Volt"
+    },
+    {
+      question: "Which law of thermodynamics states that energy cannot be created or destroyed?",
+      options: ["Zeroth Law", "First Law", "Second Law", "Third Law"],
+      correctAnswer: "First Law"
+    },
+    {
+      question: "What is the relationship between frequency (f) and wavelength (λ) of a wave?",
+      options: ["v = fλ", "v = f/λ", "v = λ/f", "v = f+λ"],
+      correctAnswer: "v = fλ"
+    },
+    {
+      question: "What is the acceleration due to gravity on Earth's surface?",
+      options: ["9.8 m/s²", "9.8 km/s²", "9.8 cm/s²", "9.8 mm/s²"],
+      correctAnswer: "9.8 m/s²"
+    }
+    // You can add more questions to reach 45 as in your original array
+  ],
+  
+  CHEMISTRY: [
+    {
+      question: "What is the chemical symbol for gold?",
+      options: ["Au", "Ag", "Fe", "Cu"],
+      correctAnswer: "Au"
+    },
+    {
+      question: "What is the pH of a neutral solution at 25°C?",
+      options: ["0", "1", "7", "14"],
+      correctAnswer: "7"
+    },
+    {
+      question: "Which element has the electron configuration 1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰?",
+      options: ["Calcium", "Zinc", "Iron", "Copper"],
+      correctAnswer: "Zinc"
+    },
+    {
+      question: "What type of reaction is: 2H₂ + O₂ → 2H₂O?",
+      options: ["Decomposition", "Single displacement", "Double displacement", "Synthesis"],
+      correctAnswer: "Synthesis"
+    },
+    {
+      question: "What is the molecular formula of glucose?",
+      options: ["C₅H₁₀O₅", "C₆H₁₂O₆", "C₁₂H₂₂O₁₁", "C₂H₆O"],
+      correctAnswer: "C₆H₁₂O₆"
+    },
+    {
+      question: "Which of these is a noble gas?",
+      options: ["Chlorine", "Nitrogen", "Argon", "Hydrogen"],
+      correctAnswer: "Argon"
+    },
+    {
+      question: "What is the name for the reaction where an acid and base combine to form salt and water?",
+      options: ["Oxidation", "Reduction", "Hydrolysis", "Neutralization"],
+      correctAnswer: "Neutralization"
+    },
+    {
+      question: "What is the main component of natural gas?",
+      options: ["Methane", "Ethane", "Propane", "Butane"],
+      correctAnswer: "Methane"
+    },
+    {
+      question: "Which of these is an example of a covalent bond?",
+      options: ["NaCl", "MgO", "H₂O", "KF"],
+      correctAnswer: "H₂O"
+    },
+    {
+      question: "What is the shape of a water molecule?",
+      options: ["Linear", "Bent", "Tetrahedral", "Trigonal pyramidal"],
+      correctAnswer: "Bent"
+    },
+    {
+      question: "What is Avogadro's number?",
+      options: ["6.02 × 10²²", "6.02 × 10²³", "6.02 × 10²⁴", "6.02 × 10²⁵"],
+      correctAnswer: "6.02 × 10²³"
+    },
+    {
+      question: "Which of these is NOT a state of matter?",
+      options: ["Solid", "Liquid", "Gas", "Element"],
+      correctAnswer: "Element"
+    },
+    {
+      question: "What is the general formula for alkanes?",
+      options: ["CₙH₂ₙ", "CₙH₂ₙ₋₂", "CₙH₂ₙ₊₂", "CₙH₂ₙ₊₁"],
+      correctAnswer: "CₙH₂ₙ₊₂"
+    },
+    {
+      question: "Which subatomic particle has a negligible mass but negative charge?",
+      options: ["Proton", "Neutron", "Electron", "Photon"],
+      correctAnswer: "Electron"
+    },
+    {
+      question: "What is the bond angle in a tetrahedral molecule?",
+      options: ["90°", "109.5°", "120°", "180°"],
+      correctAnswer: "109.5°"
+    }
+    // You can add more questions to reach 30 as in your original array
+  ]
+};
 
   const startTest = () => {
     // Prepare all questions from all sections
