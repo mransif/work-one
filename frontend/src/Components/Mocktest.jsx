@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import StyledSplitButton from "./StyledSplitButton";
 import BarChart from "./bar-chart";
-import { LatexQuestion, LatexOption } from "./LatexParser";
 
 const Mocktest = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [questions, setQuestions] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(1200); // 20 minutes
+  const [timeLeft, setTimeLeft] = useState(1200); // 20 minutes in seconds
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [testResults, setTestResults] = useState(null);
   const [scoreHistorySubject, setScoreHistorySubject] = useState("ALL");
@@ -27,108 +26,847 @@ const Mocktest = () => {
   ];
 
   const subjectQuestions = {
-    MATHEMATICS: 
-      [
-        {
-          question: "If y = ${cosec}^{- 1}\\left( \\frac{1 + x^{2}}{2x} \\right)$ , then $\\frac{dy}{dx}$ =",
-          options: ["$\\frac{1}{\\sqrt{x^{2} - 1}}$", "$\\frac{- 1}{\\sqrt{x^{2} - 1}}$", "$\\frac{1}{1 + \\ x^{2}}$", "$\\frac{2}{1 + \\ x^{2}}$", "$\\frac{- 2}{\\sqrt{x^{2} - 1}}$"],
-          correctAnswer: "$\\frac{2}{1 + \\ x^{2}}$"
-        },
-        {
-          question: "If a + 1, 2a + 1, 4a -- 1 are in arithmetic progression, then the value of a is",
-          options: ["1", "2", "3", "4", "5"],
-          correctAnswer: "5"
-        },
-        {
-          question: "If tan θ = $\\frac{1}{2}$ and tan ɸ = $\\frac{1}{3}$ , then tan(2ɵ + ɸ) =",
-          options: ["3/4", "4/3", "3", "1/3", "1/2"],
-          correctAnswer: "3"
-        },
-        {
-          question: "The solution of dy/dx + y tan x = sec x, y (0) = 0 is",
-          options: ["y sec x = tan x", "y tan x = sec x", "tan x = ytanx", "x sec x = tan y", "y cot x = sec x"],
-          correctAnswer: "y sec x = tan x"
-        },
-        {
-          question: "$\\int_{}^{}{x^{4}\\cos x^{5}\\ dx\\ }$ equals",
-          options: ["$\\frac{1}{3}$ sin$x^{5}$ + C", "$\\frac{1}{4}$ sin$x^{5}$+ C", "$\\frac{1}{5}$ sin$x^{5}$+ C", "sin$x^{5}$+ C", "$2$sin$x^{5}$+ C"],
-          correctAnswer: "$\\frac{1}{5}$ sin$x^{5}$+ C"
-        },
-        {
-          question: "If $\\overrightarrow{a}$ , $\\overrightarrow{b}$ , $\\overrightarrow{c}$ are unit vectors such that $\\overrightarrow{a}$ + $\\overrightarrow{b}$ + $\\overrightarrow{c}$ =0 , then the value of $|\\overrightarrow{a} \\cdot \\overrightarrow{b} + \\overrightarrow{b} \\cdot \\overrightarrow{c} + \\overrightarrow{c} \\cdot \\overrightarrow{a}|$ is",
-          options: ["0", "1", "3", "-3/2", "none of these"],
-          correctAnswer: "-3/2"
-        },
-        {
-          question: "The value of the determinant $\\left| \\begin{matrix} 1 & 1 & 1 \\\\ 1 & 1 + x & 1 \\\\ 1 & 1 & 1 + y \\end{matrix} \\right|$ is zero",
-          options: ["x=0 or y=0", "x=0 and y=0", "for all values of x and y", "for no values of x and y", "none of these"],
-          correctAnswer: "x=0 or y=0"
-        },
-        {
-          question: "Let f(x + y) = f(x) f(y) for all x and y. If f(0) = 1, f(3) = 3 and f(0)′ =11, then f(3)′ is equal to",
-          options: ["11", "22", "33", "44", "55"],
-          correctAnswer: "33"
-        },
-        {
-          question: "If the product AB = 0 then",
-          options: ["either A=0 or B=0", "A=0 and B=0", "A=0, B≠0", "A is symmetric and B is skew symmetric", "neither A=0 nor B=0"],
-          correctAnswer: "neither A=0 nor B=0"
-        },
-        {
-          question: "The value of $\\left\\lbrack \\overrightarrow{i\\ \\ }\\ ,\\ \\overrightarrow{j}\\ ,\\ \\overrightarrow{k}\\ \\ \\right\\rbrack$ equals",
-          options: ["0", "1", "-1", "3", "none of these"],
-          correctAnswer: "1"
-        },
-        {
-          question: "Let p, q, r be three simple statements. Then ∼ (p ∨ q)∨ ∼ (p ∨ r) is equivalent to",
-          options: ["(∼p) ∧ (∼q ∨ ∼r)", "(∼p) ∧ (q ∨ r)", "p ∧ (q∨r)", "p∨ (q∧r)", "(p∨ q)∧r)"],
-          correctAnswer: "(∼p) ∧ (∼q ∨ ∼r)"
-        },
-        {
-          question: "$\\int_{- 1}^{1}\\frac{|x + 2|}{x + 2}$dx =",
-          options: ["0", "1", "-1", "2", "-2"],
-          correctAnswer: "2"
-        },
-        {
-          question: "If X follows a Binomial distribution with parameters n = 6 and p, and if 9P(X = 4) = P(X = 2), then p =",
-          options: ["1/2", "1/3", "1/6", "1/4", "1"],
-          correctAnswer: "1/4"
-        },
-        {
-          question: "The differential equation representing the family of curves y² = a(ax+b) where a and b are arbitrary constants, is of",
-          options: ["order 1, degree 1", "order 1, degree 3", "order 2, degree 3", "order 1, degree 4", "order 2, degree 1"],
-          correctAnswer: "order 2, degree 1"
-        },
-        {
-          question: "In a flight 50 people speak Hindi, 20 speak English and 10 speak both English and Hindi. The number of people who speak at least one of the two languages is",
-          options: ["40", "50", "20", "80", "60"],
-          correctAnswer: "60"
-        }
+    MATHEMATICS: [
+      {
+        question: "If y = cosec⁻¹((1 + x²)/(2x)), then dy/dx =",
+        options: ["1/√(x² - 1)", "-1/√(x² - 1)", "1/(1 + x²)", "2/(1 + x²)", "-2/√(x² - 1)"],
+        correctAnswer: "2/(1 + x²)"
+      },
+      {
+        question: "If a + 1, 2a + 1, 4a - 1 are in arithmetic progression, then the value of a is",
+        options: ["1", "2", "3", "4", "5"],
+        correctAnswer: "5"
+      },
+      {
+        question: "If tan θ = 1/2 and tan ɸ = 1/3, then tan(2θ + ɸ) =",
+        options: ["3/4", "4/3", "3", "1/3", "1/2"],
+        correctAnswer: "3"
+      },
+      {
+        question: "The solution of dy/dx + y tan x = sec x, y(0) = 0 is",
+        options: ["y sec x = tan x", "y tan x = sec x", "tan x = y tan x", "x sec x = tan y", "y cot x = sec x"],
+        correctAnswer: "y sec x = tan x"
+      },
+      {
+        question: "∫x⁴ cos(x⁵) dx equals",
+        options: ["(1/3) sin(x⁵) + C", "(1/4) sin(x⁵) + C", "(1/5) sin(x⁵) + C", "sin(x⁵) + C", "2 sin(x⁵) + C"],
+        correctAnswer: "(1/5) sin(x⁵) + C"
+      },
+      {
+        question: "If a, b, c are unit vectors such that a + b + c = 0, then the value of a·b + b·c + c·a is",
+        options: ["0", "1", "3", "-3/2", "none of these"],
+        correctAnswer: "-3/2"
+      },
+      
+      {
+        question: "Let f(x + y) = f(x) f(y) for all x and y. If f(0) = 1, f(3) = 3 and f'(0) = 11, then f'(3) is equal to",
+        options: ["11", "22", "33", "44", "55"],
+        correctAnswer: "33"
+      },
+      {
+        question: "If the product AB = 0 then",
+        options: ["either A=0 or B=0", "A=0 and B=0", "A=0, B≠0", "A is symmetric and B is skew symmetric", "neither A=0 nor B=0"],
+        correctAnswer: "neither A=0 nor B=0"
+      },
+      
+      {
+        question: "Let p, q, r be three simple statements. Then ∼(p ∨ q) ∨ ∼(p ∨ r) is equivalent to",
+        options: ["(∼p) ∧ (∼q ∨ ∼r)", "(∼p) ∧ (q ∨ r)", "p ∧ (q ∨ r)", "p ∨ (q ∧ r)", "(p ∨ q) ∧ r"],
+        correctAnswer: "(∼p) ∧ (∼q ∨ ∼r)"
+      },
+      {
+        question: "∫₋₁¹ (|x + 2|)/(x + 2) dx =",
+        options: ["0", "1", "-1", "2", "-2"],
+        correctAnswer: "2"
+      },
+      {
+        question: "If X follows a Binomial distribution with parameters n = 6 and p, and if 9P(X = 4) = P(X = 2), then p =",
+        options: ["1/2", "1/3", "1/6", "1/4", "1"],
+        correctAnswer: "1/4"
+      },
+      {
+        question: "The differential equation representing the family of curves y² = a(ax + b) where a and b are arbitrary constants, is of",
+        options: ["order 1, degree 1", "order 1, degree 3", "order 2, degree 3", "order 1, degree 4", "order 2, degree 1"],
+        correctAnswer: "order 2, degree 1"
+      },
+      {
+        question: "In a flight, 50 people speak Hindi, 20 speak English, and 10 speak both English and Hindi. The number of people who speak at least one of the two languages is",
+        options: ["40", "50", "20", "80", "60"],
+        correctAnswer: "60"
+      },
+      {
+        question: "From 4 red balls, 2 white balls and 4 black balls, four balls are selected. The probability of getting 2 red balls is",
+        options: ["7/21", "8/21", "9/21", "10/21", "11/21"],
+        correctAnswer: "8/21"
+      },
+      {
+        question: "limₓ→₀ (eˣ - (1 + x))/x³ =",
+        options: ["1", "-1", "1/2", "-1/2", "0"],
+        correctAnswer: "1/2"
+      },
+      {
+        question: "If y = tan⁻¹(x/2) - cot⁻¹(x/2), then dy/dx =",
+        options: ["4/(4 + x²)", "2/(4 + x²)", "1/(4 + x²)", "2/(1 + x²)", "0"],
+        correctAnswer: "4/(4 + x²)"
+      },
+      {
+        question: "If f(x) = |cos x|, then f'(π/3) + f'(2π/3) =",
+        options: ["√3", "2√3", "-√3", "0", "-2√3"],
+        correctAnswer: "0"
+      },
+      {
+        question: "The period of sin²x + cos²x is",
+        options: ["π", "π/2", "π/4", "2π", "none"],
+        correctAnswer: "π/2"
+      },
+      {
+        question: "If * is defined by a*b = aᵇ for a, b ∈ N, then (2*3)*2 =",
+        options: ["81", "512", "216", "64", "243"],
+        correctAnswer: "64"
+      },
+      {
+        question: "The function f(x) = xˣ decreases in",
+        options: ["(0,1)", "(0,e)", "(0,1/e)", "(-1,0)", "(1,e)"],
+        correctAnswer: "(0,1/e)"
+      },
+      {
+        question: "If ω is a complex cube root of unity, then √(-1 -√(-1 -√(-1...))) equals",
+        options: ["±ω", "ω or ω²", "ω + ω²", "ω - ω²", "1"],
+        correctAnswer: "ω or ω²"
+      },
+      {
+        question: "The integrating factor of (x² +1)dy/dx + 2xy = 4x² is",
+        options: ["x² +1", "√(1 + x²)", "e^(1 + x²)", "e^√(1 + x²)", "4x²"],
+        correctAnswer: "x² +1"
+      },
+      {
+        question: "In an A.P., the 6th term is 52 and 11th term is 112. The common difference is",
+        options: ["4", "20", "12", "8", "6"],
+        correctAnswer: "12"
+      },
+      {
+        question: "The number of 3×3 matrices with entries -1 or +1 is",
+        options: ["2⁻⁴", "2⁵", "2⁶", "2⁷", "2⁹"],
+        correctAnswer: "2⁹"
+      },
+      {
+        question: "limₓ→₃ (x³ - 27)/(x² - 9) =",
+        options: ["9/2", "0", "1", "1/2", "27"],
+        correctAnswer: "9/2"
+      },
+      {
+        question: "The center of the ellipse 4x² + y² - 8x + 4y - 8 = 0 is",
+        options: ["(0,2)", "(2,-1)", "(2,1)", "(1,2)", "(1,-2)"],
+        correctAnswer: "(1,-2)"
+      },
+      {
+        question: "The distance between (2,1,0) and plane 2x + y + 2z + 5 = 0 is",
+        options: ["10", "10/3", "10/9", "5", "1"],
+        correctAnswer: "10/3"
+      },
+      {
+        question: "∫(2x + sin2x)/(1 + cos2x) dx =",
+        options: ["x + log|tan x| + C", "x log|tan x| + C", "x tan x + C", "log|cos x| + C", "log|sin x| + C"],
+        correctAnswer: "x tan x + C"
+      },
+      {
+        question: "If the derivative of (ax - 5)e³ˣ at x = 0 is -13, then the value of a is",
+        options: ["8", "-5", "5", "-2", "2"],
+        correctAnswer: "2"
+      },
+      {
+        question: "If a, b, c are unit vectors such that a + b + c = 0, then the value of a·b + b·c + c·a is",
+        options: ["0", "1", "3", "-3/2", "none of these"],
+        correctAnswer: "-3/2"
+      },
+  ],
+    
+  PHYSICS: [
+    {
+      question: "If the time period T of a satellite revolving close to the earth is given as T = 2πRᵃgᵇ, then the value of a and b are respectively (R – Radius of the earth)",
+      options: [
+        "1/2 and 1/2",
+        "1/2 and -1/2",
+        "1/2 and 1/2",
+        "3/2 and -1/2",
+        "-1/2 and 1/2"
       ],
-    PHYSICS: [
-      {
-        question: "What is the SI unit of electric current?",
-        options: ["Ampere", "Watt", "Volt", "Ohm"],
-        correctAnswer: "Ampere",
-      },
-      {
-        question: "What is the escape velocity on Earth?",
-        options: ["11.2 km/s", "9.8 km/s", "12.5 km/s", "7.9 km/s"],
-        correctAnswer: "11.2 km/s",
-      },
+      correctAnswer: "1/2 and -1/2"
+    },
+    {
+      question: "The angle between A × B and B × A is",
+      options: [
+        "90°",
+        "60°",
+        "180°",
+        "0°",
+        "270°"
+      ],
+      correctAnswer: "180°"
+    },
+    {
+      question: "If the initial speed of the car moving at constant acceleration is halved, then the stopping distance S becomes",
+      options: [
+        "2S",
+        "S/2",
+        "4S",
+        "S/4",
+        "S/8"
+      ],
+      correctAnswer: "S/4"
+    },
+    {
+      question: "When a cricketer catches a ball in 30 s, the force required is 2.5 N. The force required to catch that ball in 50 s is",
+      options: [
+        "1.5 N",
+        "1 N",
+        "2.5 N",
+        "3 N",
+        "5 N"
+      ],
+      correctAnswer: "1.5 N"
+    },
+    {
+      question: "A ball is thrown vertically upwards with an initial speed of 20 ms⁻¹. The velocity (in ms⁻¹) and acceleration (in ms⁻²) at the highest point of its motion are respectively",
+      options: [
+        "20 and 9.8",
+        "0 and 9.8",
+        "0 and 0",
+        "10 and 9.8",
+        "0 and 4.9"
+      ],
+      correctAnswer: "0 and 9.8"
+    },
+    {
+      question: "Which one is an INCORRECT statement?",
+      options: [
+        "Forces always occur in pairs",
+        "Impulsive force is a force that acts for a shorter duration",
+        "Impulse is the change in momentum of the body",
+        "Momentum and change in momentum both have the same direction",
+        "Action and reaction forces act on different bodies"
+      ],
+      correctAnswer: "Momentum and change in momentum both have the same direction"
+    },
+    {
+      question: "Impending motion is opposed by",
+      options: [
+        "static friction",
+        "fluid friction",
+        "sliding friction",
+        "kinetic friction",
+        "rolling friction"
+      ],
+      correctAnswer: "static friction"
+    },
+    {
+      question: "A block of 50 g mass is connected to a spring of spring constant 500 Nm⁻¹. It is extended to the maximum and released. If the maximum speed of the block is 3 ms⁻¹, then the length of extension is",
+      options: [
+        "4 cm",
+        "1 cm",
+        "2.5 cm",
+        "3 cm",
+        "5 cm"
+      ],
+      correctAnswer: "3 cm"
+    },
+    {
+      question: "A particle is displaced from P(3i + 2j - k) to Q(2i + 2j + 2k) by a force F = i + j + k. The work done on the particle (in J) is",
+      options: [
+        "2",
+        "1",
+        "2.5",
+        "3",
+        "5"
+      ],
+      correctAnswer: "2"
+    },
+    {
+      question: "The motion of a cylinder on an inclined plane is a",
+      options: [
+        "rotational but not translation",
+        "translation but not rotational",
+        "translational but not rolling",
+        "rotational, translational and rolling motion",
+        "rotational and rolling but not translational motion"
+      ],
+      correctAnswer: "rotational, translational and rolling motion"
+    },
+    {
+      question: "A flywheel ensures a smooth ride on the vehicle because of its",
+      options: [
+        "larger speed",
+        "zero moment of inertia",
+        "large moment of inertia",
+        "lesser mass with smaller radius",
+        "small moment of inertia"
+      ],
+      correctAnswer: "large moment of inertia"
+    },
+    {
+      question: "The escape speed of the moon when compared with escape speed of the earth is approximately",
+      options: [
+        "twice smaller",
+        "thrice smaller",
+        "4 times smaller",
+        "5 times smaller",
+        "6 times smaller"
+      ],
+      correctAnswer: "5 times smaller"
+    },
+    {
+      question: "The force of gravity is a",
+      options: [
+        "strong force",
+        "noncentral force",
+        "nonconservative force",
+        "contact force",
+        "conservative force"
+      ],
+      correctAnswer: "conservative force"
+    },
+    {
+      question: "The terminal velocity of a small steel ball falling through a viscous medium is",
+      options: [
+        "directly proportional to the radius of the ball",
+        "inversely proportional to the radius of the ball",
+        "directly proportional to the square of the radius of the ball",
+        "directly proportional to the square root of the radius of the ball",
+        "inversely proportional to the square of the radius of the ball"
+      ],
+      correctAnswer: "directly proportional to the square of the radius of the ball"
+    },
+    {
+      question: "The stress required to produce a fractional compression of 1.5% in a liquid having bulk modulus of 0.9×10⁹ Nm⁻² is",
+      options: [
+        "2.48×10⁷ Nm⁻²",
+        "0.26×10⁷ Nm⁻²",
+        "3.72×10⁷ Nm⁻²",
+        "1.35×10⁷ Nm⁻²",
+        "4.56×10⁷ Nm⁻²"
+      ],
+      correctAnswer: "1.35×10⁷ Nm⁻²"
+    },
+    {
+      question: "When heat is supplied to the gas in an isochoric process, the supplied heat changes its",
+      options: [
+        "volume only",
+        "internal energy and volume",
+        "internal energy only",
+        "internal energy and temperature",
+        "temperature only"
+      ],
+      correctAnswer: "internal energy and temperature"
+    },
+    {
+      question: "1 g of ice at 0°C is converted into water by supplying a heat of 418.72 J. The quantity of heat that is used to increase the temperature of water from 0°C is (Latent heat of fusion of ice = 3.35×10⁵ Jkg⁻¹)",
+      options: [
+        "83.72 J",
+        "33.52 J",
+        "335.72 J",
+        "837.24 J",
+        "418.72 J"
+      ],
+      correctAnswer: "83.72 J"
+    },
+    {
+      question: "All real gases behave like an ideal gas at",
+      options: [
+        "high pressure and low temperature",
+        "low temperature and low pressure",
+        "high pressure and high temperature",
+        "at all temperatures and pressures",
+        "low pressure and high temperature"
+      ],
+      correctAnswer: "low pressure and high temperature"
+    },
+    {
+      question: "0.5 mole of N₂ at 27°C is mixed with 0.5 mole of O₂ at 42°C. The temperature of the mixture is",
+      options: [
+        "42°C",
+        "34.5°C",
+        "32.5°C",
+        "37.5°C",
+        "27°C"
+      ],
+      correctAnswer: "34.5°C"
+    },
+    {
+      question: "A wave with a frequency of 600 Hz and wavelength of 0.5 m travels a distance of 200 m in air in a time of",
+      options: [
+        "1.67 s",
+        "0.67 s",
+        "1 s",
+        "0.33 s",
+        "1.33 s"
+      ],
+      correctAnswer: "0.67 s"
+    },
+    {
+      question: "If the fundamental frequency of the stretched string of length 1 m under a given tension is 3 Hz, then the fundamental frequency of the stretched string of length 0.75 m under the same tension is",
+      options: [
+        "1 Hz",
+        "2 Hz",
+        "6 Hz",
+        "4 Hz",
+        "5 Hz"
+      ],
+      correctAnswer: "4 Hz"
+    },
+    {
+      question: "Three capacitances 1 µF, 4 µF and 5 µF are connected in parallel with a supply voltage. If the total charge flowing through the capacitors is 50 µC, then the supply voltage is",
+      options: [
+        "2 V",
+        "10 V",
+        "6 V",
+        "3 V",
+        "5 V"
+      ],
+      correctAnswer: "5 V"
+    },
+    {
+      question: "The resistance of a wire at 0°C is 4 Ω. If the temperature coefficient of resistance of the material of the wire is 5×10⁻³/°C, then the resistance of a wire at 50°C is",
+      options: [
+        "20 Ω",
+        "10 Ω",
+        "6 Ω",
+        "8 Ω",
+        "5 Ω"
+      ],
+      correctAnswer: "5 Ω"
+    },
+    {
+      question: "n number of electrons flowing in a copper wire for 1 minute constitute a current of 0.5 A. Twice the number of electrons flowing through the same wire for 20 s will constitute a current of",
+      options: [
+        "0.25 A",
+        "3 A",
+        "1 A",
+        "1.25 A",
+        "2.25 A"
+      ],
+      correctAnswer: "3 A"
+    },
+    {
+      question: "If a cell of 12 V emf delivers 2 A current in a circuit having a resistance of 5.8 Ω, then the internal resistance of the cell is",
+      options: [
+        "1 Ω",
+        "0.2 Ω",
+        "0.3 Ω",
+        "0.6 Ω",
+        "0.8 Ω"
+      ],
+      correctAnswer: "0.2 Ω"
+    },
+    {
+      question: "Torque on a coil carrying current I having N turns and area of cross section A when placed with its plane perpendicular to a magnetic field B is",
+      options: [
+        "2NBIA",
+        "NBIA/3",
+        "0",
+        "NBIA/2",
+        "NBIA"
+      ],
+      correctAnswer: "0"
+    },
+    {
+      question: "A long straight wire carrying a current 3 A produces a magnetic field B at certain distance. The current that flows through the same wire will produce a magnetic field B/3 at the same distance is",
+      options: [
+        "1.5 A",
+        "1 A",
+        "2.5 A",
+        "3 A",
+        "5 A"
+      ],
+      correctAnswer: "1 A"
+    },
+    {
+      question: "Which one of the following statement is INCORRECT?",
+      options: [
+        "Isolated magnetic poles do not exist",
+        "Magnetic field lines do not intersect",
+        "Moving charges do not produce magnetic field in the surrounding space",
+        "Magnetic field lines always form closed loops",
+        "Magnetic force on a negative charge is opposite to that on a positive charge"
+      ],
+      correctAnswer: "Moving charges do not produce magnetic field in the surrounding space"
+    },
+    {
+      question: "When a current passing through a coil changes at a rate of 30 As⁻¹ the emf induced in the coil is 12 V. If the current passing through this coil changes at a rate of 20 As⁻¹ the emf induced in this coil is",
+      options: [
+        "8 V",
+        "10 V",
+        "2.5 V",
+        "3 V",
+        "5 V"
+      ],
+      correctAnswer: "8 V"
+    },
+    {
+      question: "The reactance of an induction coil of 4 H for a dc current (in Ω) is",
+      options: [
+        "zero",
+        "4π",
+        "40π",
+        "400π",
+        "infinity"
+      ],
+      correctAnswer: "zero"
+    },
+    {
+      question: "The radiations used in LASIK eye surgery are",
+      options: [
+        "IR radiations",
+        "micro waves",
+        "radio waves",
+        "gamma rays",
+        "UV radiations"
+      ],
+      correctAnswer: "UV radiations"
+    },
+    {
+      question: "When two coherent sources each of individual intensity I₀ interfere, the resultant intensity due to constructive and destructive interference are respectively",
+      options: [
+        "4I₀ and 0",
+        "I₀ and 2I₀",
+        "0 and 2I₀",
+        "2I₀ and I₀",
+        "2I₀ and 0"
+      ],
+      correctAnswer: "4I₀ and 0"
+    }
+],
+CHEMISTRY: [
+  {
+    question: "The unit of an universal constant is cm⁻¹. What is the constant?",
+    options: [
+      "Planck's constant",
+      "Boltzmann constant",
+      "Rydberg constant",
+      "Avogadro constant",
+      "Molar gas constant"
     ],
-    CHEMISTRY: [
-      {
-        question: "What is the pH of pure water at 25°C?",
-        options: ["7", "6", "8", "5"],
-        correctAnswer: "7",
-      },
-      {
-        question: "The chemical formula of baking soda is:",
-        options: ["NaHCO₃", "NaCl", "KOH", "CaCO₃"],
-        correctAnswer: "NaHCO₃",
-      },
+    correctAnswer: "Rydberg constant"
+  },
+  {
+    question: "Which of the following molecule has the most polar bond?",
+    options: [
+      "Cl₂",
+      "HCl",
+      "PCl₃",
+      "N₂",
+      "HF"
     ],
+    correctAnswer: "HF"
+  },
+  {
+    question: "ΔS would be negative for which of the following reactions? (I) CaCO₃(s) → CaO(s) + CO₂(g) (II) Ag⁺(aq) + Cl⁻(aq) → AgCl(s) (III) N₂(g) + 3H₂(g) → 2NH₃(g)",
+    options: [
+      "I and III only",
+      "II and III only",
+      "I only",
+      "III only",
+      "I, II, and III"
+    ],
+    correctAnswer: "II and III only"
+  },
+  {
+    question: "Equal volumes of pH 3, 4 & 5 are mixed in a container. The concentration of H⁺ in the mixture is (Assume no change in volume during mixing)",
+    options: [
+      "1×10⁻³M",
+      "3.7×10⁻⁴M",
+      "1×10⁻⁴M",
+      "3.7×10⁻⁵M",
+      "3×10⁻⁵M"
+    ],
+    correctAnswer: "3.7×10⁻⁴M"
+  },
+  {
+    question: "For the reaction H₂O(g) + Cl₂O(g) ⇌ 2HOCl(g), at equilibrium the partial pressures are 300 mm Hg (H₂O), 20 mm (Cl₂O) and 60 mm (HOCl). The Kₚ at 300K is",
+    options: [
+      "36",
+      "6.0",
+      "60",
+      "3.6",
+      "0.60"
+    ],
+    correctAnswer: "0.60"
+  },
+  {
+    question: "Strong intra-molecular hydrogen bond is present in",
+    options: [
+      "water",
+      "hydrogen fluoride",
+      "o-cresol",
+      "o-nitrophenol",
+      "ammonia"
+    ],
+    correctAnswer: "o-nitrophenol"
+  },
+  {
+    question: "Which molecule has a Lewis structure that does not obey the octet rule?",
+    options: [
+      "HCN",
+      "CS₂",
+      "NO",
+      "CCl₄",
+      "PF₃"
+    ],
+    correctAnswer: "NO"
+  },
+  {
+    question: "The rate and rate constant of a reaction have the same units. The order of the reaction is",
+    options: [
+      "one",
+      "two",
+      "three",
+      "zero",
+      "half"
+    ],
+    correctAnswer: "zero"
+  },
+  {
+    question: "For the reaction 2A + B → 2C + D, given initial rate data, the total order and order in [B] are respectively",
+    options: [
+      "2,1",
+      "1,1",
+      "1,2",
+      "2,2",
+      "2,0"
+    ],
+    correctAnswer: "2,0"
+  },
+  {
+    question: "The standard molar entropy change for 2SO₂(g) + O₂(g) → 2SO₃(g) given standard entropies (SO₂=250, SO₃=257, O₂=205 JK⁻¹mol⁻¹) is",
+    options: [
+      "-198 JK⁻¹",
+      "-191 JK⁻¹",
+      "198 JK⁻¹",
+      "191 JK⁻¹",
+      "-1219 JK⁻¹"
+    ],
+    correctAnswer: "-191 JK⁻¹"
+  },
+  {
+    question: "An aqueous solution contains 20g of non-volatile strong electrolyte A₂B (M=60 g/mol) in 1 kg water. If 100% dissociated, the boiling point is (Kb=0.52 K kg mol⁻¹)",
+    options: [
+      "372.482K",
+      "374.56K",
+      "373.52K",
+      "371.44K",
+      "374.02K"
+    ],
+    correctAnswer: "373.52K"
+  },
+  {
+    question: "An organic compound contains 37.5% C, 12.5% H and rest oxygen. Its empirical formula is",
+    options: [
+      "CH₄O",
+      "C₂H₃O",
+      "CH₃O₂",
+      "C₂H₄O",
+      "CH₃O"
+    ],
+    correctAnswer: "CH₄O"
+  },
+  {
+    question: "How many grams of HCl will completely react with 17.4g MnO₂ to liberate Cl₂? (Atomic masses: Mn=55, H=1, Cl=35.5)",
+    options: [
+      "14.6g",
+      "7.3g",
+      "21.9g",
+      "29.2g",
+      "34.8g"
+    ],
+    correctAnswer: "29.2g"
+  },
+  {
+    question: "Current required to liberate 16g O₂ during water electrolysis (1F=96500C) is",
+    options: [
+      "4.825×10⁴C",
+      "9.65×10⁴C",
+      "2.895×10⁵C",
+      "4.825×10⁵C",
+      "1.93×10⁵C"
+    ],
+    correctAnswer: "1.93×10⁵C"
+  },
+  {
+    question: "Matching coordination compounds with their isomerism types: [Pt(NH₃)₂Cl₂], [Co(en)₃]³⁺, [Cr(NH₃)₅(SO₄)]Br, [Co(NH₃)₅(NO₂)]Cl₂",
+    options: [
+      "(a)-(ii),(b)-(iv),(c)-(i),(d)-(iii)",
+      "(a)-(iv),(b)-(i),(c)-(ii),(d)-(iii)",
+      "(a)-(iv),(b)-(iii),(c)-(i),(d)-(ii)",
+      "(a)-(iv),(b)-(ii),(c)-(iii),(d)-(i)",
+      "(a)-(iii),(b)-(ii),(c)-(iv),(d)-(i)"
+    ],
+    correctAnswer: "(a)-(iv),(b)-(iii),(c)-(i),(d)-(ii)"
+  },
+  {
+    question: "Which amine will not undergo carbylamine reaction?",
+    options: [
+      "N-methylethanamine",
+      "Phenylmethanamine",
+      "Aniline",
+      "Ethanamine",
+      "Propan-2-amine"
+    ],
+    correctAnswer: "N-methylethanamine"
+  },
+  {
+    question: "The 3d block metal having positive standard electrode potential (M²⁺/M) is",
+    options: [
+      "Titanium",
+      "Vanadium",
+      "Iron",
+      "Copper",
+      "Chromium"
+    ],
+    correctAnswer: "Copper"
+  },
+  {
+    question: "Which statement is incorrect about interstitial compounds of transition elements?",
+    options: [
+      "They have high melting points",
+      "They are very hard",
+      "They have metallic conductivity",
+      "They are chemically inert",
+      "They are stoichiometric compounds"
+    ],
+    correctAnswer: "They are stoichiometric compounds"
+  },
+  {
+    question: "The alloy containing ~95% lanthanoids, 5% iron used in Mg-based bullets is",
+    options: [
+      "bell metal",
+      "monel metal",
+      "misch metal",
+      "bronze",
+      "german silver"
+    ],
+    correctAnswer: "misch metal"
+  },
+  {
+    question: "IUPAC name of [Cr(NH₃)₃(H₂O)₃]Cl₃ is",
+    options: [
+      "triaquatriamminechromium(III) chloride",
+      "triamminetriaquachromium(III) chloride",
+      "triaquatriamminechromium(II) chloride",
+      "triamminetriaquachromium(II) chloride",
+      "triaquatriamminechromium(III) trichloride"
+    ],
+    correctAnswer: "triamminetriaquachromium(III) chloride"
+  },
+  {
+    question: "In Carius method, 0.4g organic compound gave 0.188g AgBr. Percentage of bromine is (Ag=108, Br=80)",
+    options: [
+      "20%",
+      "10%",
+      "15%",
+      "25%",
+      "30%"
+    ],
+    correctAnswer: "20%"
+  },
+  {
+    question: "Which compound can exhibit both optical and geometrical isomerism?",
+    options: [
+      "2-chloropent-2-ene",
+      "5-chloropent-2-ene",
+      "4-chloropent-2-ene",
+      "3-chloropent-1-ene",
+      "3-chloropent-2-ene"
+    ],
+    correctAnswer: "4-chloropent-2-ene"
+  },
+  {
+    question: "Which nucleophile is ambident?",
+    options: [
+      "CH₃O⁻",
+      "HO⁻",
+      "CH₃COO⁻",
+      "H₂O",
+      "CN⁻"
+    ],
+    correctAnswer: "CN⁻"
+  },
+  {
+    question: "The achiral molecule among the following is",
+    options: [
+      "2-bromobutane",
+      "3-nitropentane",
+      "3-chlorobut-1-ene",
+      "1-bromoethanol",
+      "2-hydroxypropanoic acid"
+    ],
+    correctAnswer: "3-nitropentane"
+  },
+  {
+    question: "Phenol can be converted to salicylaldehyde by",
+    options: [
+      "Kolbe reaction",
+      "Williamson reaction",
+      "Etard reaction",
+      "Reimer-Tiemann reaction",
+      "Stephen reaction"
+    ],
+    correctAnswer: "Reimer-Tiemann reaction"
+  },
+  {
+    question: "The order of decreasing acid strength of carboxylic acids is",
+    options: [
+      "FCH₂COOH > ClCH₂COOH > NO₂CH₂COOH > CNCH₂COOH",
+      "CNCH₂COOH > FCH₂COOH > NO₂CH₂COOH > ClCH₂COOH",
+      "NO₂CH₂COOH > FCH₂COOH > ClCH₂COOH > CNCH₂COOH",
+      "FCH₂COOH > NO₂CH₂COOH > ClCH₂COOH > CNCH₂COOH",
+      "NO₂CH₂COOH > CNCH₂COOH > FCH₂COOH > ClCH₂COOH"
+    ],
+    correctAnswer: "NO₂CH₂COOH > CNCH₂COOH > FCH₂COOH > ClCH₂COOH"
+  },
+  {
+    question: "Chlorophenylmethane treated with ethanolic NaCN then reduced with H₂/Ni gives",
+    options: [
+      "Phenylmethanamine",
+      "1-phenylethanamine",
+      "2-phenylethanamine",
+      "1-methyl-2-phenylethanamine",
+      "phenylmethanamine"
+    ],
+    correctAnswer: "2-phenylethanamine"
+  },
+  {
+    question: "A reagent that can reduce benzene diazonium chloride to benzene is",
+    options: [
+      "ethanol",
+      "methanol",
+      "methanoic acid",
+      "acetone",
+      "phosphorous acid"
+    ],
+    correctAnswer: "ethanol"
+  },
+  {
+    question: "Which is not an essential amino acid?",
+    options: [
+      "Lysine",
+      "Tyrosine",
+      "Threonine",
+      "Tryptophan",
+      "Methionine"
+    ],
+    correctAnswer: "Tyrosine"
+  },
+  {
+    question: "14g cyclopropane burnt completely in excess oxygen. Moles of water formed is",
+    options: [
+      "1.4 moles",
+      "2.8 moles",
+      "2.0 moles",
+      "1.0 mole",
+      "4 moles"
+    ],
+    correctAnswer: "1.0 mole"
+  }
+],
   };
 
   const shuffleArray = (array) => {
@@ -152,7 +890,7 @@ const Mocktest = () => {
       };
     });
 
-    // Initialize question status for all questions as an array
+   
     const initialStatus = Array(questionsWithShuffledOptions.length).fill(
       "not-visited"
     );
@@ -162,7 +900,7 @@ const Mocktest = () => {
     setSelectedAnswers({});
     setQuestionStatus(initialStatus);
     setCurrentQuestionIdx(0);
-    setTimeLeft(1200); // Reset timer to 20 minutes
+    setTimeLeft(1200); // reset timer
     setTestResults(null);
     setIsTimeLow(false);
     setIsReviewMode(false);
@@ -171,18 +909,16 @@ const Mocktest = () => {
 
   const handleOptionSelect = (questionIndex, option) => {
     setSelectedAnswers((prev) => ({ ...prev, [questionIndex]: option }));
-
-    // Update question status to "answered"
     setQuestionStatus((prev) => {
       const newStatus = [...prev];
-      // If it was marked, keep it marked, otherwise set to answered
+     
       newStatus[questionIndex] =
         prev[questionIndex] === "marked" ? "answered-marked" : "answered";
       return newStatus;
     });
   };
 
-  // Mark current question as visited when displayed
+ 
   useEffect(() => {
     if (
       questions.length > 0 &&
@@ -230,14 +966,14 @@ const Mocktest = () => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
 
-      // Set time low flag when less than 2 minutes remaining
+     
       if (timeLeft <= 120 && !isTimeLow) {
         setIsTimeLow(true);
       }
 
       return () => clearInterval(timer);
     } else if (timeLeft === 0 && !testResults) {
-      evaluateAnswers(); // Auto-submit when time runs out
+      evaluateAnswers(); 
     }
   }, [selectedSubject, timeLeft, testResults, isTimeLow]);
 
@@ -252,11 +988,11 @@ const Mocktest = () => {
     setTestResults(null);
   };
 
-  // Toggle mark for review status
+  
   const toggleMarkForReview = (questionIndex) => {
     setQuestionStatus((prev) => {
       const newStatus = [...prev];
-      // Simple toggle logic based on current status
+      
       if (newStatus[questionIndex] === "answered") {
         newStatus[questionIndex] = "answered-marked";
       } else if (newStatus[questionIndex] === "answered-marked") {
@@ -273,11 +1009,11 @@ const Mocktest = () => {
     });
   };
 
-  // Navigation functions
+
   const goToNextQuestion = () => {
     if (currentQuestionIdx < questions.length - 1) {
       setCurrentQuestionIdx(currentQuestionIdx + 1);
-      // Close mobile nav when navigating on small screens
+     
       setShowMobileNav(false);
     }
   };
@@ -285,7 +1021,7 @@ const Mocktest = () => {
   const goToPrevQuestion = () => {
     if (currentQuestionIdx > 0) {
       setCurrentQuestionIdx(currentQuestionIdx - 1);
-      // Close mobile nav when navigating on small screens
+     
       setShowMobileNav(false);
     }
   };
@@ -293,40 +1029,40 @@ const Mocktest = () => {
   const goToQuestion = (index) => {
     setCurrentQuestionIdx(index);
     setIsReviewMode(false);
-    // Close mobile nav when selecting a specific question on small screens
+    
     setShowMobileNav(false);
   };
 
-  // Open confirmation dialog
+ 
   const handleSubmitClick = () => {
     setShowConfirmation(true);
-    // Close mobile nav
+
     setShowMobileNav(false);
   };
 
-  // Cancel submission
+ 
   const cancelSubmit = () => {
     setShowConfirmation(false);
   };
 
-  // Confirm submission
+
   const confirmSubmit = () => {
     setShowConfirmation(false);
     evaluateAnswers();
   };
 
-  // Toggle mobile navigation panel
+
   const toggleMobileNav = () => {
     setShowMobileNav(!showMobileNav);
   };
 
-  // Filter scores based on selected subject
+
   const filteredScores =
     scoreHistorySubject === "ALL"
       ? scores
       : scores.filter((score) => score.setName === scoreHistorySubject);
 
-  // Get subject color for bars
+  
   const getSubjectColor = (subject) => {
     switch (subject) {
       case "MATHEMATICS":
@@ -340,7 +1076,7 @@ const Mocktest = () => {
     }
   };
 
-  // Get light shade color for placeholder bars
+ 
   const getLightShadeColor = (subject) => {
     switch (subject) {
       case "MATHEMATICS":
@@ -354,7 +1090,7 @@ const Mocktest = () => {
     }
   };
 
-  // Create chart items with placeholders if needed
+  
   const createChartItems = () => {
     const realItems = filteredScores.map((score) => ({
       className: `rounded-md ${getSubjectColor(score.setName)}`,
@@ -362,7 +1098,7 @@ const Mocktest = () => {
       progress: ((score.score / score.questions) * 100).toFixed(2),
     }));
 
-    // If we have fewer than 5 items, add placeholders
+    
     if (realItems.length < 5) {
       const placeholderCount = 5 - realItems.length;
       const placeholderSubject =
@@ -382,13 +1118,13 @@ const Mocktest = () => {
     return realItems;
   };
 
-  // Calculate progress percentage
+
   const calculateProgress = () => {
     const answeredQuestions = Object.keys(selectedAnswers).length;
     return (answeredQuestions / questions.length) * 100;
   };
 
-  // Get count of questions by status
+
   const getQuestionCounts = () => {
     const counts = {
       answered: 0,
@@ -415,16 +1151,16 @@ const Mocktest = () => {
     return counts;
   };
 
-  // Get unanswered count
+
   const getUnansweredCount = () => {
     return questions.length - Object.keys(selectedAnswers).length;
   };
 
-  // Group questions into sections (for right panel display)
+ 
   const getQuestionSections = () => {
-    // This is just an example - you can adjust for your actual subject structure
+    
     const questionCount = questions.length;
-    const sectionSize = 30; // Assuming 30 questions per section
+    const sectionSize = 30; //  30 questions per section
 
     const sections = [];
     for (let i = 0; i < questionCount; i += sectionSize) {
@@ -438,7 +1174,7 @@ const Mocktest = () => {
     return sections;
   };
 
-  // Get status color class for question button
+ 
   const getStatusColorClass = (status) => {
     switch (status) {
       case "answered":
@@ -646,7 +1382,7 @@ const Mocktest = () => {
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40">
           <div className="bg-white w-full h-full flex flex-col sm:flex-row overflow-hidden">
             {!testResults ? (
-              // Responsive test interface
+              
               <>
                 {/* Mobile header with timer and question status toggle button */}
                 <div className="sm:hidden flex justify-between items-center p-3 border-b bg-gray-50">
@@ -726,7 +1462,7 @@ const Mocktest = () => {
                           Question {currentQuestionIdx + 1}:
                         </h3>
 
-                        {/* Progress indicator for mobile */}
+                      
                         <div className="sm:hidden text-sm text-gray-500">
                           {Object.keys(selectedAnswers).length}/
                           {questions.length} answered
@@ -754,7 +1490,7 @@ const Mocktest = () => {
                               <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 text-gray-700 mr-2 sm:mr-3 text-sm">
                                 {String.fromCharCode(65 + idx)}
                               </span>
-                              <LatexOption option={option} />
+                              {option}
                             </button>
                           )
                         )}
@@ -797,7 +1533,7 @@ const Mocktest = () => {
                       </div>
                     </div>
 
-                    {/* Mobile Submit button - fixed at bottom on mobile */}
+                  
                     <div className="sm:hidden sticky bottom-0 left-0 right-0 p-3 bg-white border-t">
                       <button
                         onClick={handleSubmitClick}
@@ -956,7 +1692,7 @@ const Mocktest = () => {
                 )}
               </>
             ) : (
-              // Test Results
+              //  Test Results
               <div className="flex-1 p-4 sm:p-6 md:p-10 overflow-y-auto">
                 <div className="max-w-4xl mx-auto">
                   <div className="bg-white shadow-md rounded-xl p-5 sm:p-8 mb-8">
