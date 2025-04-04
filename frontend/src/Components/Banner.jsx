@@ -68,7 +68,7 @@ const Banner = () => {
         <div className="w-full lg:w-2/3 xl:w-1/2 min-h-[60vh] md:min-h-[50vh] lg:h-[75vh] pointer-events-none text-center p-3 sm:p-5 md:p-6 rounded-lg mb-4 md:mb-0 flex flex-col items-center justify-center  md:bg-transparent">
           <div className="relative my-2 sm:my-4 md:my-6 px-1 sm:px-2">
             {/* First line - optimized for all screen sizes */}
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#003631] font-serif relative overflow-hidden leading-tight">
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#003631] font-serif relative overflow-hidden leading-tight">
               <span className="inline-block relative">
                 {["K", "E", "A", "M"].map((letter, index) => (
                   <span
@@ -445,7 +445,6 @@ const Banner = () => {
         <Contact />
       </div>
 
-      {/* Add animation keyframes to your CSS or in a style tag */}
       <style jsx>{`
         @keyframes modalFadeIn {
           from {

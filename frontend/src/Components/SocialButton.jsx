@@ -73,7 +73,8 @@ const StyledWrapper = styled.div`
 
   button:hover span {
     width: 0;
-  }
+    visibility: hidden;
+    }
 
   button:hover .container {
     z-index: 2;
