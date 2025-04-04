@@ -5,18 +5,54 @@ import { Search, Mail, Phone, MapPin, User, BookOpen } from "lucide-react";
 import { BiLogOut } from "react-icons/bi";
 
 const StudentDetails = () => {
-  const { getStudents, students, loading, token, logoutAdmin } =
-    useContext(AdminContext);
+  const { getStudents, students, loading, token, logoutAdmin } = useContext(AdminContext);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
 
+  // Token expiration check
   useEffect(() => {
+    // Check if token exists
     if (!token) {
       navigate("/login");
+      return;
+    }
+
+    // Get token creation timestamp from localStorage
+    const tokenCreationTime = localStorage.getItem("tokenCreationTime");
+    
+    if (tokenCreationTime) {
+      const currentTime = new Date().getTime();
+      const tokenTime = parseInt(tokenCreationTime);
+      const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+      
+      // Check if token is older than 1 hour
+      if (currentTime - tokenTime > oneHour) {
+        // Token expired, log out user
+        logoutAdmin();
+        navigate("/login");
+        return;
+      }
+      
+      // Set timer for automatic logout when token expires
+      const timeRemaining = oneHour - (currentTime - tokenTime);
+      const logoutTimer = setTimeout(() => {
+        logoutAdmin();
+        navigate("/login");
+      }, timeRemaining);
+      
+      // Clean up timer on component unmount
+      return () => clearTimeout(logoutTimer);
     } else {
+      // If no token creation time found, set it now
+      localStorage.setItem("tokenCreationTime", new Date().getTime().toString());
+    }
+  }, [token, navigate, logoutAdmin]);
+
+  useEffect(() => {
+    if (token) {
       const fetchStudents = async () => {
         try {
           await getStudents();
@@ -26,7 +62,7 @@ const StudentDetails = () => {
       };
       fetchStudents();
     }
-  }, [token, navigate, getStudents]);
+  }, [token, getStudents]);
 
   useEffect(() => {
     if (students) {
@@ -48,6 +84,8 @@ const StudentDetails = () => {
   };
 
   const confirmLogout = () => {
+    // Clear the token creation time when logging out
+    localStorage.removeItem("tokenCreationTime");
     logoutAdmin();
     setShowConfirmation(false);
   };
@@ -189,7 +227,7 @@ const StudentDetails = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900 flex items-center">
                           <Phone className="h-4 w-4 mr-2 text-gray-400" />
-                          {student.phone}
+                          {student.phone} 
                         </div>
                       </td>
                       <td className="px-6 py-4">

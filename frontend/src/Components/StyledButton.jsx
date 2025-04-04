@@ -56,12 +56,12 @@ const StyledWrapper = styled.div`
 
   .animated-button .circle {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0%;
+    left: 0%;
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: #c5e5e4;
+    background-color: #C3FDBE;
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -102,7 +102,7 @@ const StyledWrapper = styled.div`
   }
 
   .animated-button:hover .circle {
-    width: 220px;
+    width: 100%;
     height: 220px;
     opacity: 1;
   }`;
