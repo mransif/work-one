@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from 'sonner';
 import Button from "./Button";
 
 const Auth = () => {
