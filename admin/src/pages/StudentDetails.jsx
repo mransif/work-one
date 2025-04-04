@@ -12,44 +12,12 @@ const StudentDetails = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
 
-  // Token expiration check
+  // Simple token check - token expiration is now handled in AdminContext
   useEffect(() => {
-    // Check if token exists
     if (!token) {
       navigate("/login");
-      return;
     }
-
-    // Get token creation timestamp from localStorage
-    const tokenCreationTime = localStorage.getItem("tokenCreationTime");
-    
-    if (tokenCreationTime) {
-      const currentTime = new Date().getTime();
-      const tokenTime = parseInt(tokenCreationTime);
-      const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
-      
-      // Check if token is older than 1 hour
-      if (currentTime - tokenTime > oneHour) {
-        // Token expired, log out user
-        logoutAdmin();
-        navigate("/login");
-        return;
-      }
-      
-      // Set timer for automatic logout when token expires
-      const timeRemaining = oneHour - (currentTime - tokenTime);
-      const logoutTimer = setTimeout(() => {
-        logoutAdmin();
-        navigate("/login");
-      }, timeRemaining);
-      
-      // Clean up timer on component unmount
-      return () => clearTimeout(logoutTimer);
-    } else {
-      // If no token creation time found, set it now
-      localStorage.setItem("tokenCreationTime", new Date().getTime().toString());
-    }
-  }, [token, navigate, logoutAdmin]);
+  }, [token, navigate]);
 
   useEffect(() => {
     if (token) {
@@ -84,8 +52,6 @@ const StudentDetails = () => {
   };
 
   const confirmLogout = () => {
-    // Clear the token creation time when logging out
-    localStorage.removeItem("tokenCreationTime");
     logoutAdmin();
     setShowConfirmation(false);
   };
@@ -142,7 +108,7 @@ const StudentDetails = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-600  transition duration-200 cursor-pointer absolute top-4 right-4"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-600 transition duration-200 cursor-pointer absolute top-4 right-4"
                 >
                   <BiLogOut className="text-lg" />
                   <span className="font-medium">Logout</span>
