@@ -7,7 +7,7 @@ const keamTestResultModel = require("../models/keamTestResultModel");
 
 
 exports.registerStudent = async (req, res) => {
-  const { name, email, phone, address, password } = req.body;
+  const { name, email, phone, address, password, board } = req.body; // Added board to destructuring
 
   try {
     const existingUser = await User.findOne({ email });
@@ -20,6 +20,7 @@ exports.registerStudent = async (req, res) => {
       email,
       phone,
       address,
+      board, // Added board field
       password: hashedPassword,
     });
 
