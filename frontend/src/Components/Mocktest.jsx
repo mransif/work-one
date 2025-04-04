@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import StyledSplitButton from "./StyledSplitButton";
 import BarChart from "./bar-chart";
+import { LatexQuestion, LatexOption } from "./LatexParser";
 
 const Mocktest = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
@@ -26,18 +27,84 @@ const Mocktest = () => {
   ];
 
   const subjectQuestions = {
-    MATHEMATICS: [
-      {
-        question: "If f(x) = x² + 3x + 2, find f(-1).",
-        options: ["0", "2", "6", "-2"],
-        correctAnswer: "0",
-      },
-      {
-        question: "What is the derivative of sin(x)?",
-        options: ["cos(x)", "-sin(x)", "-cos(x)", "sec²(x)"],
-        correctAnswer: "cos(x)",
-      },
-    ],
+    MATHEMATICS: 
+      [
+        {
+          question: "If y = ${cosec}^{- 1}\\left( \\frac{1 + x^{2}}{2x} \\right)$ , then $\\frac{dy}{dx}$ =",
+          options: ["$\\frac{1}{\\sqrt{x^{2} - 1}}$", "$\\frac{- 1}{\\sqrt{x^{2} - 1}}$", "$\\frac{1}{1 + \\ x^{2}}$", "$\\frac{2}{1 + \\ x^{2}}$", "$\\frac{- 2}{\\sqrt{x^{2} - 1}}$"],
+          correctAnswer: "$\\frac{2}{1 + \\ x^{2}}$"
+        },
+        {
+          question: "If a + 1, 2a + 1, 4a -- 1 are in arithmetic progression, then the value of a is",
+          options: ["1", "2", "3", "4", "5"],
+          correctAnswer: "5"
+        },
+        {
+          question: "If tan θ = $\\frac{1}{2}$ and tan ɸ = $\\frac{1}{3}$ , then tan(2ɵ + ɸ) =",
+          options: ["3/4", "4/3", "3", "1/3", "1/2"],
+          correctAnswer: "3"
+        },
+        {
+          question: "The solution of dy/dx + y tan x = sec x, y (0) = 0 is",
+          options: ["y sec x = tan x", "y tan x = sec x", "tan x = ytanx", "x sec x = tan y", "y cot x = sec x"],
+          correctAnswer: "y sec x = tan x"
+        },
+        {
+          question: "$\\int_{}^{}{x^{4}\\cos x^{5}\\ dx\\ }$ equals",
+          options: ["$\\frac{1}{3}$ sin$x^{5}$ + C", "$\\frac{1}{4}$ sin$x^{5}$+ C", "$\\frac{1}{5}$ sin$x^{5}$+ C", "sin$x^{5}$+ C", "$2$sin$x^{5}$+ C"],
+          correctAnswer: "$\\frac{1}{5}$ sin$x^{5}$+ C"
+        },
+        {
+          question: "If $\\overrightarrow{a}$ , $\\overrightarrow{b}$ , $\\overrightarrow{c}$ are unit vectors such that $\\overrightarrow{a}$ + $\\overrightarrow{b}$ + $\\overrightarrow{c}$ =0 , then the value of $|\\overrightarrow{a} \\cdot \\overrightarrow{b} + \\overrightarrow{b} \\cdot \\overrightarrow{c} + \\overrightarrow{c} \\cdot \\overrightarrow{a}|$ is",
+          options: ["0", "1", "3", "-3/2", "none of these"],
+          correctAnswer: "-3/2"
+        },
+        {
+          question: "The value of the determinant $\\left| \\begin{matrix} 1 & 1 & 1 \\\\ 1 & 1 + x & 1 \\\\ 1 & 1 & 1 + y \\end{matrix} \\right|$ is zero",
+          options: ["x=0 or y=0", "x=0 and y=0", "for all values of x and y", "for no values of x and y", "none of these"],
+          correctAnswer: "x=0 or y=0"
+        },
+        {
+          question: "Let f(x + y) = f(x) f(y) for all x and y. If f(0) = 1, f(3) = 3 and f(0)′ =11, then f(3)′ is equal to",
+          options: ["11", "22", "33", "44", "55"],
+          correctAnswer: "33"
+        },
+        {
+          question: "If the product AB = 0 then",
+          options: ["either A=0 or B=0", "A=0 and B=0", "A=0, B≠0", "A is symmetric and B is skew symmetric", "neither A=0 nor B=0"],
+          correctAnswer: "neither A=0 nor B=0"
+        },
+        {
+          question: "The value of $\\left\\lbrack \\overrightarrow{i\\ \\ }\\ ,\\ \\overrightarrow{j}\\ ,\\ \\overrightarrow{k}\\ \\ \\right\\rbrack$ equals",
+          options: ["0", "1", "-1", "3", "none of these"],
+          correctAnswer: "1"
+        },
+        {
+          question: "Let p, q, r be three simple statements. Then ∼ (p ∨ q)∨ ∼ (p ∨ r) is equivalent to",
+          options: ["(∼p) ∧ (∼q ∨ ∼r)", "(∼p) ∧ (q ∨ r)", "p ∧ (q∨r)", "p∨ (q∧r)", "(p∨ q)∧r)"],
+          correctAnswer: "(∼p) ∧ (∼q ∨ ∼r)"
+        },
+        {
+          question: "$\\int_{- 1}^{1}\\frac{|x + 2|}{x + 2}$dx =",
+          options: ["0", "1", "-1", "2", "-2"],
+          correctAnswer: "2"
+        },
+        {
+          question: "If X follows a Binomial distribution with parameters n = 6 and p, and if 9P(X = 4) = P(X = 2), then p =",
+          options: ["1/2", "1/3", "1/6", "1/4", "1"],
+          correctAnswer: "1/4"
+        },
+        {
+          question: "The differential equation representing the family of curves y² = a(ax+b) where a and b are arbitrary constants, is of",
+          options: ["order 1, degree 1", "order 1, degree 3", "order 2, degree 3", "order 1, degree 4", "order 2, degree 1"],
+          correctAnswer: "order 2, degree 1"
+        },
+        {
+          question: "In a flight 50 people speak Hindi, 20 speak English and 10 speak both English and Hindi. The number of people who speak at least one of the two languages is",
+          options: ["40", "50", "20", "80", "60"],
+          correctAnswer: "60"
+        }
+      ],
     PHYSICS: [
       {
         question: "What is the SI unit of electric current?",
@@ -687,7 +754,7 @@ const Mocktest = () => {
                               <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 text-gray-700 mr-2 sm:mr-3 text-sm">
                                 {String.fromCharCode(65 + idx)}
                               </span>
-                              {option}
+                              <LatexOption option={option} />
                             </button>
                           )
                         )}
