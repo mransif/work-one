@@ -1,0 +1,205 @@
+[33m9269629[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: checkout: moving from mocktestAnsif to main
+[33m5a23d57[m[33m ([m[1;31morigin/mocktestAnsif[m[33m, [m[1;32mmocktestAnsif[m[33m)[m HEAD@{1}: checkout: moving from main to mocktestAnsif
+[33m9269629[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: checkout: moving from main to main
+[33m9269629[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{3}: pull origin main: Fast-forward
+[33m3106d9f[m HEAD@{4}: checkout: moving from mocktestAnsif to main
+[33m5a23d57[m[33m ([m[1;31morigin/mocktestAnsif[m[33m, [m[1;32mmocktestAnsif[m[33m)[m HEAD@{5}: commit: .env
+[33m8754c08[m HEAD@{6}: commit: .env
+[33m3106d9f[m HEAD@{7}: merge main: Fast-forward
+[33m4ced8b3[m HEAD@{8}: checkout: moving from main to mocktestAnsif
+[33m3106d9f[m HEAD@{9}: pull origin main: Fast-forward
+[33m4ced8b3[m HEAD@{10}: checkout: moving from mocktestAnsif to main
+[33m4ced8b3[m HEAD@{11}: merge main: Fast-forward
+[33mdd62521[m HEAD@{12}: checkout: moving from main to mocktestAnsif
+[33m4ced8b3[m HEAD@{13}: commit: navbar-token updated
+[33m7289ec8[m HEAD@{14}: pull origin main: Fast-forward
+[33mceb1c61[m HEAD@{15}: checkout: moving from mocktestAnsif to main
+[33mdd62521[m HEAD@{16}: commit: toast updated
+[33mc81b84c[m HEAD@{17}: checkout: moving from main to mocktestAnsif
+[33mceb1c61[m HEAD@{18}: pull origin main: Fast-forward
+[33me794809[m HEAD@{19}: checkout: moving from mocktestAnsif to main
+[33mc81b84c[m HEAD@{20}: commit: social btn updated
+[33me02b151[m HEAD@{21}: commit: btn updated
+[33me794809[m HEAD@{22}: merge main: Fast-forward
+[33m32b722c[m HEAD@{23}: checkout: moving from main to mocktestAnsif
+[33me794809[m HEAD@{24}: pull origin main: Fast-forward
+[33m87ef629[m HEAD@{25}: checkout: moving from mocktestAnsif to main
+[33m32b722c[m HEAD@{26}: checkout: moving from main to mocktestAnsif
+[33m87ef629[m HEAD@{27}: checkout: moving from mocktestAnsif to main
+[33m32b722c[m HEAD@{28}: commit: mainTest questions added
+[33m87ef629[m HEAD@{29}: merge main: Fast-forward
+[33m2e73a65[m HEAD@{30}: checkout: moving from main to mocktestAnsif
+[33m87ef629[m HEAD@{31}: pull origin main: Fast-forward
+[33m6929839[m HEAD@{32}: checkout: moving from mocktestAnsif to main
+[33m2e73a65[m HEAD@{33}: checkout: moving from main to mocktestAnsif
+[33m6929839[m HEAD@{34}: checkout: moving from mocktestAnsif to main
+[33m2e73a65[m HEAD@{35}: commit: attend btn updated
+[33m6929839[m HEAD@{36}: merge main: Fast-forward
+[33md5c54d9[m HEAD@{37}: checkout: moving from main to mocktestAnsif
+[33m6929839[m HEAD@{38}: pull origin main: Fast-forward
+[33m47b00f7[m HEAD@{39}: checkout: moving from mocktestAnsif to main
+[33md5c54d9[m HEAD@{40}: merge main: Merge made by the 'ort' strategy.
+[33m8605e07[m HEAD@{41}: checkout: moving from main to mocktestAnsif
+[33m47b00f7[m HEAD@{42}: pull origin main: Fast-forward
+[33m0b8b4cd[m HEAD@{43}: checkout: moving from mocktestAnsif to main
+[33m8605e07[m HEAD@{44}: commit: added board option
+[33m0b8b4cd[m HEAD@{45}: merge main: Fast-forward
+[33m4e5833c[m HEAD@{46}: checkout: moving from main to mocktestAnsif
+[33m0b8b4cd[m HEAD@{47}: pull origin main: Fast-forward
+[33m4e5833c[m HEAD@{48}: checkout: moving from mocktestAnsif to main
+[33m4e5833c[m HEAD@{49}: merge main: Fast-forward
+[33m9916fc3[m HEAD@{50}: checkout: moving from main to mocktestAnsif
+[33m4e5833c[m HEAD@{51}: checkout: moving from mocktestAnsif to main
+[33m9916fc3[m HEAD@{52}: checkout: moving from main to mocktestAnsif
+[33m4e5833c[m HEAD@{53}: pull --tags origin main: Fast-forward
+[33mf669b93[m HEAD@{54}: checkout: moving from mocktestAnsif to main
+[33m9916fc3[m HEAD@{55}: merge main: Merge made by the 'ort' strategy.
+[33m092a15a[m HEAD@{56}: checkout: moving from main to mocktestAnsif
+[33mf669b93[m HEAD@{57}: pull origin main: Fast-forward
+[33mcd25faa[m HEAD@{58}: checkout: moving from mocktestAnsif to main
+[33m092a15a[m HEAD@{59}: commit: admin token fix
+[33m0fb4d07[m HEAD@{60}: merge main: Merge made by the 'ort' strategy.
+[33m5569e1c[m HEAD@{61}: checkout: moving from main to mocktestAnsif
+[33mcd25faa[m HEAD@{62}: pull origin main: Fast-forward
+[33m9e2e1c0[m HEAD@{63}: checkout: moving from mocktestAnsif to main
+[33m5569e1c[m HEAD@{64}: commit: credits
+[33m64edc16[m HEAD@{65}: commit: login page logic
+[33m2b7b8e0[m HEAD@{66}: commit: contact
+[33mbcff8cd[m HEAD@{67}: merge main: Merge made by the 'ort' strategy.
+[33me045387[m HEAD@{68}: checkout: moving from main to mocktestAnsif
+[33m9e2e1c0[m HEAD@{69}: pull origin main: Fast-forward
+[33m9f4c3dc[m HEAD@{70}: checkout: moving from mocktestAnsif to main
+[33me045387[m HEAD@{71}: commit: img format
+[33m1368b77[m HEAD@{72}: checkout: moving from main to mocktestAnsif
+[33m9f4c3dc[m HEAD@{73}: pull origin main: Fast-forward
+[33ma0b40d4[m HEAD@{74}: checkout: moving from mocktestAnsif to main
+[33m1368b77[m HEAD@{75}: commit: banner updated
+[33ma0b40d4[m HEAD@{76}: merge main: Fast-forward
+[33m16a53b1[m HEAD@{77}: checkout: moving from main to mocktestAnsif
+[33ma0b40d4[m HEAD@{78}: pull origin main: Fast-forward
+[33m16a53b1[m HEAD@{79}: checkout: moving from mocktestAnsif to main
+[33m16a53b1[m HEAD@{80}: merge main: Fast-forward
+[33md97a71b[m HEAD@{81}: checkout: moving from main to mocktestAnsif
+[33m16a53b1[m HEAD@{82}: pull origin main: Fast-forward
+[33m1dda125[m HEAD@{83}: checkout: moving from mocktestAnsif to main
+[33md97a71b[m HEAD@{84}: commit: navbar updated
+[33m1cd5198[m HEAD@{85}: commit: cursor
+[33m1dda125[m HEAD@{86}: merge main: Fast-forward
+[33m0b6fc25[m HEAD@{87}: checkout: moving from main to mocktestAnsif
+[33m1dda125[m HEAD@{88}: pull origin main: Fast-forward
+[33m963fe32[m HEAD@{89}: checkout: moving from mocktestAnsif to main
+[33m0b6fc25[m HEAD@{90}: checkout: moving from main to mocktestAnsif
+[33m963fe32[m HEAD@{91}: pull origin main: Fast-forward
+[33m21771fe[m HEAD@{92}: checkout: moving from mocktestAnsif to main
+[33m0b6fc25[m HEAD@{93}: checkout: moving from main to mocktestAnsif
+[33m21771fe[m HEAD@{94}: checkout: moving from mocktestAnsif to main
+[33m0b6fc25[m HEAD@{95}: checkout: moving from main to mocktestAnsif
+[33m21771fe[m HEAD@{96}: checkout: moving from mocktestAnsif to main
+[33m0b6fc25[m HEAD@{97}: merge main: Merge made by the 'ort' strategy.
+[33ma0bc261[m HEAD@{98}: checkout: moving from main to mocktestAnsif
+[33m21771fe[m HEAD@{99}: pull origin main: Fast-forward
+[33mdcf2c7f[m HEAD@{100}: checkout: moving from mocktestAnsif to main
+[33ma0bc261[m HEAD@{101}: commit: main keam backend added
+[33mb242166[m HEAD@{102}: commit (merge): main test added
+[33m0c1ef3f[m HEAD@{103}: checkout: moving from main to mocktestAnsif
+[33mdcf2c7f[m HEAD@{104}: pull origin main: Fast-forward
+[33m26549e7[m HEAD@{105}: checkout: moving from mocktestAnsif to main
+[33m0c1ef3f[m HEAD@{106}: commit: new updated
+[33m26549e7[m HEAD@{107}: checkout: moving from main to mocktestAnsif
+[33m26549e7[m HEAD@{108}: checkout: moving from mocktestAnsif to main
+[33m26549e7[m HEAD@{109}: checkout: moving from main to mocktestAnsif
+[33m26549e7[m HEAD@{110}: checkout: moving from mocktestAnsif to main
+[33m26549e7[m HEAD@{111}: merge main: Fast-forward
+[33mff61472[m HEAD@{112}: checkout: moving from main to mocktestAnsif
+[33m26549e7[m HEAD@{113}: pull origin main: Fast-forward
+[33md99847a[m HEAD@{114}: checkout: moving from mocktestAnsif to main
+[33mff61472[m HEAD@{115}: checkout: moving from main to mocktestAnsif
+[33md99847a[m HEAD@{116}: pull origin main: Fast-forward
+[33m00606f4[m HEAD@{117}: checkout: moving from mocktestAnsif to main
+[33mff61472[m HEAD@{118}: commit: banner change
+[33m3985820[m HEAD@{119}: checkout: moving from main to mocktestAnsif
+[33m00606f4[m HEAD@{120}: pull origin main: Fast-forward
+[33m447c41a[m HEAD@{121}: checkout: moving from mocktestAnsif to main
+[33m3985820[m HEAD@{122}: commit: admin page updated
+[33m48437ae[m HEAD@{123}: commit: questions added
+[33mb15235b[m HEAD@{124}: checkout: moving from main to mocktestAnsif
+[33m447c41a[m HEAD@{125}: pull origin main: Fast-forward
+[33me511c9c[m HEAD@{126}: checkout: moving from mocktestAnsif to main
+[33mb15235b[m HEAD@{127}: commit: performance chart added
+[33m0eeb2e1[m HEAD@{128}: checkout: moving from main to mocktestAnsif
+[33me511c9c[m HEAD@{129}: pull origin main: Fast-forward
+[33m3fb572a[m HEAD@{130}: checkout: moving from mocktestAnsif to main
+[33m0eeb2e1[m HEAD@{131}: commit: score store in db
+[33m3fb572a[m HEAD@{132}: merge main: Fast-forward
+[33mb436298[m HEAD@{133}: checkout: moving from main to mocktestAnsif
+[33m3fb572a[m HEAD@{134}: pull origin main: Fast-forward
+[33m109059d[m HEAD@{135}: checkout: moving from mocktestAnsif to main
+[33mb436298[m HEAD@{136}: commit: debug btn
+[33m2579d67[m HEAD@{137}: checkout: moving from main to mocktestAnsif
+[33m109059d[m HEAD@{138}: pull origin main: Fast-forward
+[33meee6453[m HEAD@{139}: checkout: moving from mocktestAnsif to main
+[33m2579d67[m HEAD@{140}: commit: scrollTo mocktest
+[33m7dca5d6[m HEAD@{141}: checkout: moving from main to mocktestAnsif
+[33meee6453[m HEAD@{142}: pull origin main: Fast-forward
+[33m8464759[m HEAD@{143}: checkout: moving from mocktestAnsif to main
+[33m7dca5d6[m HEAD@{144}: commit: auth style
+[33m8464759[m HEAD@{145}: merge main: Fast-forward
+[33mcedaf41[m HEAD@{146}: checkout: moving from main to mocktestAnsif
+[33m8464759[m HEAD@{147}: pull origin main: Fast-forward
+[33m1b23497[m HEAD@{148}: checkout: moving from mocktestAnsif to main
+[33mcedaf41[m HEAD@{149}: commit: login form
+[33m4eb3e2c[m HEAD@{150}: checkout: moving from main to mocktestAnsif
+[33m1b23497[m HEAD@{151}: pull origin main: Fast-forward
+[33m08a69ac[m HEAD@{152}: checkout: moving from mocktestAnsif to main
+[33m4eb3e2c[m HEAD@{153}: commit: ignore
+[33m08a69ac[m HEAD@{154}: merge main: Fast-forward
+[33m0b41063[m HEAD@{155}: checkout: moving from main to mocktestAnsif
+[33m08a69ac[m HEAD@{156}: pull origin main: Fast-forward
+[33m75aa640[m HEAD@{157}: checkout: moving from mocktestAnsif to main
+[33m0b41063[m HEAD@{158}: commit: react-19 fix
+[33m4f56f17[m HEAD@{159}: checkout: moving from main to mocktestAnsif
+[33m75aa640[m HEAD@{160}: pull origin main: Fast-forward
+[33m234f01b[m HEAD@{161}: checkout: moving from mocktestAnsif to main
+[33m4f56f17[m HEAD@{162}: commit: logout btn
+[33m88ae7cc[m HEAD@{163}: commit: m
+[33m234f01b[m HEAD@{164}: checkout: moving from main to mocktestAnsif
+[33m234f01b[m HEAD@{165}: checkout: moving from mocktestAnsif to main
+[33m234f01b[m HEAD@{166}: merge main: Fast-forward
+[33ma36f5df[m HEAD@{167}: checkout: moving from main to mocktestAnsif
+[33m234f01b[m HEAD@{168}: checkout: moving from mocktestAnsif to main
+[33ma36f5df[m HEAD@{169}: checkout: moving from main to mocktestAnsif
+[33m234f01b[m HEAD@{170}: checkout: moving from mocktestAnsif to main
+[33ma36f5df[m HEAD@{171}: checkout: moving from main to mocktestAnsif
+[33m234f01b[m HEAD@{172}: pull origin main --rebase: Fast-forward
+[33ma36f5df[m HEAD@{173}: merge mocktestAnsif: Fast-forward
+[33mfa8106e[m HEAD@{174}: checkout: moving from mocktestAnsif to main
+[33ma36f5df[m HEAD@{175}: merge origin/mocktestsree: Merge made by the 'ort' strategy.
+[33m5876b83[m HEAD@{176}: checkout: moving from mocktestAnsif to mocktestAnsif
+[33m5876b83[m HEAD@{177}: merge main: Merge made by the 'ort' strategy.
+[33md1c5a5c[m HEAD@{178}: checkout: moving from main to mocktestAnsif
+[33mfa8106e[m HEAD@{179}: commit: updated
+[33m3ca2698[m HEAD@{180}: checkout: moving from mocktestAnsif to main
+[33md1c5a5c[m HEAD@{181}: checkout: moving from main to mocktestAnsif
+[33m3ca2698[m HEAD@{182}: commit: updated
+[33mbfca021[m HEAD@{183}: checkout: moving from mocktestAnsif to main
+[33md1c5a5c[m HEAD@{184}: commit: Your changes description
+[33mbfca021[m HEAD@{185}: checkout: moving from main to mocktestAnsif
+[33mbfca021[m HEAD@{186}: checkout: moving from main to main
+[33mbfca021[m HEAD@{187}: commit: Added new features and resolved conflicts
+[33m6dec7a7[m HEAD@{188}: commit: git
+[33m8b8cb5e[m HEAD@{189}: commit (merge): Resolved merge conflict
+[33md199e12[m HEAD@{190}: commit: Save local changes before pulling
+[33mb343ec6[m HEAD@{191}: commit: app changed
+[33me412493[m HEAD@{192}: commit: git
+[33m384ccc5[m HEAD@{193}: commit: route in app.jsx
+[33mae40d36[m HEAD@{194}: pull --tags origin main: Fast-forward
+[33md45302f[m HEAD@{195}: commit: route added
+[33mc8eb36b[m HEAD@{196}: pull --tags origin main: Fast-forward
+[33maf0eadc[m HEAD@{197}: commit: login bg fix
+[33m54def6b[m HEAD@{198}: commit: login auth added
+[33m007f34e[m HEAD@{199}: commit: added admin folder
+[33m4829dbd[m HEAD@{200}: pull origin main: Merge made by the 'ort' strategy.
+[33m26637fb[m HEAD@{201}: commit: clg managed
+[33m990bb3f[m HEAD@{202}: commit: auth fixed
+[33m186cfba[m HEAD@{203}: commit: route fixed
+[33mb471f9c[m HEAD@{204}: clone: from https://github.com/mransif/work-one.git
