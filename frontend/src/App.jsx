@@ -31,7 +31,7 @@ const App = () => {
       />
 
       {
-        token &&
+        // token &&
         <Navbar />
       }
       <Routes>
