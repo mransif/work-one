@@ -83,6 +83,7 @@ const NavBar = () => {
                 alt="logo"
                 className="md:w-45 cursor-pointer w-25"
               />
+              <p className="font-sans text-[#37474F]">INSTITUTION CODE- <span className="font-bold">MCK</span></p>
             </div>
             <div className="flex h-full items-center space-x-4 ">
               <div className="hidden md:block space-x-4">
