@@ -16,7 +16,7 @@ const Auth = () => {
     address: "",
     password: "",
     confirmPassword: "",
-    board: "" // Added board field
+    board: "" 
   });
 
   // Handle input changes
@@ -67,7 +67,7 @@ const Auth = () => {
           userDetails.phone,
           userDetails.address,
           userDetails.password,
-          userDetails.board // Added board to signup
+          userDetails.board 
         );
         setIsLogin(true); // Switch to login form after successful signup
       } catch (error) {
