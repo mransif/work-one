@@ -33,7 +33,7 @@ const AdminContextProvider = ({ children }) => {
             }),
             (response) => {
                 setStudents(response.data);
-                toast.success("Student details loaded successfully");
+
             },
             () => toast.error("Failed to load student details")
         );
@@ -106,7 +106,6 @@ const AdminContextProvider = ({ children }) => {
         localStorage.removeItem("adminToken");
         localStorage.removeItem("tokenCreationTime");
         setToken(null);
-        toast.success("Logged out successfully");
     };
 
     // Handle token expiration globally
