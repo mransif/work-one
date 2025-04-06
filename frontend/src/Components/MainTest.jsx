@@ -17,6 +17,7 @@ const MainTest = () => {
   const [visitedQuestions, setVisitedQuestions] = useState({});
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const sidebarRef = useRef(null);
+  const [confirmSubmit, setConfirmSubmit] = useState(false)
 
   const { submitTestResult, mainTestScores, getMainTestScores, userId } = useContext(AppContext);
 
@@ -91,7 +92,7 @@ const MainTest = () => {
       },
       {
         "question": "Integral of (x⁴ - 8 x² + 16 x) * (4 x³ - 16 x + 16) dx =",
-        "options": ["x⁴ + 4 x³ - 8 x² + 16 x + 7 + C", "(1/2) * (x⁴ - 8 x² + 16 x)² + C", "(1/2) * (x⁴ - 8 x² + 16 x)² + C", "(1/2) * (x⁴ - 8 x² + 16 x)² + C", "(1/4) * (x⁴ - 8 x² + 16 x)² + C"],
+        "options": ["x⁴ + 4 x³ - 8 x² + 16 x + 7 + C", "(1/2) * (x⁴ - 8 x² + 16 x)² + C", "(1/3) * (x⁴ - 8 x² + 16 x)² + C", "(1/2) * (x⁴ - 7 x² + 16 x)² + C", "(1/4) * (x⁴ - 8 x² + 16 x)² + C"],
         "correctAnswer": "(1/2) * (x⁴ - 8 x² + 16 x)² + C"
       },
       {
@@ -1113,15 +1114,18 @@ const MainTest = () => {
   const answeredCount = getAnsweredCount();
 
   return (
-    <div className="min-h-screen  bg-fixed bg-cover overflow-x-hidden flex flex-col items-center p-4"
+    <div className="min-h-screen  bg-fixed bg-cover overflow-x-hidden flex flex-col items-center p-4 relative"
       style={{ backgroundImage: "url(/images/main-bg.webp)" }}
     >
-      <h1 className="text-4xl font-bold m-3 text-[#37474F]">KEAM MAIN TEST</h1>
+
+<div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/30"></div>
+    
+      <h1 className="text-4xl font-bold m-3 text-zinc-700 z-10">KEAM MAIN TEST</h1>
 
       {!isStarted && !testResults && (
         <div className="w-full max-w-4xl">
           {/* Test Information */}
-          <div className="backdrop-blur-lg border border-gray-100 p-6 rounded-lg shadow-lg mb-8 bg-white bg-opacity-80">
+          <div className="backdrop-blur-lg bg-[#ffffff3a] border border-gray-100 p-6 rounded-lg shadow-lg mb-8  bg-opacity-80">
             <h2 className="text-2xl font-bold text-[#37474F] mb-4">Examination Details</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -1187,7 +1191,7 @@ const MainTest = () => {
 
           {/* Past Score Section */}
           {mainTestScores && mainTestScores.length > 0 && (
-            <div className="w-full max-w-4xl rounded-xl shadow-xl p-8 backdrop-blur-lg border border-gray-100 bg-white bg-opacity-80">
+            <div className="w-full max-w-4xl rounded-xl shadow-xl p-8 backdrop-blur-lg border border-gray-100  bg-opacity-80">
               <div className="flex items-center mb-6">
                 <div className="w-1 h-8 bg-blue-500 rounded-full mr-3"></div>
                 <h2 className="text-2xl font-bold bg-clip-text text-[#37474F]">Previous Test Performance</h2>
@@ -1266,10 +1270,13 @@ const MainTest = () => {
 
               {/* Mobile question navigator button */}
               <button
-                className="mobile-nav-toggle md:hidden flex items-center justify-center p-2 rounded-md   "
+                className="mobile-nav-toggle md:hidden flex items-center justify-center p-2 rounded-md gap-2 bg-white text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 onClick={() => setMobileNavOpen(true)}
                 aria-label="Open question navigator"
               >
+                <div className="text-sm font-semibold text-gray-600">
+                  Q {questionIndex + 1}/{questions.length}
+                </div>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -1291,9 +1298,7 @@ const MainTest = () => {
                 </div>
               ))}
             </div>
-            <div className="text-sm font-semibold text-gray-600">
-              Q {questionIndex + 1}/{questions.length}
-            </div>
+
           </div>
 
           <div className="flex flex-1 overflow-hidden">
@@ -1340,7 +1345,7 @@ const MainTest = () => {
                       <button
                         onClick={() => navigateQuestion(questionIndex - 1)}
                         disabled={questionIndex === 0}
-                        className={`py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base ${questionIndex === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-green-500 text-white hover:bg-green-600'
+                        className={`py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base ${questionIndex === 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#01B707] text-white hover:bg-green-600'
                           }`}
                       >
                         Previous
@@ -1357,7 +1362,7 @@ const MainTest = () => {
                       {questionIndex < questions.length - 1 ? (
                         <button
                           onClick={() => navigateQuestion(questionIndex + 1)}
-                          className="bg-green-500 text-white py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base hover:bg-green-600"
+                          className="bg-[#01B707] text-white py-2 px-4 md:px-6 rounded-lg font-medium text-sm md:text-base hover:bg-green-600"
                         >
                           Next
                         </button>
@@ -1371,9 +1376,46 @@ const MainTest = () => {
                       )}
                     </div>
                   </div>
+                  <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 ">
+                    <button
+                      onClick={() => {
+                        setConfirmSubmit(true)
+                      }}
+                      className="w-full bg-[#01B707] text-white py-3 rounded-lg font-bold hover:bg-green-600 transition"
+                    >
+                      Submit Test
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
+
+            {/* confirming submit */}
+            {confirmSubmit && (
+              <div className="fixed inset-0 bg-[#11111134] backdrop-blur-md bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 md:w-1/3">
+                  <h2 className="text-lg font-bold mb-4">Confirm Submission</h2>
+                  <p className="text-gray-700 mb-4">Are you sure you want to submit the test? You won't be able to change your answers after submission.</p>
+                  <div className="flex justify-between">
+                    <button
+                      onClick={() => setConfirmSubmit(false)}
+                      className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        setConfirmSubmit(false);
+                        evaluateAnswers();
+                      }}
+                      className="bg-[#01B707] text-white py-2 px-4 rounded-lg hover:bg-green-600"
+                    >
+                      Yes, Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Mobile Question Navigator Panel - Slide in from right */}
             <div
@@ -1437,17 +1479,7 @@ const MainTest = () => {
                 </div>
               </div>
 
-              <div className="relative bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 md:hidden">
-                <button
-                  onClick={() => {
-                    setMobileNavOpen(false);
-                    evaluateAnswers();
-                  }}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
-                >
-                  Submit Test
-                </button>
-              </div>
+
             </div>
 
             {/* Desktop Question Navigation Panel */}
@@ -1497,14 +1529,7 @@ const MainTest = () => {
                 })}
               </div>
 
-              <div className="mt-8">
-                <button
-                  onClick={evaluateAnswers}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
-                >
-                  Submit Test
-                </button>
-              </div>
+
             </div>
           </div>
         </div>
@@ -1579,7 +1604,7 @@ const MainTest = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
   );
 };
 
