@@ -1238,7 +1238,7 @@ const MainTest = () => {
       )}
 
       {isStarted && !testResults && (
-        <div className="fixed inset-0 bg-white overflow-hidden flex flex-col z-40">
+        <div className="fixed inset-0 bg-white overflow-hidden flex flex-col z-40" onWheel={(e) => e.stopPropagation()} data-lenis-prevent>
           {/* Top Bar with Timer and Subjects */}
           <div className="bg-orange-100 text-gray-700 p-3 flex justify-between items-center shadow-md">
             <div className="flex items-center">
