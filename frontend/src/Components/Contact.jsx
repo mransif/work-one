@@ -132,32 +132,10 @@ const Contact = () => {
                             <h3 className="text-xl font-bold mb-2">Musaliar College of Engineering and Technology</h3>
                             <p className="text-sm opacity-75">Empowering Education, Engineering Excellence</p>
                         </div>
-
-                        <div className="w-full md:w-auto">
-                            <p className="text-sm font-medium mb-2 border-b border-amber-200 pb-1 px-3 ">Developed By</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                                <div className="flex flex-col items-center pb-1">
-                                    <p className="font-semibold text-sm mb-0.5">Ansif Muhammed N N</p>
-                                    <SocialButton
-                                        email={"ansifpta2003@gmail.com"}
-                                        linkedIn={"https://www.linkedin.com/in/ansif1/"}
-                                        gitHub={"https://github.com/mransif"}
-                                    />
-                                </div>
-                                <div className="flex flex-col items-center pb-1">
-                                    <p className="font-semibold text-sm mb-0.5">Sreehari S</p>
-                                    <SocialButton
-                                        email={"sreehari200411@gmail.com"}
-                                        linkedIn={"https://www.linkedin.com/in/mrsreehari/"}
-                                        gitHub={"https://github.com/MrSreehari-S"}
-                                    />
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div className="border-t border-amber-200 pt-2 text-center">
-                        <p className="text-sm">&copy; {new Date().getFullYear()} Musaliar College of Engineering and Technology. All Rights Reserved</p>
+                        <p className="text-sm">&copy; {new Date().getFullYear()} Department of Computer Science, Musaliar College of Engineering and Technology. All Rights Reserved</p>
                     </div>
                 </div>
             </footer>
