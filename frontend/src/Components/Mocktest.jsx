@@ -1202,7 +1202,7 @@ CHEMISTRY: [
 
       {!selectedSubject && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-8 w-full max-w-4xl mb-6 sm:mb-8 px-2 sm:px-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-8 w-full max-w-4xl  mb-6 sm:mb-8 px-2 sm:px-0">
             {subjects.map((subject, index) => (
               <div
                 key={index}
@@ -1379,7 +1379,7 @@ CHEMISTRY: [
       )}
 
       {selectedSubject && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40">
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40" onWheel={(e) => e.stopPropagation()} data-lenis-prevent>
           <div className="bg-white w-full h-full flex flex-col sm:flex-row overflow-hidden">
             {!testResults ? (
               
