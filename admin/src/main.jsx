@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import AdminContextProvider from './context/AdminContext'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/admin">
     <AdminContextProvider>
       <App />
     </AdminContextProvider>
