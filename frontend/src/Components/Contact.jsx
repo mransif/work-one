@@ -65,14 +65,14 @@ const Contact = () => {
     };
 
     return (
-        <div className="flex flex-col justify-between items-center min-h-screen bg-cover bg-fixed bg-center p-4 relative"
+        <div className="flex flex-col justify-between items-center min-h-screen bg-cover bg-fixed bg-center relative"
             style={{ backgroundImage: "url(/images/mcet.webp)" }}>
 
             {/* Overlay with gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
 
             {/* Content */}
-            <div className="relative z-10 w-full max-w-6xl mx-auto pt-20 pb-8 flex flex-col items-center">
+            <div className="relative z-10 w-full max-w-6xl mx-auto pt-20 pb-8 flex flex-col items-center p-4">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
