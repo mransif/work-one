@@ -177,11 +177,12 @@ const Banner = () => {
                 animationStage >= 3 ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            <StyledButton text="Challenge Yourself: Mock Test" onClick={handleMockTestClick} />
+            <StyledButton text="Challenge Yourself: Mock Test" onClick={handleMockTestClick}  />
 
             <div className="flex gap-2 sm:gap-4 mt-2 xs:mt-0">
               {/* Animated anchor for Rules & Regulations */}
               <a
+              
                 href="#"
                 onClick={openRulesModal}
                 className="text-[#003631] hover:text-[#00665f] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 relative group whitespace-nowrap"
@@ -224,7 +225,7 @@ const Banner = () => {
 
       {/* Rules & Regulations Modal - improved for mobile */}
       {showRulesModal && (
-        <div
+        <div onWheel={(e) => e.stopPropagation()} data-lenis-prevent
           className="fixed inset-0 bg-[#08080844] backdrop-blur-lg bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={(e) => handleCloseModal(e, setShowRulesModal)}
         >
@@ -320,7 +321,7 @@ const Banner = () => {
 
       {/* Tips & Tricks Modal - improved for mobile */}
       {showTipsModal && (
-        <div
+        <div onWheel={(e) => e.stopPropagation()} data-lenis-prevent
           className="fixed inset-0 bg-[#08080844] backdrop-blur-lg z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={(e) => handleCloseModal(e, setShowTipsModal)}
         >
