@@ -22,15 +22,15 @@ app.use(cors({
 app.use("/api/user", studentRoutes);
 app.use("/api/admin", adminRoutes);
 
-// ✅ Serve user frontend
-const userFrontendPath = path.join(__dirname, '../frontend/dist');
+// Update paths to serve from the public folder
+const userFrontendPath = path.join(__dirname, 'public');
 app.use(express.static(userFrontendPath));
 app.get('/', (req, res) => {
   res.sendFile(path.join(userFrontendPath, 'index.html'));
 });
 
-// ✅ Serve admin panel (static files first)
-const adminPanelPath = path.join(__dirname, '../admin/dist');
+// Update admin panel path
+const adminPanelPath = path.join(__dirname, 'public/admin');
 app.use('/admin', express.static(adminPanelPath));
 
 // Serve index.html **only for real routes**, not assets
