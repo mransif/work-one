@@ -87,7 +87,7 @@ const NavBar = () => {
       >
         <header className="absolute top-1/2 w-full -translate-y-1/2">
           <nav className="flex size-full items-center justify-between p-4 bg-[#FFEDD5] rounded-xl">
-            <div className="flex items-center gap-7">
+            <div className="flex items-center gap-5">
               <img
                 onClick={() => window.location.href = '/'}
                 src="/images/mcet-logo.webp"
@@ -97,11 +97,11 @@ const NavBar = () => {
               <p className="font-sans text-[#37474F]">INSTITUTION CODE- <span className="font-bold">MCK</span></p>
             </div>
             <div className="flex h-full items-center space-x-4 ">
-              <div className="hidden md:block space-x-4">
+              <div className="hidden lg:block space-x-4">
                 <Link to="home" smooth={true} duration={500}>
                   <button className="nav-hover-btn text-[#37474F] hover:text-gray-900">Home</button>
                 </Link>
-                <button 
+                <button
                   className="nav-hover-btn text-[#37474F] hover:text-gray-900"
                   onClick={token ? null : handleTestsClick}
                 >
@@ -113,7 +113,7 @@ const NavBar = () => {
               </div>
 
               {token ? (
-                <div className="items-center gap-1 cursor-pointer text-[#37474F] hover:text-gray-800 nav-hover-btn hidden md:flex">
+                <div className="items-center gap-1 cursor-pointer text-[#37474F] hover:text-gray-800 nav-hover-btn hidden lg:flex">
                   <button
                     onClick={handleLogout}
                     className="font-medium"
@@ -133,8 +133,8 @@ const NavBar = () => {
                   <BiLogIn className="text-lg" />
                 </div>
               )}
-
-              <div className="md:hidden sm:block">
+              {/* phone dropdown */}
+              <div className="lg:hidden block">
                 <Menu
                   token={token}
                   logoutUser={handleLogout}
