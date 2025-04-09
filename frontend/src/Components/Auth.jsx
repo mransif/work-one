@@ -16,7 +16,7 @@ const Auth = () => {
     address: "",
     password: "",
     confirmPassword: "",
-    board: "" 
+    board: ""
   });
 
   // Handle input changes
@@ -67,7 +67,7 @@ const Auth = () => {
           userDetails.phone,
           userDetails.address,
           userDetails.password,
-          userDetails.board 
+          userDetails.board
         );
         setIsLogin(true); // Switch to login form after successful signup
       } catch (error) {
@@ -129,7 +129,7 @@ const Auth = () => {
               {/* Address Input */}
               <div>
                 <label htmlFor="address" className="block text-sm font-medium">
-                  Address
+                  District
                 </label>
                 <input
                   id="address"
@@ -138,7 +138,7 @@ const Auth = () => {
                   value={formData.address}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
-                  placeholder="Enter your address"
+                  placeholder="Enter your district"
                   required
                 />
               </div>
@@ -218,7 +218,7 @@ const Auth = () => {
           )}
 
           {/* Submit Button */}
-          <Button 
+          <Button
             text={isLogin ? "Login" : "Sign Up"}
             className="w-full bg-[#01B707] text-white py-2 px-4 rounded-md transition"
             type="submit"
