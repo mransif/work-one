@@ -7,12 +7,14 @@ import { IoClose } from "react-icons/io5";
 import Mocktest from "./Mocktest";
 import MainTest from "./MainTest";
 import BlobCursor from "./BlobCursor/BlobCursor";
+import LbsTest from "./LbsTest";
 
 
 const Banner = () => {
   const { token } = useContext(AppContext);
   const navigate = useNavigate();
   const mockTestRef = useRef(null);
+  const lbsTestRef = useRef(null);
   const [animationStage, setAnimationStage] = useState(0);
   const [showRulesModal, setShowRulesModal] = useState(false);
   const [showTipsModal, setShowTipsModal] = useState(false);
@@ -35,8 +37,8 @@ const Banner = () => {
   const handleMockTestClick = () => {
     if (token) {
       // If user is logged in, scroll to mock test section
-      if (mockTestRef.current) {
-        mockTestRef.current.scrollIntoView({ behavior: "smooth" });
+      if (lbsTestRef.current) {
+        lbsTestRef.current.scrollIntoView({ behavior: "smooth" });
       }
     } else {
       // If user is not logged in, redirect to auth page
@@ -63,14 +65,14 @@ const Banner = () => {
         className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-cover bg-center p-2 sm:p-4 md:p-8 lg:p-10"
         style={{ backgroundImage: "url(/images/mcet-bg.webp)" }}
       >
-      <BlobCursor />
+        <BlobCursor />
         {/* Main content container - adjusted for better small screen experience */}
         <div className="w-full lg:w-2/3 xl:w-1/2 min-h-[60vh] md:min-h-[50vh] lg:h-[75vh] pointer-events-none text-center p-3 sm:p-5 md:p-6 rounded-lg mb-4 md:mb-0 flex flex-col items-center justify-center  md:bg-transparent">
           <div className="relative my-2 sm:my-4 md:my-6 px-1 sm:px-2">
             {/* First line - optimized for all screen sizes */}
             <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#003631] font-serif relative overflow-hidden leading-tight">
               <span className="inline-block relative">
-                {["K", "E", "A", "M"].map((letter, index) => (
+                {["K", "E", "A", "M & L", "B", "S"].map((letter, index) => (
                   <span
                     key={index}
                     className="inline-block transition-all duration-700"
@@ -134,8 +136,8 @@ const Banner = () => {
                   opacity: animationStage >= 2 ? 1 : 0,
                 }}
               >
-                Unlock Your Engineering Dreams 
-                <br className="md:hidden" /> 
+                Unlock Your Dreams
+                <br className="md:hidden" />
                 <span className="hidden md:inline"> — </span>
                 <span className="text-[#005249] italic">Where Aspirations Transform into Achievements</span>
               </span>
@@ -158,14 +160,13 @@ const Banner = () => {
               transform: animationStage >= 3 ? "scale(1)" : "scale(0.9)",
             }}
           >
-            <span className="font-bold">⚠️ Breaking KEAM 2025 Update! ⚠️</span> Critical exam regulation 
-            changes have been announced that will impact your preparation strategy. 
-            <span className="font-semibold italic hidden sm:inline"> Don't risk falling behind — </span>
-            explore the <span 
-                      className="underline font-semibold cursor-pointer pointer-events-auto" 
-                      onClick={openRulesModal}
-                    >Rules and Guidelines</span> section 
-            to master these changes and secure your competitive edge!
+            <span className="font-bold">📢 LBS 2025 Exam Date Announced! 📢</span> The official schedule for the LBS Entrance Exam has been released — now’s the time to focus your preparation!
+            <span className="font-semibold italic hidden sm:inline"> Don’t wait until the last minute — </span>
+            check the <span
+              className="underline font-semibold cursor-pointer pointer-events-auto"
+              onClick={openRulesModal}
+            >Rules and Guidelines</span> section
+            for important syllabus details help you stay ahead.
           </p>
 
           {/* Button and Anchors container - optimized for mobile and desktop */}
@@ -177,12 +178,12 @@ const Banner = () => {
                 animationStage >= 3 ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            <StyledButton text="Challenge Yourself: Mock Test" onClick={handleMockTestClick}  />
+            <StyledButton text="Challenge Yourself: Mock Test" onClick={handleMockTestClick} />
 
             <div className="flex gap-2 sm:gap-4 mt-2 xs:mt-0">
               {/* Animated anchor for Rules & Regulations */}
               <a
-              
+
                 href="#"
                 onClick={openRulesModal}
                 className="text-[#003631] hover:text-[#00665f] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 relative group whitespace-nowrap"
@@ -193,7 +194,7 @@ const Banner = () => {
                   animationDelay: "200ms",
                 }}
               >
-                <span className="hidden xs:inline">Essential </span>Rules & Guidelines
+                <span className="hidden xs:inline">Essential </span>Rules & Guidelines(LBS)
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#003631] transition-all duration-300 group-hover:w-full"></span>
               </a>
 
@@ -235,75 +236,76 @@ const Banner = () => {
           >
             <div className="flex justify-between items-center mb-2 sm:mb-4">
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#003631] pr-2">
-                Master the KEAM Blueprint: Your Roadmap to Success
+                Navigating Your Objective Test: Instructions for Candidates
               </h2>
+              {/* Replace with your actual close button component */}
               <button
                 onClick={() => setShowRulesModal(false)}
                 className="text-gray-500 hover:text-gray-700 text-lg sm:text-xl flex-shrink-0"
               >
-                <IoClose />
+                {/* <IoClose /> */} X {/* Placeholder for close icon */}
               </button>
             </div>
             <div className="space-y-3 sm:space-y-4">
               <h3 className="text-base sm:text-lg font-semibold text-[#003631]">
-                Exam Structure & Scoring Mechanics
+                Exam Structure & Scoring Dynamics
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>
-                  <span className="font-semibold">Engineering Track (B.Tech):</span> Tackle 150 
-                  strategic questions across 3 disciplines — 75 in Mathematics, 45 in 
-                  Physics, and 30 in Chemistry — within a 180-minute intellectual marathon.
+                  <span className="font-semibold">Assessment Format:</span> 120 objective multiple-choice questions over 120 minutes.
                 </li>
                 <li>
-                  <span className="font-semibold">Strategic Scoring:</span> Each correct response 
-                  rewards you with +4 marks, while each misstep costs you 1 mark — precision is your ally.
+                  Each question has four options (A, B, C, D); choose the most appropriate.
+                </li>
+                <li>
+                  <span className="font-semibold">Correct Answers:</span> Earn 1 mark per question.
+                </li>
+                <li>
+                  <span className="font-semibold">No Deduction:</span> No marks deducted for incorrect or unanswered questions.
+                </li>
+                <li>
+                  Invalid marking (multiple bubbles, erasing, overwriting, partial) counts as an incorrect answer.
                 </li>
               </ul>
 
               <h3 className="text-base sm:text-lg font-semibold text-[#003631]">
-                Exam Day Protocol: Your Success Checklist
+                Exam Day Protocol
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>
-                  Carry your Admit Card and government-issued photo ID — your essential credentials
+                  Fill the OMR Sheet precisely; incorrectly filled sheets won't be evaluated.
                 </li>
                 <li>
-                  Arrive 30+ minutes early to calibrate your mindset for peak performance
+                  Write your 8-digit Roll Number and the Booklet Version on the OMR sheet and booklet respectively.
                 </li>
                 <li>
-                  All electronic devices (calculators, phones, smartwatches) are strictly 
-                  forbidden in the examination arena
+                  Verify your booklet has 120 legible questions; report issues immediately to the Invigilator.
                 </li>
                 <li>
-                  Black/blue ballpoint pens only — your tools of precision for marking answers
+                  Use only black or blue ink ballpoint pens for marking the OMR sheet.
+                </li>
+                <li>
+                  Use blank pages in the booklet for rough work and calculations.
+                </li>
+                <li>
+                  Prohibited items include Watch, Calculator, Mobile phone, and any other Electronic instrument.
+                </li>
+                <li>
+                  Return your OMR Sheet and Hall Ticket to the Invigilator; you can keep the booklet and OMR copy.
                 </li>
               </ul>
 
               <h3 className="text-base sm:text-lg font-semibold text-[#003631]">
-                Qualification Parameters: Your Entry Requirements
+                Post-Exam Procedures & Integrity Guidelines
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
+                <li>Answer keys will be published on www.lbscentre.kerala.gov.in post-exam.</li>
                 <li>
-                  12th standard completion or equivalent — your educational foundation
+                  Submit answer key complaints with supporting documents to ddc.lbs@kerala.gov.in within 3 calendar days (by 5:00 p.m.). Expert decisions are final.
                 </li>
+                <li>Answer sheets will not be valued if malpractice is detected.</li>
                 <li>
-                  Minimum 50% aggregate in Physics, Chemistry, and Mathematics — your academic threshold
-                </li>
-                <li>
-                  Minimum age requirement: 17 years by December 31st of admission year — your timeline checkpoint
-                </li>
-              </ul>
-
-              <h3 className="text-base sm:text-lg font-semibold text-[#003631]">
-                Critical Advisories: Your Integrity Guidelines
-              </h3>
-              <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
-                <li>Zero tolerance for malpractice — integrity is non-negotiable</li>
-                <li>
-                  The Commissioner for Entrance Examinations' decisions on eligibility are final and binding
-                </li>
-                <li>
-                  Stay vigilant: Monitor the official CEE Kerala website for crucial updates and announcements
+                  Remain in the hall until the end time and hand over your OMR sheet to the Invigilator before leaving.
                 </li>
               </ul>
             </div>
@@ -331,12 +333,13 @@ const Banner = () => {
           >
             <div className="flex justify-between items-center mb-2 sm:mb-4">
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#003631] pr-2">
-                KEAM Mastery: Insider Strategies for Exceptional Results
+                LBS examination: Essential Strategies
               </h2>
               <button
                 onClick={() => setShowTipsModal(false)}
                 className="text-gray-500 hover:text-gray-700 text-lg sm:text-xl flex-shrink-0"
               >
+                {/* Assuming IoClose is an icon component like react-icons/io5/IoClose */}
                 <IoClose />
               </button>
             </div>
@@ -346,19 +349,19 @@ const Banner = () => {
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>
-                  Architect a precision study blueprint with dedicated focus blocks for each subject
+                  Architect a precision study blueprint with dedicated focus blocks for each paper (Paper I & Paper II)
                 </li>
                 <li>
-                  Mine NCERT textbooks as your primary resource — they contain the core knowledge framework
+                  Utilize relevant textbooks and resources specific to the LBS SET syllabus for your chosen subject and Paper I
                 </li>
                 <li>
-                  Create tactical summary notes of formulas, reactions, and theorems for rapid recall
+                  Create tactical summary notes of key concepts, facts, and theories for rapid recall
                 </li>
                 <li>
-                  Decode exam patterns through intensive practice with previous years' challenges
+                  Analyze past LBS SET question papers to decode exam patterns and identify high-weightage areas
                 </li>
                 <li>
-                  Leverage collective intelligence through strategic study groups for enhanced problem-solving
+                  Leverage collective intelligence through strategic study groups for enhanced understanding and problem-solving
                 </li>
               </ul>
 
@@ -367,37 +370,34 @@ const Banner = () => {
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>
-                  Secure early victories by conquering familiar questions first — momentum is critical
+                  Secure early victories by tackling familiar questions first — momentum is critical
                 </li>
                 <li>
-                  Deploy precision time management — allocate strategically to conquer all questions
+                  Deploy precision time management — allocate strategically to conquer all questions in both papers
                 </li>
                 <li>
-                  When facing challenging questions, eliminate obvious decoys to optimize your selection odds
+                  When facing challenging questions, eliminate obvious incorrect options to optimize your selection odds
                 </li>
                 <li>
                   Implement the skip-and-return protocol for uncertain questions — maintain your flow
                 </li>
                 <li>
-                  Avoid time sinks — if a question drains your momentum, mark it and advance
+                  Avoid time sinks — if a question is consuming too much time, mark it and move on
                 </li>
               </ul>
 
               <h3 className="text-base sm:text-lg font-semibold text-[#003631]">
-                Subject Domination Tactics: Domain-Specific Excellence
+                Subject Focus: Mastering Paper I and Your Specialization
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>
-                  <strong>Mathematics Mastery:</strong> Relentless practice is non-negotiable. Focus your energy on 
-                  Calculus, Coordinate Geometry, and Algebra — these are your highest-yield territories
+                  <strong>Paper I (General Knowledge & Teaching Aptitude):</strong> Focus on current affairs, Kerala-specific GK, educational psychology, and teaching methodologies. Regular practice with relevant mock tests is crucial.
                 </li>
                 <li>
-                  <strong>Physics Command:</strong> Master conceptual frameworks first, then memorize formula arsenals 
-                  for rapid deployment
+                  <strong>Paper II (Your Chosen Subject):</strong> Deep dive into the core concepts and advanced topics of your postgraduate specialization based on the official syllabus. Refer to standard textbooks and previous year's question papers specific to your subject.
                 </li>
                 <li>
-                  <strong>Chemistry Conquest:</strong> Dominate Organic Chemistry reaction pathways and cement 
-                  Inorganic Chemistry principles for complete mastery
+                  <strong>Interdisciplinary Awareness:</strong> For both papers, especially Paper I, maintain awareness of interconnected topics and current developments relevant to education and general knowledge.
                 </li>
               </ul>
 
@@ -406,16 +406,17 @@ const Banner = () => {
               </h3>
               <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
                 <li>
-                  Prioritize sleep optimization, especially during the critical pre-exam week
+                  Prioritize sleep optimization, especially in the days leading up to the exam
                 </li>
                 <li>Fuel your cognitive engine with strategic nutrition and constant hydration</li>
                 <li>
                   Implement tactical breaks during intense study sessions to maintain peak mental acuity
                 </li>
-                <li>Master anxiety-control techniques to ensure optimal neural function during exams</li>
-                <li>Cultivate unwavering self-confidence backed by your preparation excellence</li>
+                <li>Practice mindfulness or relaxation techniques to manage anxiety and maintain focus during exams</li>
+                <li>Cultivate unwavering self-confidence backed by your diligent preparation</li>
               </ul>
             </div>
+
             <div className="mt-4 sm:mt-6 flex justify-end">
               <button
                 onClick={() => setShowTipsModal(false)}
@@ -425,22 +426,35 @@ const Banner = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div >
       )}
 
       {/* Only render the mock test section if user is logged in */}
-      {token && (
-        <div ref={mockTestRef} name="mocktest">
-          <Mocktest />
-        </div>
-      )}
+
+      {
+        token && (
+          <div ref={lbsTestRef} name="lbstest">
+            <LbsTest />
+          </div>
+        )
+      }
+
+      {
+        token && (
+          <div ref={mockTestRef} name="mocktest">
+            <Mocktest />
+          </div>
+        )
+      }
 
       {/* Only render the main test section if user is logged in */}
-      {token && (
-        <div name="maintest">
-          <MainTest />
-        </div>
-      )}
+      {
+        token && (
+          <div name="maintest">
+            <MainTest />
+          </div>
+        )
+      }
 
       <div name="contact">
         <Contact />
