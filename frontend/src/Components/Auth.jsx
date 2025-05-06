@@ -145,23 +145,20 @@ const Auth = () => {
 
               {/* Board Selection */}
               <div>
-                <label htmlFor="board" className="block text-sm font-medium">
-                  Educational Board
-                </label>
-                <select
-                  id="board"
-                  name="board"
-                  value={formData.board}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
-                  required
-                >
-                  <option value="" disabled>Select your board</option>
-                  <option value="CBSE">CBSE</option>
-                  <option value="ICSE">ICSE</option>
-                  <option value="State">State Board</option>
-                </select>
-              </div>
+  <label htmlFor="qualification" className="block text-sm font-medium">
+    Qualification
+  </label>
+  <input
+    id="board"
+    name="board"
+    type="text"
+    value={formData.board}
+    onChange={handleChange}
+    placeholder="e.g., Plus Two, BSc Physics, BSc Chemistry ..."
+    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 border-gray-600"
+    required
+  />
+</div>
             </>
           )}
 
