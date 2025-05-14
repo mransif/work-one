@@ -663,7 +663,7 @@ const LbsTest = () => {
       "options": ["Hiroshima", "Tokyo", "Kyoto", "Yokohama"],
       "correctAnswer": "Hiroshima"
     }
-  ]
+  ];
 
   const startTest = () => {
     // Prepare questions with section metadata
@@ -731,6 +731,12 @@ const LbsTest = () => {
       totalCorrect,
       totalQuestions,
       percentScore: percentScore.toFixed(2),
+      questions: questions.map((question, index) => ({
+        question: question.question,
+        options: question.options,
+        correctAnswer: question.correctAnswer,
+        userAnswer: selectedAnswers[index]
+      }))
     });
 
     // Submit results to the server via AppContext
@@ -851,7 +857,7 @@ const LbsTest = () => {
       <h1 className="text-4xl font-bold m-3 text-zinc-700 z-10">LBS MOCK TEST</h1>
 
       {!isStarted && !testResults && (
-        <div className="w-full max-w-4xl ">
+        <div className="w-full max-w-4xl my-20">
           {/* Test Information */}
           <div className="backdrop-blur-lg bg-[#ffffff3a] border border-gray-100 p-6 rounded-lg shadow-lg mb-8 bg-opacity-80 ">
             <h2 className="text-2xl font-bold text-[#37474F] mb-4">Examination Details</h2>
@@ -868,7 +874,6 @@ const LbsTest = () => {
 
             </div>
 
-
             <div className=" flex justify-center items-center">
               <StyledSplitButton
                 onClick={startTest}
@@ -877,38 +882,6 @@ const LbsTest = () => {
               />
             </div>
           </div>
-
-          {/* Past Score Section */}
-          {mainTestScores && (
-            <div className="w-full max-w-4xl rounded-xl shadow-xl p-8 backdrop-blur-lg border border-gray-100 bg-opacity-80">
-              <div className="flex items-center mb-6">
-                <div className="w-1 h-8 bg-blue-500 rounded-full mr-3"></div>
-                <h2 className="text-2xl font-bold bg-clip-text text-[#37474F]">Previous Test Performance</h2>
-              </div>
-
-
-
-              {/* Performance Chart */}
-              <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 ">
-                <div className="flex items-center mb-4">
-                  <svg className="w-5 h-5 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                  </svg>
-                  <h3 className="text-lg font-semibold text-gray-800">Performance Chart</h3>
-                </div>
-                <div className="relative h-64 w-full">
-                  <BarChart
-                    height={230}
-                    items={createChartItems()}
-                  />
-                </div>
-                <div className="mt-4 text-xs text-gray-500 text-center">
-                  Chart shows your test scores as percentage
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       )}
 
@@ -991,7 +964,7 @@ const LbsTest = () => {
                         {questions[questionIndex].options.map((option, idx) => (
                           <button
                             key={idx}
-                            className={`w-full text-left p-3 border rounded-lg transition-all duration-200 hover:bg-gray-50 
+                            className={`w-full text-left p-3 border rounded-lg transition-all duration-200 hover:bg-gray-50
                               ${selectedAnswers[questionIndex] === option ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
                             onClick={() => handleOptionSelect(option)}
                           >
@@ -1197,7 +1170,7 @@ const LbsTest = () => {
       )}
 
       {testResults && (
-        <div className="fixed inset-0 bg-white z-40">
+        <div className="fixed inset-0 bg-white z-40 overflow-y-scroll" data-lenis-prevent>
           <div className="max-w-4xl mx-auto p-6 flex flex-col h-full">
             {/* Results Header */}
             <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-lg p-6 text-white mb-6">
@@ -1256,8 +1229,31 @@ const LbsTest = () => {
               </div>
             </div>
 
+            {/* Question Review Section */}
+            <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Question Review</h3>
+              <div className="space-y-4">
+                {testResults.questions.map((q, index) => (
+                  <div key={index} className="border-b border-gray-200 pb-4">
+                    <h4 className="font-semibold text-gray-700 mb-2">Question {index + 1}</h4>
+                    <p className="text-gray-800 mb-2">{q.question}</p>
+                    <div className="space-y-2">
+                      {q.options.map((option, idx) => (
+                        <div key={idx} className={`p-2 rounded ${option === q.correctAnswer ? 'bg-green-100' : option === q.userAnswer ? 'bg-red-100' : 'bg-gray-100'}`}>
+                          <span className="font-medium">{['A', 'B', 'C', 'D', 'E'][idx]}. </span>
+                          <span>{option}</span>
+                          {option === q.correctAnswer && <span className="ml-2 text-green-600">(Correct Answer)</span>}
+                          {option === q.userAnswer && option !== q.correctAnswer && <span className="ml-2 text-red-600">(Your Answer)</span>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Action Buttons */}
-            <div className="mt-auto">
+            <div className="mt-auto pb-5 sticky bg-white backdrop-blur-sm bottom-0">
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={closeTest}

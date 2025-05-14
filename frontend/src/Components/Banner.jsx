@@ -8,6 +8,8 @@ import Mocktest from "./Mocktest";
 import MainTest from "./MainTest";
 import BlobCursor from "./BlobCursor/BlobCursor";
 import LbsTest from "./LbsTest";
+import Kmat24 from "./Kmat24";
+import Kmat25 from "./Kmat25";
 
 
 const Banner = () => {
@@ -435,6 +437,8 @@ const Banner = () => {
         token && (
           <div ref={lbsTestRef} name="lbstest">
             <LbsTest />
+            <Kmat24 />
+            <Kmat25 />
           </div>
         )
       }
