@@ -17,6 +17,7 @@ const Banner = () => {
   const navigate = useNavigate();
   const mockTestRef = useRef(null);
   const lbsTestRef = useRef(null);
+  const kmatRef = useRef(null);
   const [animationStage, setAnimationStage] = useState(0);
   const [showRulesModal, setShowRulesModal] = useState(false);
   const [showTipsModal, setShowTipsModal] = useState(false);
@@ -74,7 +75,7 @@ const Banner = () => {
             {/* First line - optimized for all screen sizes */}
             <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#003631] font-serif relative overflow-hidden leading-tight">
               <span className="inline-block relative">
-                {["K", "E", "A", "M & L", "B", "S"].map((letter, index) => (
+                {["K", "E", "A", "M, K", "M", "A", "T & L", "B", "S"].map((letter, index) => (
                   <span
                     key={index}
                     className="inline-block transition-all duration-700"
@@ -437,6 +438,13 @@ const Banner = () => {
         token && (
           <div ref={lbsTestRef} name="lbstest">
             <LbsTest />
+          </div>
+        )
+      }
+
+      {
+        token && (
+          <div ref={kmatRef} name="kmat">
             <Kmat24 />
             <Kmat25 />
           </div>
@@ -451,7 +459,6 @@ const Banner = () => {
         )
       }
 
-      {/* Only render the main test section if user is logged in */}
       {
         token && (
           <div name="maintest">

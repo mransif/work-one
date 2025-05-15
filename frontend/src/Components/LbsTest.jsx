@@ -62,7 +62,17 @@ const LbsTest = () => {
     }
   }, [userId, getMainTestScores]);
 
-  const sectionQuestions = [
+ const sectionQuestions = [
+    {
+      "question": "C++ programming language follows:",
+      "options": ["Procedural programming", "Object oriented programming", "Both (A) & (B)", "Neither A nor B"],
+      "correctAnswer": "Both (A) & (B)"
+    },
+    {
+      "question": "Pictorial representation of an algorithm is known as:",
+      "options": ["Venn diagram", "Histogram", "ER diagram", "Flow chart"],
+      "correctAnswer": "Flow chart"
+    },
     {
       "question": "Which of the following is the correct syntax for declaring a pointer in C?",
       "options": ["int *ptr;", "int ptr*;", "*int ptr;", "ptr int*;"],
@@ -86,7 +96,7 @@ const LbsTest = () => {
     {
       "question": "Size of virtual memory depends on:",
       "options": ["Secondary memory", "Primary memory", "Cache memory", "Both (A) & (B)"],
-      "correctAnswer": "Both (A) & (B)"
+      "correctAnswer": "Secondary memory"
     },
     {
       "question": "Cache memory is used to:",
@@ -141,7 +151,7 @@ const LbsTest = () => {
     {
       "question": "Which of the following is a Data Manipulation Language?",
       "options": ["CREATE", "SELECT", "INSERT", "GRANT"],
-      "correctAnswer": "SELECT"
+      "correctAnswer": "INSERT"
     },
     {
       "question": "What is the decimal value of 1011.11?",
@@ -175,8 +185,8 @@ const LbsTest = () => {
     },
     {
       "question": "Working principle of digital computer is based on:",
-      "options": ["Von Neumann's Principle", "Adams law", "De Morgan's Principle", "Kirchhoff's Law"],
-      "correctAnswer": "Von Neumann's Principle"
+      "options": ["Von Neumann’s Principle", "Adams law", "De Morgan’s Principle", "Kirchhoff’s Law"],
+      "correctAnswer": "Von Neumann’s Principle"
     },
     {
       "question": "Quality of a printer is analysed by:",
@@ -194,9 +204,9 @@ const LbsTest = () => {
       "correctAnswer": "1001 1010 1111"
     },
     {
-      "question": "If function f (A, B, C, D) =Σ (0, 1, 2, 5, 8, 9, 10) is implemented using POS form, the resultant Boolean function is:",
+      "question": "If function f (A, B, C, D) =Σ (0, 1, 2, 5,8, 9,10) is implemented using POS form, the resultant Boolean function is:",
       "options": ["(B+D).(C+D).(A+B)", "(B+A).(D+B).(B+C)", "(A+C).(B+D).(A+B)", "None of these"],
-      "correctAnswer": "(A+C).(B+D).(A+B)"
+      "correctAnswer": "None of these"
     },
     {
       "question": "Data from tape memory is accessed using:",
@@ -215,7 +225,7 @@ const LbsTest = () => {
     },
     {
       "question": "Which of the following represents Idempotent Law?",
-      "options": ["A. A=A", "A+A=A", "Both A & B", "A.0=0"],
+      "options": ["A=A", "A+A=A", "Both A & B", "A.0=0"],
       "correctAnswer": "Both A & B"
     },
     {
@@ -224,19 +234,19 @@ const LbsTest = () => {
       "correctAnswer": "Multiprocessor"
     },
     {
-      "question": "Snow Leopard is connected with:",
+      "question": "Snow Leopard is connected with",
       "options": ["Windows", "Intel", "Android", "Apple Mac"],
       "correctAnswer": "Apple Mac"
     },
     {
       "question": "Which of the following is sufficient to derive a Boolean Expression?",
       "options": ["XOR", "AND", "{OR, AND}", "None of these"],
-      "correctAnswer": "{OR, AND}"
+      "correctAnswer": "None of these"
     },
     {
       "question": "If function f (A, B, C) =Σ (3,4,6,7) is implemented using SOP form, the resultant Boolean function is:",
       "options": ["BC+AC", "BC+AB", "CB+CA", "None of these"],
-      "correctAnswer": "BC+AB"
+      "correctAnswer": "None of these"
     },
     {
       "question": "Synchronous DRAM has a built-in refresh rate of:",
@@ -261,12 +271,12 @@ const LbsTest = () => {
     {
       "question": "Entity Relationship modelling uses:",
       "options": ["Top-down approach", "Bottom-up approach", "Tree structure", "Both (A) & (B)"],
-      "correctAnswer": "Both (A) & (B)"
+      "correctAnswer": "Top-down approach"
     },
     {
       "question": "Non maskable interrupt is known as:",
       "options": ["TRAP", "INT 65", "INT 75", "INT 16"],
-      "correctAnswer": "INT 75"
+      "correctAnswer": "TRAP"
     },
     {
       "question": "Physical memory is divided into fixed size block called:",
@@ -280,8 +290,8 @@ const LbsTest = () => {
     },
     {
       "question": "Real number in C language is represented as:",
-      "options": ["Double", "Float", "Long int", "Char"],
-      "correctAnswer": "Float"
+      "options": ["Double", "Float", "Long", "Char"],
+      "correctAnswer": "Double or Float"
     },
     {
       "question": "Error in computer data is known as:",
@@ -316,30 +326,30 @@ const LbsTest = () => {
     {
       "question": "If log₁₆x + log₄x + log₂x = 14, then x =",
       "options": ["64", "48", "16", "None of these"],
-      "correctAnswer": "64"
+      "correctAnswer": "None of these"
     },
     {
-      "question": "If aˣ = b, bʸ = c, cᶻ = a then the value of xyz is:",
+      "question": "If aˣ = b, bʸ = c , cᶻ = a then the value of xyz is:",
       "options": ["1", "0", "abc", "2"],
       "correctAnswer": "1"
     },
     {
       "question": "√49 + 20√6 =",
-      "options": ["7 + √30", "5 + 2√6", "49 - 20√6", "10"],
-      "correctAnswer": "7 + 2√6"
+      "options": ["7 + √30", "5 + 2√6", "49 − 20√6", "10"],
+      "correctAnswer": "5 + 2√6"
     },
     {
-      "question": "If the sum of n terms of two arithmetic series are in the ratio (7n + 1) : (4n + 27), then their 11th term is in the ratio:",
+      "question": "If the sum of n terms of two arithmetic series are in the ratio (7n + 1): (4n + 27), then their 11th term is in the ratio:",
       "options": ["3: 4", "4: 3", "7: 4", "1: 1"],
-      "correctAnswer": "7: 4"
+      "correctAnswer": "4: 3"
     },
     {
-      "question": "If the roots of the equation ax² + bx + c = 0 are real and of the form α/(α-1) and (α+1)/α then the value of (a + b + c)² =",
-      "options": ["b² - 4ac", "b² + 4ac", "b² - 2ac", "0"],
-      "correctAnswer": "b² - 4ac"
+      "question": "If the roots of the equation ax² + bx + c = 0 are real and of the form then the value of =",
+      "options": ["b² − 4ac", "b² + 4ac", "b² − 2ac", "0"],
+      "correctAnswer": "b² − 4ac"
     },
     {
-      "question": "The coefficient of x⁶ in the expansion of (1 - x)⁻² is:",
+      "question": "The coefficient of x⁶ in the expansion of (1 − x)⁻² is:",
       "options": ["6", "7", "0", "1"],
       "correctAnswer": "7"
     },
@@ -349,13 +359,13 @@ const LbsTest = () => {
       "correctAnswer": "756"
     },
     {
-      "question": "If 9P₅ + 5 × 9P₄ = 10Pᵣ then r =",
+      "question": "If 9P5 + 5 x 9P4 = 10Pr then r =",
       "options": ["5", "4", "10", "9"],
       "correctAnswer": "5"
     },
     {
       "question": "If cosθ + √3 sinθ = 2, then θ =",
-      "options": ["π/6", "π/3", "2π/3", "π/2"],
+      "options": ["π/3", "π/6", "π/4", "π/2"],
       "correctAnswer": "π/3"
     },
     {
@@ -370,7 +380,7 @@ const LbsTest = () => {
     },
     {
       "question": "The areas of two circles are in the ratio 1:3. If the circles are bent in the form of squares, what is the ratio of their areas?",
-      "options": ["1:2", "1:3", "1:√2", "1:√3"],
+      "options": ["1:2", "1:3", "1: √2", "1: √3"],
       "correctAnswer": "1:3"
     },
     {
@@ -381,7 +391,7 @@ const LbsTest = () => {
     {
       "question": "The value of cos12° + cos84° + cos156° + cos132° =",
       "options": ["0.5", "0", "1", "None of these"],
-      "correctAnswer": "0"
+      "correctAnswer": "None of these"
     },
     {
       "question": "Find the area of a trapezium whose parallel sides are 15 cm and 20 cm long and the distance between them is 10cm:",
@@ -389,18 +399,18 @@ const LbsTest = () => {
       "correctAnswer": "175 cm²"
     },
     {
-      "question": "If cosec∝ + cot∝ = a, then cos∝ =",
-      "options": ["(a²-1)/(a²+1)", "(a²+1)/(a²-1)", "(1-a²)/(a²+1)", "(a-1)/(a²+1)"],
-      "correctAnswer": "(a²-1)/(a²+1)"
+      "question": "If cosec ∝ + cot ∝ = a, then cos ∝ =",
+      "options": ["(a² + 1)/(a² − 1)", "(a² − 1)/(a² + 1)", "1/a", "a"],
+      "correctAnswer": "(a² − 1)/(a² + 1)"
     },
     {
-      "question": "The focus of the parabola y² – x − 2y + 2 is:",
-      "options": ["(1/4, 0)", "(1/4, 1)", "(1, 1)", "(5/4, 1)"],
+      "question": "The focus of the parabola y² − x − 2y + 2 is:",
+      "options": ["(1/4, 1)", "(1, 1)", "(1/2, 1)", "(1/4, 0)"],
       "correctAnswer": "(1/4, 1)"
     },
     {
       "question": "The eccentricity of the ellipse 9x² + 5y² − 30y = 0 is:",
-      "options": ["2/3", "5/9", "9/5", "4/3"],
+      "options": ["2/3", "1/3", "1/√3", "√(2/3)"],
       "correctAnswer": "2/3"
     },
     {
@@ -411,12 +421,12 @@ const LbsTest = () => {
     {
       "question": "The number of tangents that can be drawn from (-1, 3) to x² + y² = 10 is:",
       "options": ["1", "0", "2", "More than 2"],
-      "correctAnswer": "2"
+      "correctAnswer": "1"
     },
     {
-      "question": "Equation to the locus of a point equidistant from the points A(1, -5) and B (−2,3) is:",
+      "question": "Equation to the locus of a point equidistant from the points A(1, -5) and B (−2,3) is :",
       "options": ["x – 4y = 4", "6x – 16y =13", "16x – 6y = –13", "6x + 16 y = 13"],
-      "correctAnswer": "6x + 16 y = 13"
+      "correctAnswer": "6x – 16y =13"
     },
     {
       "question": "A solid metallic sphere of radius 15cm is melted and recast in the form of small spheres of radius 3 cm. How many small spheres are formed?",
@@ -424,19 +434,19 @@ const LbsTest = () => {
       "correctAnswer": "125"
     },
     {
-      "question": "The sixth and eleventh term of a harmonic progression are 1/11 and 1/19 respectively. Then its second term is:",
-      "options": ["1/3", "23/5", "1", "None of these"],
-      "correctAnswer": "1/3"
+      "question": "The sixth and eleventh term of a harmonic progression are 1/6 and 1/11 respectively. Then its second term is:",
+      "options": ["1/16", "1/12", "1", "None of these"],
+      "correctAnswer": "None of these"
     },
     {
       "question": "The value of [(15³ × 3¹⁵ × 2³) ÷ (30³ × 3¹²)]² is:",
       "options": ["81", "729", "5832", "3645"],
-      "correctAnswer": "81"
+      "correctAnswer": "729"
     },
     {
-      "question": "If a² + b² + c² = 25 and a + b + c = 7, then (ab + bc + ca)² is:",
+      "question": "If a² + b² + c² = 25 and a + b + c =7, then (ab + bc + ca)² is:",
       "options": ["144", "576", "324", "81"],
-      "correctAnswer": "324"
+      "correctAnswer": "144"
     },
     {
       "question": "The area of a square is 100 sq.cm. If the side length increased by 3 cm, what will be the percentage increase in the area?",
@@ -444,7 +454,7 @@ const LbsTest = () => {
       "correctAnswer": "69%"
     },
     {
-      "question": "The average mark of 75% of the total number of students in a class is 80% of the class average. Then how much of the class average will be the average mark of the remaining 25%?",
+      "question": "The average mark of 75% of the total number of students in a class is 80% of the class average. Then how much of the class average will be the average mark of the remaining 25% ?",
       "options": ["160%", "120%", "60%", "20%"],
       "correctAnswer": "160%"
     },
@@ -454,14 +464,14 @@ const LbsTest = () => {
       "correctAnswer": "21:35:55"
     },
     {
-      "question": "If x² + 1/x² = 18, then x⁴ + 1/x⁴ =",
+      "question": "If x = 18, then x(x² + 3x + 3) =",
       "options": ["326", "324", "322", "522"],
-      "correctAnswer": "324"
+      "correctAnswer": "322"
     },
     {
       "question": "Which of the fractions is the largest?",
-      "options": ["5/7", "7/9", "9/11", "11/13"],
-      "correctAnswer": "11/13"
+      "options": ["5/7", "4/5", "3/4", "2/3"],
+      "correctAnswer": "4/5"
     },
     {
       "question": "Which of the following numbers is the smallest number which is completely divisible by all integers from 1 to 10?",
@@ -469,19 +479,19 @@ const LbsTest = () => {
       "correctAnswer": "2520"
     },
     {
-      "question": "What is the unit digit of the number (2148)²⁶?",
+      "question": "What is the unit digit of the number (2148)²⁶ ?",
       "options": ["8", "4", "2", "6"],
       "correctAnswer": "4"
     },
     {
-      "question": "The value of √539 + √396 − √275 is:",
-      "options": ["√891", "√704", "√635", "√176"],
-      "correctAnswer": "√176"
+      "question": "The value of (√3 + 1/√3)² is :",
+      "options": ["4/3", "3 + 1/√3", "4 + 2/√3", "3 + 2/√3"],
+      "correctAnswer": "4 + 2/√3"
     },
     {
       "question": "If the price of a commodity increased by 20%, then what percentage is the reduction in consumption so that the expenditure remains the same?",
-      "options": ["83 1/3", "16", "16 1/3", "16 2/3"],
-      "correctAnswer": "16 2/3"
+      "options": ["83/3%", "16 2/3%", "16%", "16 1/3%"],
+      "correctAnswer": "16 2/3%"
     },
     {
       "question": "Two litres of a mixture contains kerosene and petrol in the ratio 2:3. To prepare a new mixture containing kerosene and petrol in the ratio 3:2, how much more kerosene should be added?",
@@ -491,12 +501,12 @@ const LbsTest = () => {
     {
       "question": "If 23ᵖ + 32ᵖ is divisible by 55, then the value of p is?",
       "options": ["10", "8", "6", "11"],
-      "correctAnswer": "10"
+      "correctAnswer": "11"
     },
     {
       "question": "The remainder when 9¹ + 9² + 9³ + 9⁴ + 9⁵ + 9⁶ + 9⁷ is divided by 6 is:",
       "options": ["0", "1", "3", "5"],
-      "correctAnswer": "1"
+      "correctAnswer": "3"
     },
     {
       "question": "The number of numbers greater than 3000 that can be formed from the digits 1, 2, 3, 4, 5 and 6 if repetition is not allowed is:",
@@ -504,43 +514,43 @@ const LbsTest = () => {
       "correctAnswer": "240"
     },
     {
-      "question": "Complete the series: 26AZ1, 24CX9, ___, 20GT49",
+      "question": "Complete the series: 26AZ1, 24CX9, , 20GT49",
       "options": ["22EV16", "22DV25", "22DV16", "22EV25"],
       "correctAnswer": "22EV25"
     },
     {
-      "question": "Complete the series: 0, 4, 18, ___, 100, 180",
+      "question": "Complete the series: 0, 4, 18, , 100, 180",
       "options": ["32", "40", "48", "64"],
       "correctAnswer": "48"
     },
     {
-      "question": "Some of the letters of the series 'a_aab_aa_a_a_b' are missing which are given in that order as one of the alternatives given below. Choose the correct alternative.",
+      "question": "Some of the letters of the series “a_aab_aa_a_a_b “are missing which are given in that order as one of the alternatives given below. Choose the correct alternative.",
       "options": ["babab", "ababa", "babaa", "abbba"],
-      "correctAnswer": "babab"
+      "correctAnswer": "babaa"
     },
     {
-      "question": "State which of the conclusions follow from the statements given below: Statements: All apples are grapes. Some grapes are oranges. Conclusions: 1. Some apples are oranges; 2. Some oranges are apples 3. Some oranges are grapes; 4. Some grapes are apples",
+      "question": "State which of the conclusions follow from the statements given below: Statements : All apples are grapes. Some grapes are oranges Conclusions: 1. Some apples are oranges; 2. Some oranges are apples 3. Some oranges are grapes; 4. Some grapes are apples",
       "options": ["Only 3 and 4 follow", "Only 1 and 2 follow", "Only 2 and 3 follow", "None follows"],
       "correctAnswer": "Only 3 and 4 follow"
     },
     {
-      "question": "If sin⁻¹x + sin⁻¹y = 3π/4, then cos⁻¹x + cos⁻¹y =",
-      "options": ["3π/4", "3π/2", "π/4", "π/2"],
-      "correctAnswer": "π/4"
+      "question": "If x = 1 + √2, then (x − 1/x)² =",
+      "options": ["2", "4", "2√2", "4√2"],
+      "correctAnswer": "4"
     },
     {
-      "question": "A man travelled from P to Q at the rate of 5km per hour. Had he travelled at the rate of 4 2/3 km per hour he would have taken 3 more hours to reach the destination. What is the distance between P and Q?",
+      "question": "A man travelled from P to Q at the rate of 5km per hour. Had he travelled at the rate of 7km per hour he would have taken 3 more hours to reach the destination. What is the distance between P and Q?",
       "options": ["42 km", "168 km", "84 km", "210 km"],
-      "correctAnswer": "84 km"
+      "correctAnswer": "210 km"
     },
     {
-      "question": "You came to know your boss spies on your work in the office all the time. You will:",
+      "question": "Following the situation, four probable answers are given as alternatives. Choose the most suitable alternative. You came to know your boss spies on your work in the office all the time. You will:",
       "options": ["Ignore the boss", "Subtly convey it to the boss", "Just do your work sincerely", "Tell the matter to others in the office"],
       "correctAnswer": "Just do your work sincerely"
     },
     {
       "question": "Which of the following is a major goal of women empowerment?",
-      "options": ["Increase population growth", "Enhance male employment", "Provide equal opportunities for women", "Promote traditional gender roles"],
+      "options": ["Increase population growth", "Provide equal opportunities for women", "Enhance male employment", "Promote traditional gender roles"],
       "correctAnswer": "Provide equal opportunities for women"
     },
     {
@@ -569,12 +579,12 @@ const LbsTest = () => {
       "correctAnswer": "Repetition and revision"
     },
     {
-      "question": "The process of storing information in the brain is known as:",
-      "options": ["Recording", "Storage", "Retrieval", "Forgetting"],
+      "question": "The process of storing information in the brain is known as",
+      "options": ["Recording", "Forgetting", "Storage", "Retrieval"],
       "correctAnswer": "Storage"
     },
     {
-      "question": "Long-term memory is characterized by:",
+      "question": "Long-term memory is characterized by:.",
       "options": ["Very limited capacity", "Rapid forgetting", "Temporary storage", "Virtually unlimited capacity"],
       "correctAnswer": "Virtually unlimited capacity"
     },
@@ -589,9 +599,9 @@ const LbsTest = () => {
       "correctAnswer": "Regular review and practice"
     },
     {
-      "question": "Renu completed her work, ___? (Add a suitable question tag)",
-      "options": ["isn't it", "didn't she", "did she", "hadn't she"],
-      "correctAnswer": "didn't she"
+      "question": "Renu completed her work, ? (Add a suitable question tag)",
+      "options": ["isn’t it", "didn’t she", "did she", "hadn’t she"],
+      "correctAnswer": "didn’t she"
     },
     {
       "question": "It is very hot. (Convert into an exclamatory sentence)",
@@ -609,32 +619,22 @@ const LbsTest = () => {
       "correctAnswer": "came across"
     },
     {
-      "question": "A ___ is a person who pretends to be what he is not.",
+      "question": "A is a person who pretends to be what he is not.",
       "options": ["hyperbolic", "hypocrite", "sycophant", "altruist"],
       "correctAnswer": "hypocrite"
     },
     {
-      "question": "___ he got the book, he started reading.",
-      "options": ["No sooner than", "Hardly did", "As soon as", "As long as"],
-      "correctAnswer": "As soon as"
-    },
-    {
-      "question": "He bought the pen from a ___ shop near his house.",
-      "options": ["stationary", "stationery", "stationry", "statianery"],
-      "correctAnswer": "stationery"
-    },
-    {
-      "question": "The invaders ___ the city.",
+      "question": "The invaders the city.",
       "options": ["stole", "plundered", "aggravated", "hailed"],
       "correctAnswer": "plundered"
     },
     {
-      "question": "Susan is very confident of winning the race, but her friend Teena is ___.",
+      "question": "Susan is very confident of winning the race, but her friend Teena is --.",
       "options": ["diffident", "provident", "positive", "prudent"],
       "correctAnswer": "diffident"
     },
     {
-      "question": "He could not finish the work ___ he was very tired.",
+      "question": "He could not finish the work he was very tired.",
       "options": ["since", "hence", "nevertheless", "despite"],
       "correctAnswer": "since"
     },
@@ -654,16 +654,17 @@ const LbsTest = () => {
       "correctAnswer": "Ding Liren"
     },
     {
-      "question": "The Lyricist of the telugu song 'Nattu nattu' which won the Golden Globe Award:",
+      "question": "The Lyricist of the telugu song ‘Nattu nattu’ which won the Golden Globe Award:",
       "options": ["Kaala Bhairava", "Rahul Sipligunj", "Keeravani", "Chandrabose"],
       "correctAnswer": "Chandrabose"
     },
     {
-      "question": "The G7 summit 2023 was held from May 19-21 at ___ Japan.",
+      "question": "The G7 summit 2023 was held from May 19-21 at Japan.",
       "options": ["Hiroshima", "Tokyo", "Kyoto", "Yokohama"],
       "correctAnswer": "Hiroshima"
     }
-  ];
+];
+
 
   const startTest = () => {
     // Prepare questions with section metadata

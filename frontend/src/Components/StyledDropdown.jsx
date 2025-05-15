@@ -18,6 +18,16 @@ const StyledDropdown = () => {
                     </a>
                     <div className="submenu">
                         <div className="submenu-item">
+                            <Link to="lbstest" smooth={true} duration={500}>
+                                <a href="#" className="submenu-link"> LBS Mock Test </a>
+                            </Link>
+                        </div>
+                        <div className="submenu-item">
+                            <Link to="kmat" smooth={true} duration={500}>
+                                <a href="#" className="submenu-link"> KMAT mock Test </a>
+                            </Link>
+                        </div>
+                        <div className="submenu-item">
                             <Link to="mocktest" smooth={true} duration={500}>
                                 <a href="#" className="submenu-link"> KEAM Mock Test </a>
                             </Link>
@@ -27,11 +37,7 @@ const StyledDropdown = () => {
                                 <a href="#" className="submenu-link"> KEAM Main Test </a>
                             </Link>
                         </div>
-                        {/* <div className="submenu-item">
-                            <Link to="3test" smooth={true} duration={500}>
-                                <a href="#" className="submenu-link"> test 3 </a>
-                            </Link>
-                        </div> */}
+                        
                     </div>
                 </div>
             </div>

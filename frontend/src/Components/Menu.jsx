@@ -60,6 +60,12 @@ const Menu = ({ token, logoutUser }) => {
           
           {token ? (
             <>
+              <Link to="lbstest" smooth={true} duration={500} onClick={closeDropdown}>
+                <div className="menu-list">LBS Mock Test</div>
+              </Link>
+              <Link to="kmat" smooth={true} duration={500} onClick={closeDropdown}>
+                <div className="menu-list">KMAT mock Test</div>
+              </Link>
               <Link to="mocktest" smooth={true} duration={500} onClick={closeDropdown}>
                 <div className="menu-list">KEAM Mock Test</div>
               </Link>

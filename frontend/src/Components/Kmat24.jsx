@@ -1154,7 +1154,7 @@ const Kmat24 = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/30"></div>
 
-      <h1 className="text-4xl font-bold m-3 text-zinc-700 z-10 text-center">KMAT 24 MOCK TEST</h1>
+      <h1 className="text-4xl font-bold m-3 text-zinc-700 z-10 text-center">KMAT MOCK TEST 1</h1>
 
       {!isStarted && !testResults && (
         <div className="w-full max-w-4xl  my-20">
@@ -1189,7 +1189,7 @@ const Kmat24 = () => {
           {/* Top Bar with Timer */}
           <div className="bg-orange-100 text-gray-700 p-3 flex justify-between items-center shadow-md">
             <div className="flex items-center">
-              <h2 className="text-xl font-bold">KMAT24 MOCK TEST</h2>
+              <h2 className="text-xl font-bold">KMAT MOCK TEST 1</h2>
             </div>
             <div className="flex items-center space-x-3 md:space-x-6">
               {/* Hidden on small screens */}
