@@ -410,7 +410,7 @@ const LbsTest = () => {
     },
     {
       "question": "The eccentricity of the ellipse 9x² + 5y² − 30y = 0 is:",
-      "options": ["2/3", "1/3", "1/√3", "√(2/3)"],
+      "options": ["2/3", "5/9", "9/5", "4/3"],
       "correctAnswer": "2/3"
     },
     {
@@ -490,8 +490,8 @@ const LbsTest = () => {
     },
     {
       "question": "If the price of a commodity increased by 20%, then what percentage is the reduction in consumption so that the expenditure remains the same?",
-      "options": ["83/3%", "16 2/3%", "16%", "16 1/3%"],
-      "correctAnswer": "16 2/3%"
+      "options": ["83 1/3", "16", "16 1/3", "16 2/3"],
+      "correctAnswer": "16 2/3"
     },
     {
       "question": "Two litres of a mixture contains kerosene and petrol in the ratio 2:3. To prepare a new mixture containing kerosene and petrol in the ratio 3:2, how much more kerosene should be added?",
