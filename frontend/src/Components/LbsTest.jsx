@@ -405,8 +405,8 @@ const LbsTest = () => {
     },
     {
       "question": "The focus of the parabola y² − x − 2y + 2 is:",
-      "options": ["(1/4, 1)", "(1, 1)", "(1/2, 1)", "(1/4, 0)"],
-      "correctAnswer": "(1/4, 1)"
+      "options": ["(1/4, 1)", "(1/4, 0)", "(1, 1)", "(5/4, 1)"],
+      "correctAnswer": "(5/4, 1)"
     },
     {
       "question": "The eccentricity of the ellipse 9x² + 5y² − 30y = 0 is:",
